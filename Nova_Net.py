@@ -1,8 +1,7 @@
 import streamlit as st
 import requests
 import random
-from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
-import torch
+import google.generativeai as genai
 
 st.set_page_config(page_title="Nova Net", layout="wide", page_icon="💫")
 
@@ -11,35 +10,25 @@ API_KEY = "ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"  # Replace with your own ke
 
 # Function to get Astronomy Picture of the Day
 def get_apod():
-    url = f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}"
+    url = f"https://api.nasa.gov/planetary/apod?api_key=ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
     response = requests.get(url)
     return response.json()
 
-# Initialize the Hugging Face conversational pipeline with DialoGPT
-@st.cache_resource
-def load_model():
-    tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-medium")
-    model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-medium")
-    return tokenizer, model
+# Configure with your API key
+genai.configure(api_key="AIzaSyCo_0KAksVDduggseFuvrDyVtcpjRPTAuY")
 
-tokenizer, model = load_model()
+# Use the latest model that supports generate_content
+model = genai.GenerativeModel("models/gemini-pro")
 
-# Session state to track active tab
+def get_gemini_response(user_input):
+    try:
+        response = model.generate_content(user_input)
+        return response.text
+    except Exception as e:
+        return f"Error: {str(e)}"
+
 if "active_tab" not in st.session_state:
     st.session_state.active_tab = "🏠 Home"
-if "chat_history_ids" not in st.session_state:
-    st.session_state.chat_history_ids = None
-if "past_user_inputs" not in st.session_state:
-    st.session_state.past_user_inputs = []
-if "past_ai_responses" not in st.session_state:
-    st.session_state.past_ai_responses = []
-
-# Tab names
-tabs = [
-    "🏠 Home", "🔍 Mysteries", "🪐 Exoplanets", "🚀 Missions",
-    "⚙️ Tech", "📰 News", "💬 Theories", "🧬 Astrobiology",
-    "⌛ Black Holes", "❓ Quizzes", "🤖 AI Conversations", "📖 About"
-]
 
 # Add the CSS for styling
 st.markdown("""
@@ -78,6 +67,20 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
+
+if st.session_state.active_tab == "🏠 Home":
+    st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
+                <h1 style='font-size: 60px;'>Welcome to NovaNet!</h1>
+                <h3>Explore the wonders of the universe...</h3>
+                <h2> </h2>
+                </div>""", unsafe_allow_html=True)
+
+# Tab names
+tabs = [
+    "🏠 Home", "🔍 Mysteries", "🪐 Exoplanets", "🚀 Missions",
+    "⚙️ Tech", "📰 News", "💬 Theories", "🧬 Astrobiology",
+    "⌛ Black Holes", "❓ Quizzes", "🤖 AI Conversations", "📖 About"
+]
 
 # Create buttons to switch tabs
 col1, col2, col3, col4, col5, col6 = st.columns(6)
@@ -127,13 +130,97 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 
 # Content for each tab
 if st.session_state.active_tab == "🏠 Home":
-    st.markdown("""<div style='text-align: center; margin-top: 2rem;'><h1 style='font-size: 60px;'>Welcome to NovaNet!</h1><h3>Explore the wonders of the universe...</h3><h2> </h2><h2>🌌 Space Fact of the Day</h2><h3>Random space fact will be shown here.</h3></div>""", unsafe_allow_html=True)
+    st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
+                    <h1>🌌 Space Fact of the Day</h1>
+                  </div>""", unsafe_allow_html=True)
+
+    space_facts = [
+        "A day on Venus is longer than a year.",
+        "Neutron stars can spin 600 times per second.",
+        "There’s a planet made of diamonds – 55 Cancri e.",
+        "The largest volcano in the solar system is on Mars – Olympus Mons.",
+        "The Moon is slowly drifting away from Earth (about 3.8 cm per year)."
+    ]
+
+    fact = random.choice(space_facts)
+
+    st.markdown(f"""<div style='text-align: center; margin-top: 2rem;'>
+                    <h3>{fact}</h3>
+                  </div>""", unsafe_allow_html=True)
+    
+    st.markdown("""<div style='text-align: center; margin-top: 3rem;'>
+                <h1>📸 NASA's Astronomy Picture of the Day</h1>
+              </div>""", unsafe_allow_html=True)
+
+    apod = get_apod()
+    if apod:
+        st.markdown(f"""
+        <div style='text-align: center;'>
+            <img src="{apod["url"]}" alt="{apod["title"]}" style="max-width: 90%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+            <p style='margin-top: 1rem; font-weight: bold;'>{apod["title"]}</p>
+        </div>
+        """, unsafe_allow_html=True)
+    st.markdown(f"<p style='text-align: justify; margin-top: 1rem;'>{apod['explanation']}</p>", unsafe_allow_html=True)
+
+    # 🧠 Interactive Poll
+    st.markdown("""<div style='text-align: center; margin-top: 3rem;'>
+                <h2>📊 Quick Poll</h2>
+                <h4>Which space topic excites you the most?</h4>
+                </div>""", unsafe_allow_html=True)
+
+    options = [
+        "🚀 Space Missions",
+        "🕳️ Black Holes & Time Travel",
+        "🛸 Aliens & Civilizations",
+        "🪐 Exoplanets & New Worlds",
+        "🧠 AI in Space"
+        ]
+
+    selected_option = st.radio("", options, index=0, key="space_poll")
+
+    st.markdown("""
+    <style>
+        .stRadio label {
+            font-size: 50px !important;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    if selected_option:
+        st.markdown(f"<div style='text-align: center;'><h4>You chose: <strong>{selected_option}</strong></h4></div>", unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "🔍 Mysteries":
-    st.title("🔍 Space Mysteries")
-    st.header("Mystery Meter: How unsolved is this mystery?")
-    st.write("The Theory of the Week will be displayed here.")
-    st.write("Complex terms will have tooltips here.")
+    st.markdown("""
+    <h1 style='text-align: center;'>🕵️‍♂️ Unsolved Mysteries of the Universe 🌌</h1>
+    <h4 style='text-align: center;'>Here are some of the most intriguing space mysteries that remain unsolved:</h4>
+    <h3> </h3>
+    """, unsafe_allow_html=True)
+    
+    mysteries = [
+        {"title": "Dark Matter & Dark Energy 💫", 
+         "description": "What are they, and why do they make up most of the universe's mass-energy content? "
+                        "<a href='https://en.wikipedia.org/wiki/Dark_matter' target='_blank'>Learn more</a>."},
+        {"title": "The Fermi Paradox 👽", 
+         "description": "Why have we not yet encountered any extraterrestrial civilizations? "
+                        "<a href='https://en.wikipedia.org/wiki/Fermi_paradox' target='_blank'>Learn more</a>."},
+        {"title": "The Wow! Signal 📡", 
+         "description": "A mysterious radio signal from space that has never been explained. "
+                        "<a href='https://en.wikipedia.org/wiki/Wow!_signal' target='_blank'>Learn more</a>."},
+        {"title": "The Nature of Black Holes ⚫", 
+         "description": "Understanding the true nature of singularities and the event horizon. "
+                        "<a href='https://en.wikipedia.org/wiki/Black_hole' target='_blank'>Learn more</a>."},
+        {"title": "Quantum Gravity ⚛️", 
+         "description": "How to reconcile general relativity and quantum mechanics. "
+                        "<a href='https://en.wikipedia.org/wiki/Quantum_gravity' target='_blank'>Learn more</a>."}
+    ]
+    
+    for mystery in mysteries:
+        st.markdown(f"""
+        <div style='margin-bottom: 20px; text-align: center;'>
+            <h3>{mystery['title']}</h3>
+            <p>{mystery['description']}</p>
+        </div>
+        """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "🪐 Exoplanets":
     st.title("🪐 Exoplanets")
@@ -187,26 +274,17 @@ elif st.session_state.active_tab == "❓ Quizzes":
     st.write("User progress tracking and quiz results sharing.")
     st.write("AI-generated custom quizzes will be created after 3 completions.")
 
-if st.session_state.active_tab == "🤖 AI Conversations":
+elif st.session_state.active_tab == "🤖 AI Conversations":
     st.title("🤖 AI Conversations")
-    st.write("This section is dedicated to AI-powered conversations and interactions.")
+    st.markdown("Talk to Gemini AI about space, science, or anything cosmic!")
 
-    # Create a text input for the user to ask questions
-    user_input = st.text_input("Ask the AI something:")
+    user_input = st.text_input("Ask something about the universe...")
 
-    # If user input is given, process it through the chatbot
     if user_input:
-        new_input_ids = tokenizer.encode(user_input + tokenizer.eos_token, return_tensors='pt')
-        bot_input_ids = torch.cat([st.session_state.chat_history_ids, new_input_ids], dim=-1) if st.session_state.chat_history_ids is not None else new_input_ids
-        st.session_state.chat_history_ids = model.generate(bot_input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id, do_sample=True, top_k=50, top_p=0.95)
-        response = tokenizer.decode(st.session_state.chat_history_ids[:, bot_input_ids.shape[-1]:][0], skip_special_tokens=True)
-        st.session_state.past_user_inputs.append(user_input)
-        st.session_state.past_ai_responses.append(response)
-
-    # Display conversation history
-    for user, bot in zip(st.session_state.past_user_inputs, st.session_state.past_ai_responses):
-        st.markdown(f"**You:** {user}")
-        st.markdown(f"**AI:** {bot}")
+        with st.spinner("Gemini is thinking..."):
+            response = get_gemini_response(user_input)
+        st.markdown("**Gemini Says:**")
+        st.success(response)
 
 elif st.session_state.active_tab == "📖 About":
     st.title("📖 About Nova Net")
