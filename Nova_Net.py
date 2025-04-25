@@ -732,20 +732,31 @@ elif st.session_state.active_tab == "⚙️ Tech":
     st.markdown("---")
 
     st.markdown("### 🔋 Energy Systems")
-    st.markdown("""
-    - **ISS Solar Panels** – Powering the space station with solar energy.
-    - **Next-gen Solar Arrays** – Foldable and highly efficient power systems.
-    - **RTGs** – Radioisotope Thermoelectric Generators used in deep space probes.
-    """)
+    enrgy1, enrgy2 = st.columns(2)    
+    with enrgy1:
+        st.markdown("""
+        - **🛰️ Solar Panels on ISS** – The International Space Station uses massive solar arrays to generate electricity. These panels are carefully oriented to capture sunlight as the station orbits Earth.  [🔗Learn More](https://www.nasa.gov/image-article/solar-arrays-international-space-station-2/)
+        - **☀️ Next-gen Solar Arrays** – New designs feature flexible, foldable panels with higher efficiency and lighter weight, ideal for future missions where mass and space are limited.  [🔗Learn More](https://news.mit.edu/2021/photovoltaic-efficiency-solar-0224)
+        """)
+    with enrgy2:
+        st.markdown("""
+        - **🔌 Nuclear Batteries** – Radioisotope Thermoelectric Generators (RTGs) convert heat from radioactive decay into electricity. Used on missions like Voyager and Curiosity, they provide long-lasting power far from the Sun.  [🔗Learn More](https://en.wikipedia.org/wiki/Atomic_battery)
+        - **⚡ Wireless Power Transfer** – Future missions may use beamed microwaves or lasers to transfer power across space, enabling remote charging of rovers or lunar bases.  [🔗Learn More](https://en.wikipedia.org/wiki/Wireless_power_transfer)
+        """)
     st.markdown("---")
 
-    st.markdown("### 🧲 Experimental Tech")
-    st.markdown("""
-    - **Magnetic Shielding** – Experimental protection against cosmic radiation.
-    - **Space Elevators** – A futuristic idea for direct transport to orbit.
-    - **Autonomous Cargo Landers** – Concepts like SpaceX’s Starship for resupply missions.
-    """)
-
+    st.markdown("### 🧪 Experimental Tech")
+    exptech1, exptech2 = st.columns(2)    
+    with exptech1:
+        st.markdown("""
+        - **🧲 Magnetic Shielding** – Magnetic fields can protect astronauts from cosmic rays and solar radiation. Researchers are testing this concept to create a safer space environment for long-duration missions.  [🔗Learn More](https://en.wikipedia.org/wiki/Aerogel)
+        - **🌐 Space Elevators** – A space elevator would connect Earth’s surface to orbit using a super-strong cable. Though still theoretical, it could revolutionize space travel by making launches cheaper and safer.  [🔗Learn More](https://en.wikipedia.org/wiki/Shape-memory_alloy)
+        """)
+    with exptech2:
+        st.markdown("""
+        - **📦 Autonomous Cargo Landers** – SpaceX and other companies are developing spacecraft that can deliver supplies to the Moon or Mars autonomously, enabling frequent and reliable resupply missions.  [🔗Learn More](https://sensorpartners.com/en/knowledge-base/artificial-intelligenc-and-sensors-a-powerful-combination/#:~:text=Smart%20home%3A%20AI%20is%20used,a%20car%20without%20human%20input.)
+        - **🛸 Plasma Propulsion** – This cutting-edge system uses superheated ionized gas for high-speed space travel. It offers potential for interplanetary journeys much faster than current technology.   [🔗Learn More](https://www.nasa.gov/organizations/ocio/dt/ai/2024-ai-use-cases/)
+        """)
 
 elif st.session_state.active_tab == "🧬 Astrobiology":
     st.title("🧬 Astrobiology")
