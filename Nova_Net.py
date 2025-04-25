@@ -1,7 +1,6 @@
 import streamlit as st
 import requests
 import random
-import google.generativeai as genai
 
 st.set_page_config(page_title="Nova Net", layout="wide", page_icon="💫")
 
