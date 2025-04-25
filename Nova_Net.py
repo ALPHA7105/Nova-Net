@@ -749,13 +749,13 @@ elif st.session_state.active_tab == "⚙️ Tech":
     exptech1, exptech2 = st.columns(2)    
     with exptech1:
         st.markdown("""
-        - **🧲 Magnetic Shielding** – Magnetic fields can protect astronauts from cosmic rays and solar radiation. Researchers are testing this concept to create a safer space environment for long-duration missions.  [🔗Learn More](https://en.wikipedia.org/wiki/Aerogel)
-        - **🌐 Space Elevators** – A space elevator would connect Earth’s surface to orbit using a super-strong cable. Though still theoretical, it could revolutionize space travel by making launches cheaper and safer.  [🔗Learn More](https://en.wikipedia.org/wiki/Shape-memory_alloy)
+        - **🧲 Magnetic Shielding** – Magnetic fields can protect astronauts from cosmic rays and solar radiation. Researchers are testing this concept to create a safer space environment for long-duration missions.  [🔗Learn More](https://en.wikipedia.org/wiki/Electromagnetic_shielding#Magnetic_shielding)
+        - **🌐 Space Elevators** – A space elevator would connect Earth’s surface to orbit using a super-strong cable. Though still theoretical, it could revolutionize space travel by making launches cheaper and safer.  [🔗Learn More](https://en.wikipedia.org/wiki/Space_elevator)
         """)
     with exptech2:
         st.markdown("""
-        - **📦 Autonomous Cargo Landers** – SpaceX and other companies are developing spacecraft that can deliver supplies to the Moon or Mars autonomously, enabling frequent and reliable resupply missions.  [🔗Learn More](https://sensorpartners.com/en/knowledge-base/artificial-intelligenc-and-sensors-a-powerful-combination/#:~:text=Smart%20home%3A%20AI%20is%20used,a%20car%20without%20human%20input.)
-        - **🛸 Plasma Propulsion** – This cutting-edge system uses superheated ionized gas for high-speed space travel. It offers potential for interplanetary journeys much faster than current technology.   [🔗Learn More](https://www.nasa.gov/organizations/ocio/dt/ai/2024-ai-use-cases/)
+        - **📦 Autonomous Cargo Landers** – SpaceX and other companies are developing spacecraft that can deliver supplies to the Moon or Mars autonomously, enabling frequent and reliable resupply missions.  [🔗Learn More](https://en.wikipedia.org/wiki/Starship_HLS)
+        - **🛸 Plasma Propulsion** – This cutting-edge system uses superheated ionized gas for high-speed space travel. It offers potential for interplanetary journeys much faster than current technology.   [🔗Learn More](https://en.wikipedia.org/wiki/Plasma_propulsion_engine)
         """)
 
 elif st.session_state.active_tab == "🧬 Astrobiology":
