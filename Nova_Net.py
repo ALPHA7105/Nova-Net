@@ -13,19 +13,6 @@ def get_apod():
     response = requests.get(url)
     return response.json()
 
-# Configure with your API key
-genai.configure(api_key="AIzaSyCo_0KAksVDduggseFuvrDyVtcpjRPTAuY")
-
-# Use the latest model that supports generate_content
-model = genai.GenerativeModel("models/gemini-pro")
-
-def get_gemini_response(user_input):
-    try:
-        response = model.generate_content(user_input)
-        return response.text
-    except Exception as e:
-        return f"Error: {str(e)}"
-
 if "active_tab" not in st.session_state:
     st.session_state.active_tab = "🏠 Home"
 
