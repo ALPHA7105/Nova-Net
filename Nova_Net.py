@@ -118,7 +118,9 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 if st.session_state.active_tab == "🏠 Home":
     st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
                     <h1>🌎 Home</h1>
-                  </div>""", unsafe_allow_html=True)
+                    <p style='text-align: center;'>Explore the universe from your screen – facts, features, and the wonders of space, all in one place.</p>
+                    </div>""", unsafe_allow_html=True)
+    
     st.markdown("---")
     st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
                     <h1>🌌 Space Fact of the Day</h1>
@@ -355,7 +357,10 @@ elif st.session_state.active_tab == "🔍 Mysteries":
         """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "🪐 Exoplanets":
-    st.markdown("<h1 style='text-align: center;'>🪐 Explore Exoplanets</h1>", unsafe_allow_html=True)
+    st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
+                    <h1>🪐 Explore Exoplanets</h1>
+                    <p style='text-align: center;'>Discover alien worlds beyond our solar system...</p>
+                    </div>""", unsafe_allow_html=True)
     
     # 1. What are Exoplanets?
     st.markdown("---")
