@@ -782,14 +782,6 @@ elif st.session_state.active_tab == "🤖 AI Conversations":
     st.title("🤖 AI Conversations")
     st.markdown("Talk to Gemini AI about space, science, or anything cosmic!")
 
-    user_input = st.text_input("Ask something about the universe...")
-
-    if user_input:
-        with st.spinner("Gemini is thinking..."):
-            response = get_gemini_response(user_input)
-        st.markdown("**Gemini Says:**")
-        st.success(response)
-
 elif st.session_state.active_tab == "📖 About":
     st.title("📖 About Nova Net")
     st.write("Your origin story + dream for NovaNet.")
