@@ -221,7 +221,7 @@ elif st.session_state.active_tab == "🔍 Mysteries":
     with col1:
         for mystery in mysteries[:4]:
             st.markdown(f"""
-            <div style='margin-bottom: 20px; text-align: center;'>
+            <div style='margin-bottom: 20px; text-align: left;'>
                 <h3>{mystery['title']}</h3>
                 <p>{mystery['description']}</p>
             </div>
@@ -230,7 +230,7 @@ elif st.session_state.active_tab == "🔍 Mysteries":
     with col2:
         for mystery in mysteries[4:]:
             st.markdown(f"""
-            <div style='margin-bottom: 20px; text-align: center;'>
+            <div style='margin-bottom: 20px; text-align: left;'>
                 <h3>{mystery['title']}</h3>
                 <p>{mystery['description']}</p>
             </div>
@@ -268,7 +268,7 @@ elif st.session_state.active_tab == "🔍 Mysteries":
     with col1:
         for anomaly in anomalies[:3]:
             st.markdown(f"""
-            <div style='margin-bottom: 20px; text-align: center;'>
+            <div style='margin-bottom: 20px; text-align: left;'>
                 <h3>{anomaly['title']}</h3>
                 <p>{anomaly['description']}</p>
             </div>
@@ -277,7 +277,7 @@ elif st.session_state.active_tab == "🔍 Mysteries":
     with col2:
         for anomaly in anomalies[3:]:
             st.markdown(f"""
-            <div style='margin-bottom: 20px; text-align: center;'>
+            <div style='margin-bottom: 20px; text-align: left;'>
                 <h3>{anomaly['title']}</h3>
                 <p>{anomaly['description']}</p>
             </div>
@@ -289,7 +289,7 @@ elif st.session_state.active_tab == "🔍 Mysteries":
     col1, col2 = st.columns(2)
     with col1:
         st.markdown("""
-        <div style='text-align: center;'>
+        <div style='text-align: left;'>
         <h4>🌌 Dark Matter Web</h4>
         <p>What if it's the intelligent framework of the universe?</p>
         <a href='https://en.wikipedia.org/wiki/Dark_matter' target='_blank'>🔗 Learn More</a>
@@ -297,7 +297,7 @@ elif st.session_state.active_tab == "🔍 Mysteries":
         """, unsafe_allow_html=True)
 
         st.markdown("""
-        <div style='text-align: center; margin-top: 2rem;'>
+        <div style='text-align: left; margin-top: 2rem;'>
         <h4>💥 White Holes</h4>
         <p>Theoretical opposites of black holes. Could they exist?</p>
         <a href='https://en.wikipedia.org/wiki/White_hole' target='_blank'>🔗 Learn More</a>
@@ -306,7 +306,7 @@ elif st.session_state.active_tab == "🔍 Mysteries":
 
     with col2:
         st.markdown("""
-        <div style='text-align: center;'>
+        <div style='text-align: left;'>
         <h4>🧬 Shadow Biospheres</h4>
         <p>Alien life forms we can't detect with current tools?</p>
         <a href='https://en.wikipedia.org/wiki/Shadow_biosphere' target='_blank'>🔗 Learn More</a>
@@ -314,7 +314,7 @@ elif st.session_state.active_tab == "🔍 Mysteries":
         """, unsafe_allow_html=True)
 
         st.markdown("""
-        <div style='text-align: center; margin-top: 2rem;'>
+        <div style='text-align: left; margin-top: 2rem;'>
         <h4>🛰️ Simulation Hypothesis</h4>
         <p>Are we living inside a cosmic simulation?</p>
         <a href='https://en.wikipedia.org/wiki/Simulation_hypothesis' target='_blank'>🔗 Learn More</a>
