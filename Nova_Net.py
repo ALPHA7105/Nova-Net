@@ -183,11 +183,11 @@ if st.session_state.active_tab == "🏠 Home":
         st.markdown(f"<div style='text-align: center;'><h4>You chose: <strong>{selected_option}</strong></h4></div>", unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "🔍 Mysteries":
-    st.markdown("---")
     st.markdown("""
     <h2 style='text-align: center;'>🕵️‍♂️ Unsolved Mysteries of the Universe 🌌</h2>
     <p style='text-align: center;'>Here are some of the most intriguing space mysteries that remain unsolved:</p>
     """, unsafe_allow_html=True)
+    st.markdown("---")
     
     mysteries = [
         {"title": "Dark Matter & Dark Energy 💫", 
