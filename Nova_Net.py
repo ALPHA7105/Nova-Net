@@ -689,36 +689,48 @@ elif st.session_state.active_tab == "⚙️ Tech":
         """)
     st.markdown("---")
 
-    # 🛖 Space Habitats
-    st.markdown("### 🛖 Space Habitats")
-    st.markdown("""
-    - **Lunar Gateway** – A planned space station orbiting the Moon for deep space missions.
-    - **3D-Printed Lunar Bases** – Structures made using lunar regolith.
-    - **BioDomes** – Closed-loop systems for growing food on other planets.
-    - [🔗 Learn More](https://www.nasa.gov/gateway/overview)
-    """)
+    st.markdown("### 🪟 Space Habitats")
+    hab1, hab2 = st.columns(2)    
+    with hab1:
+        st.markdown("""
+        - **🛰️ Lunar Gateway** – The Lunar Gateway is a planned space station that will orbit the Moon. It will serve as a research lab, crew transfer station, and support platform for lunar surface missions and deep space travel.  [🔗Learn More](https://www.nasa.gov/mission/gateway/)
+        - **🧱 3D-Printed Moon Bases** – Using lunar regolith as raw material, 3D printing technology could build durable shelters on the Moon. This reduces the need to transport heavy materials from Earth, making lunar colonization more feasible.  [🔗Learn More](https://www.nasa.gov/technology/manufacturing-materials-3-d-printing/nasa-looks-to-advance-3d-printing-construction-systems-for-the-moon-and-mars/)
+        """)
+    with hab2:
+        st.markdown("""
+        - **🌱 BioDomes** – BioDomes are closed-loop ecosystems designed to grow food in space. They recycle air and water, offering a sustainable way to support life during long missions or on other planets.  [🔗Learn More](https://wonderopolis.org/wonder/What-Is-a-Biodome)
+        - **🏠 Inflatable Modules** – Inflatable habitats like Bigelow’s BEAM are compact during launch and expand in space, providing more room with less weight. They are being tested for future use on the Moon and Mars.   [🔗Learn More](https://en.wikipedia.org/wiki/Bigelow_Expandable_Activity_Module)
+        """)
     st.markdown("---")
 
-    # 📡 Satellite Technology
     st.markdown("### 📡 Satellite Technology")
-    st.markdown("""
-    - **CubeSats** – Small satellites used for research and education.
-    - **Communication Satellites** – Enabling global communication networks.
-    - **Earth Observation** – Monitoring weather, disasters, forests, and oceans.
-    - [🔗 Learn More](https://www.nasa.gov/mission_pages/smallsats)
-    """)
+    sat1, sat2 = st.columns(2)    
+    with sat1:
+        st.markdown("""
+        - **📡 CubeSats** – CubeSats are miniature satellites used for low-cost scientific experiments, technology testing, and student projects. Despite their small size, they can perform many of the same functions as larger satellites.  [🔗Learn More](https://www.nasa.gov/what-are-smallsats-and-cubesats/)
+        - **🛰️ Communication Satellites** – These satellites relay television, radio, and internet signals across the globe. Positioned in geostationary orbit, they form the backbone of global communication infrastructure.  [🔗Learn More](https://en.wikipedia.org/wiki/Communications_satellite)
+        """)
+    with sat2:
+        st.markdown("""
+        - **🗺️ Earth Observation Tech** – Satellites equipped with high-resolution cameras and sensors monitor the Earth’s surface, tracking environmental changes, natural disasters, and human activity for science and security.  [🔗Learn More](https://en.wikipedia.org/wiki/Earth_observation_satellite)
+        - **🌍 Navigation Satellites** – Systems like GPS rely on satellites to provide real-time location data. They support everything from navigation apps to military operations and scientific surveys.   [🔗Learn More](https://en.wikipedia.org/wiki/Satellite_navigation)
+        """)
     st.markdown("---")
 
-    # 🧠 Advanced Materials & AI
     st.markdown("### 🧠 Advanced Materials & AI")
-    st.markdown("""
-    - **Aerogels** – Super-light materials used for insulation in space.
-    - **AI in Spacecraft** – Used for diagnostics, navigation, and data analysis.
-    - [🔗 Learn More](https://technology.nasa.gov/)
-    """)
+    ai1, ai2 = st.columns(2)    
+    with ai1:
+        st.markdown("""
+        - **🧪 Aerogels** – Aerogels are ultra-light materials known for their insulating properties. Used in rovers and suits, they help protect astronauts and electronics from extreme space temperatures.  [🔗Learn More](https://en.wikipedia.org/wiki/Aerogel)
+        - **⚙️ Shape Memory Alloys** – These smart materials return to a preset shape after deformation. They’re used in robotic actuators and deployable structures for space missions.  [🔗Learn More](https://en.wikipedia.org/wiki/Shape-memory_alloy)
+        """)
+    with ai2:
+        st.markdown("""
+        - **🔍 Smart Sensors** – Advanced sensors with AI processing are used to monitor spacecraft systems, planetary environments, and even astronaut health in real-time.  [🔗Learn More](https://sensorpartners.com/en/knowledge-base/artificial-intelligenc-and-sensors-a-powerful-combination/#:~:text=Smart%20home%3A%20AI%20is%20used,a%20car%20without%20human%20input.)
+        - **🧠 AI in Spacecraft** – AI enhances spacecraft with autonomous decision-making, data analysis, and fault detection. It allows missions to respond to unforeseen challenges without relying on Earth-based commands.   [🔗Learn More](https://www.nasa.gov/organizations/ocio/dt/ai/2024-ai-use-cases/)
+        """)
     st.markdown("---")
 
-    # 🔋 Energy Systems
     st.markdown("### 🔋 Energy Systems")
     st.markdown("""
     - **ISS Solar Panels** – Powering the space station with solar energy.
@@ -727,7 +739,6 @@ elif st.session_state.active_tab == "⚙️ Tech":
     """)
     st.markdown("---")
 
-    # 🧲 Experimental Tech
     st.markdown("### 🧲 Experimental Tech")
     st.markdown("""
     - **Magnetic Shielding** – Experimental protection against cosmic radiation.
