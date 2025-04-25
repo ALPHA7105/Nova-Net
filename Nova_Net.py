@@ -666,7 +666,7 @@ elif st.session_state.active_tab == "⚙️ Tech":
     with suits1:
         st.markdown("""
         - **🧑‍🚀 Artemis AxEMU Suits** – NASA's Exploration Extravehicular Mobility Unit (xEMU) suits are designed for the Artemis missions. They offer improved mobility, better dust protection, and longer life support than previous suits, allowing astronauts to explore the Moon's surface more effectively.  [🔗Learn More](https://www.axiomspace.com/axiom-suit)
-        - **🧊 Life Support Systems** – TLife support systems maintain habitable conditions for astronauts, controlling oxygen, carbon dioxide, humidity, and temperature. On the ISS, these systems recycle air and water, ensuring long-term survival in space.  [🔗Learn More](https://en.wikipedia.org/wiki/Life-support_system)
+        - **🧊 Life Support Systems** – Life support systems maintain habitable conditions for astronauts, controlling oxygen, carbon dioxide, humidity, and temperature. On the ISS, these systems recycle air and water, ensuring long-term survival in space.  [🔗Learn More](https://en.wikipedia.org/wiki/Life-support_system)
         """)
     with suits2:
         st.markdown("""
@@ -674,14 +674,19 @@ elif st.session_state.active_tab == "⚙️ Tech":
         - **💨 CO₂ Scrubbers** – CO₂ scrubbers are critical components in spacecraft. They remove carbon dioxide exhaled by astronauts using chemical absorbers, keeping air breathable and preventing toxic buildup in closed environments.  [🔗Learn More](https://en.wikipedia.org/wiki/Solar_sail)
         """)
     st.markdown("---")
-
-    # 🤖 Rovers & Robotics
+    
     st.markdown("### 🤖 Rovers & Robotics")
-    st.markdown("""
-    - **Perseverance Rover** – AI-enhanced Mars rover capable of sample caching.
-    - **Autonomous Navigation** – Mars rovers navigate without human instructions.
-    - [🔗 Learn More](https://mars.nasa.gov/mars2020/)
-    """)
+    rovers1, rovers2 = st.columns(2)    
+    with rovers1:
+        st.markdown("""
+        - **🤖 Perseverance Rover** – NASA’s Perseverance rover explores Mars with advanced AI, capable of autonomous navigation and sample collection. It's searching for signs of ancient life and caching samples for a future return mission.  [🔗Learn More](https://science.nasa.gov/mission/mars-2020-perseverance/)
+        - **🐾 Autonomous Navigation** – Modern rovers like Perseverance use computer vision and AI to avoid obstacles and make real-time decisions. This allows them to cover more ground efficiently without waiting for Earth-based commands.  [🔗Learn More](https://www.nasa.gov/solar-system/nasas-self-driving-perseverance-mars-rover-takes-the-wheel/)
+        """)
+    with rovers2:
+        st.markdown("""
+        - **🔧 Robotic Arms** – Rovers are equipped with robotic arms that can drill, collect soil samples, and analyze rock textures. These tools are essential for scientific discovery on planetary surfaces.  [🔗Learn More](https://science.nasa.gov/planetary-science/programs/mars-exploration/rover-basics/)
+        - **🛠️ In-Space Assembly Robots** – Future missions will rely on robots to build space structures. NASA and companies like Made In Space are developing robotic systems for satellite repair and orbital construction.   [🔗Learn More](https://www-robotics.jpl.nasa.gov/what-we-do/research-tasks/in-space-robotic-assembly-and-maintenance/)
+        """)
     st.markdown("---")
 
     # 🛖 Space Habitats
