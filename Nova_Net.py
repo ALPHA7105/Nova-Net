@@ -116,6 +116,9 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 
 # Content for each tab
 if st.session_state.active_tab == "🏠 Home":
+    st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
+                    <h1>🌎 Home</h1>
+                  </div>""", unsafe_allow_html=True)
     st.markdown("---")
     st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
                     <h1>🌌 Space Fact of the Day</h1>
