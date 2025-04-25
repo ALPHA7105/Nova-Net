@@ -68,12 +68,12 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-if st.session_state.active_tab == "🏠 Home":
-    st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
-                <h1 style='font-size: 60px;'>Welcome to NovaNet!</h1>
-                <h3>Explore the wonders of the universe...</h3>
-                <h2> </h2>
-                </div>""", unsafe_allow_html=True)
+
+st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
+            <h1 style='font-size: 60px;'>Welcome to NovaNet! 💫</h1>
+            <h3>Explore the wonders of the universe...</h3>
+            <h2> </h2>
+            </div>""", unsafe_allow_html=True)
 
 # Tab names
 tabs = [
@@ -130,6 +130,7 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 
 # Content for each tab
 if st.session_state.active_tab == "🏠 Home":
+    st.markdown("---")
     st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
                     <h1>🌌 Space Fact of the Day</h1>
                   </div>""", unsafe_allow_html=True)
@@ -148,6 +149,7 @@ if st.session_state.active_tab == "🏠 Home":
                     <h3>{fact}</h3>
                   </div>""", unsafe_allow_html=True)
     
+    st.markdown("---")
     st.markdown("""<div style='text-align: center; margin-top: 3rem;'>
                 <h1>📸 NASA's Astronomy Picture of the Day</h1>
               </div>""", unsafe_allow_html=True)
@@ -162,7 +164,7 @@ if st.session_state.active_tab == "🏠 Home":
         """, unsafe_allow_html=True)
     st.markdown(f"<p style='text-align: justify; margin-top: 1rem;'>{apod['explanation']}</p>", unsafe_allow_html=True)
 
-    # 🧠 Interactive Poll
+    st.markdown("---")
     st.markdown("""<div style='text-align: center; margin-top: 3rem;'>
                 <h2>📊 Quick Poll</h2>
                 <h4>Which space topic excites you the most?</h4>
@@ -190,10 +192,10 @@ if st.session_state.active_tab == "🏠 Home":
         st.markdown(f"<div style='text-align: center;'><h4>You chose: <strong>{selected_option}</strong></h4></div>", unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "🔍 Mysteries":
+    st.markdown("---")
     st.markdown("""
-    <h1 style='text-align: center;'>🕵️‍♂️ Unsolved Mysteries of the Universe 🌌</h1>
-    <h4 style='text-align: center;'>Here are some of the most intriguing space mysteries that remain unsolved:</h4>
-    <h3> </h3>
+    <h2 style='text-align: center;'>🕵️‍♂️ Unsolved Mysteries of the Universe 🌌</h2>
+    <p style='text-align: center;'>Here are some of the most intriguing space mysteries that remain unsolved:</p>
     """, unsafe_allow_html=True)
     
     mysteries = [
@@ -211,37 +213,549 @@ elif st.session_state.active_tab == "🔍 Mysteries":
                         "<a href='https://en.wikipedia.org/wiki/Black_hole' target='_blank'>Learn more</a>."},
         {"title": "Quantum Gravity ⚛️", 
          "description": "How to reconcile general relativity and quantum mechanics. "
-                        "<a href='https://en.wikipedia.org/wiki/Quantum_gravity' target='_blank'>Learn more</a>."}
+                        "<a href='https://en.wikipedia.org/wiki/Quantum_gravity' target='_blank'>Learn more</a>."},
+        {"title": "The Multiverse Theory 🌐", 
+         "description": "Is there more than one universe? Exploring the idea of parallel universes. "
+                        "<a href='https://en.wikipedia.org/wiki/Multiverse' target='_blank'>Learn more</a>."},
+        {"title": "The Search for Alien Life 👽", 
+         "description": "How can we detect signs of extraterrestrial life, and why haven't we found any proof yet? "
+                        "<a href='https://en.wikipedia.org/wiki/Search_for_extraterrestrial_intelligence' target='_blank'>Learn more</a>."},
+        {"title": "The Origin of Cosmic Rays ⚡", 
+         "description": "What causes the high-energy cosmic rays that bombard Earth, and where do they come from? "
+                        "<a href='https://en.wikipedia.org/wiki/Cosmic_ray' target='_blank'>Learn more</a>."}
     ]
+
+    col1, col2 = st.columns(2)
     
-    for mystery in mysteries:
-        st.markdown(f"""
-        <div style='margin-bottom: 20px; text-align: center;'>
-            <h3>{mystery['title']}</h3>
-            <p>{mystery['description']}</p>
+    with col1:
+        for mystery in mysteries[:4]:
+            st.markdown(f"""
+            <div style='margin-bottom: 20px; text-align: center;'>
+                <h3>{mystery['title']}</h3>
+                <p>{mystery['description']}</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+    with col2:
+        for mystery in mysteries[4:]:
+            st.markdown(f"""
+            <div style='margin-bottom: 20px; text-align: center;'>
+                <h3>{mystery['title']}</h3>
+                <p>{mystery['description']}</p>
+            </div>
+            """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    st.markdown("""
+    <h2 style='text-align: center;'>⚠️ Space Anomalies ⚡</h2>
+    <p style='text-align: center;'>These are some of the most perplexing anomalies in space that scientists are still trying to understand:</p>
+    """, unsafe_allow_html=True)
+
+    anomalies = [
+        {"title": "The Great Attractor 🌀", 
+         "description": "A mysterious gravitational anomaly pulling galaxies towards it. Scientists are still unsure of its nature. "
+                        "<a href='https://en.wikipedia.org/wiki/Great_Attractor' target='_blank'>Learn more</a>."},
+        {"title": "Fast Radio Bursts (FRBs) ⚡", 
+         "description": "Intense bursts of radio waves from deep space that last only milliseconds, with unknown origins. "
+                        "<a href='https://en.wikipedia.org/wiki/Fast_radio_burst' target='_blank'>Learn more</a>."},
+        {"title": "The Black Knight Satellite 🛰️", 
+         "description": "A purported alien satellite in Earth’s orbit that has intrigued conspiracy theorists for decades. "
+                        "<a href='https://en.wikipedia.org/wiki/Black_Knight_satellite' target='_blank'>Learn more</a>."},
+        {"title": "Tabby's Star 🌟", 
+         "description": "A star that dims and brightens in ways that cannot be easily explained. Could it be a sign of alien megastructures? "
+                        "<a href='https://en.wikipedia.org/wiki/KIC_8462852' target='_blank'>Learn more</a>."},
+        {"title": "Hawking Radiation 🔥", 
+         "description": "Theoretical radiation emitted by black holes, proposed by Stephen Hawking. Still unproven but could unlock a new understanding of black holes. "
+                        "<a href='https://en.wikipedia.org/wiki/Hawking_radiation' target='_blank'>Learn more</a>."},
+        {"title": "Oumuamua 🛸", 
+         "description": "A mysterious interstellar object that passed through our solar system in 2017, sparking debates about its origins. "
+                        "<a href='https://en.wikipedia.org/wiki/1I/2017_U1' target='_blank'>Learn more</a>."}
+    ]
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        for anomaly in anomalies[:3]:
+            st.markdown(f"""
+            <div style='margin-bottom: 20px; text-align: center;'>
+                <h3>{anomaly['title']}</h3>
+                <p>{anomaly['description']}</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+    with col2:
+        for anomaly in anomalies[3:]:
+            st.markdown(f"""
+            <div style='margin-bottom: 20px; text-align: center;'>
+                <h3>{anomaly['title']}</h3>
+                <p>{anomaly['description']}</p>
+            </div>
+            """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    st.markdown("<h2 style='text-align: center;'>🧠 Theories & Hypotheses</h2>", unsafe_allow_html=True)
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("""
+        <div style='text-align: center;'>
+        <h4>🌌 Dark Matter Web</h4>
+        <p>What if it's the intelligent framework of the universe?</p>
+        <a href='https://en.wikipedia.org/wiki/Dark_matter' target='_blank'>🔗 Learn More</a>
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown("""
+        <div style='text-align: center; margin-top: 2rem;'>
+        <h4>💥 White Holes</h4>
+        <p>Theoretical opposites of black holes. Could they exist?</p>
+        <a href='https://en.wikipedia.org/wiki/White_hole' target='_blank'>🔗 Learn More</a>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("""
+        <div style='text-align: center;'>
+        <h4>🧬 Shadow Biospheres</h4>
+        <p>Alien life forms we can't detect with current tools?</p>
+        <a href='https://en.wikipedia.org/wiki/Shadow_biosphere' target='_blank'>🔗 Learn More</a>
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown("""
+        <div style='text-align: center; margin-top: 2rem;'>
+        <h4>🛰️ Simulation Hypothesis</h4>
+        <p>Are we living inside a cosmic simulation?</p>
+        <a href='https://en.wikipedia.org/wiki/Simulation_hypothesis' target='_blank'>🔗 Learn More</a>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("---")
+    st.markdown("<h2 style='text-align: center;'>🏆 Mystery of the Month</h2>", unsafe_allow_html=True)
+
+    st.markdown("""
+    <div style='text-align: center;'>
+    <h3>📡 The Wow! Signal</h3>
+    <p>A strange radio signal was detected in 1977 from deep space. And it never repeated again.</p>
+    <video width='560' height='315' controls>
+      <source src='https://www.youtube.com/watch?app=desktop&v=aseyBWZa3pY&t=0s' type='video/webm'>
+      Your browser does not support the video tag.
+    </video>
+    <p><i>“Wow!” – the signal that still puzzles scientists.</i></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("---")
+    st.markdown("<h2 style='text-align: center;'>📹 Video & Documentation</h2>", unsafe_allow_html=True)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("""
+        <div style='text-align: center;'>
+        <h4>🎬 Dark Universe Explained</h4>
+        <a href='https://www.youtube.com/watch?v=QAa2O_8wBUQ' target='_blank'>▶️ Watch on YouTube</a>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("""
+        <div style='text-align: center;'>
+        <h4>📄 PDF: NASA Unexplained Files</h4>
+        <a href='https://ntrs.nasa.gov/api/citations/20090010233/downloads/20090010233.pdf' target='_blank'>📥 Download PDF</a>
         </div>
         """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "🪐 Exoplanets":
-    st.title("🪐 Exoplanets")
-    st.header("Favorite Planets")
-    st.write("Let users favorite planets here.")
-    st.write("Visual planetary system generator (drag-and-drop UI) will be added.")
-    st.write("NASA’s current planet discoveries will be shown here.")
+    st.markdown("<h1 style='text-align: center;'>🪐 Explore Exoplanets</h1>", unsafe_allow_html=True)
+    
+    # 1. What are Exoplanets?
+    st.markdown("---")
+    st.markdown("""<div style='text-align: left; margin-top: 2rem;'>
+                    <h2>🔭 What are Exoplanets?</h2>
+                  </div>""", unsafe_allow_html=True)
+    st.markdown("""
+    An exoplanet is any planet beyond our solar system. Most of them orbit other stars, but some free-floating exoplanets, called rogue planets, are untethered to any star. We’ve confirmed more than 5,800 exoplanets out of the billions that we believe exist.  
+    [🔗 Learn More](https://exoplanets.nasa.gov/what-is-an-exoplanet/)
+    """)
+    
+    # 2. Famous Exoplanets
+    st.markdown("---")
+    st.markdown("""<div style='text-align: left; margin-top: 2rem;'>
+                    <h2>🌟 Famous Exoplanets</h2>
+                  </div>""", unsafe_allow_html=True)
+    
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.markdown("**🌍 Kepler-452b**")
+        st.markdown("""
+    An "Earth-cousin" that orbits a star like our sun in the habitable zone, where liquid water could exist.  
+    [🔗 Learn More](https://science.nasa.gov/exoplanet-catalog/kepler-452-b/)
+    """)
+    with col2:
+        st.markdown("**💎 55 Cancri e**")
+        st.markdown("""
+    This super hot world is covered in a global ocean of lava and has sparkling skies.    
+    [🔗 Learn More](https://science.nasa.gov/exoplanet-catalog/55-cancri-e/)
+    """)
+    with col3:
+        st.markdown("**🌬️ HD 189733b**")
+        st.markdown("""
+    This far-off blue planet may look like a friendly haven – but don’t be deceived! Weather here is deadly. The planet’s cobalt blue color comes from a hazy, blow-torched atmosphere containing clouds laced with glass.    
+    [🔗 Learn More](https://science.nasa.gov/exoplanet-catalog/hd-189733-b/)
+    """)
+
+    col4, col5, col6 = st.columns(3)
+    with col4:
+        st.markdown("**🔮 TRAPPIST-1e**")
+        st.markdown("""
+    A terrestrial exoplanet that orbits an M-type star. Its mass is 0.692 Earths, it takes 6.1 days to complete one orbit of its star, and is 0.02925 AU from its star. Its discovery was announced in 2017.    
+    [🔗 Learn More](https://science.nasa.gov/exoplanet-catalog/trappist-1-e/)
+    """)
+    with col5:
+        st.markdown("**🧊 Gliese 581g**")
+        st.markdown("""
+    May have begun as a mini-Neptune, but is now a rocky world a little bigger than Earth. The planet may have lost one atmosphere but gained another from volcanic activity.    
+    [🔗 Learn More](https://science.nasa.gov/exoplanet-catalog/gj-1132-b/)
+    """)
+    with col6:
+        st.markdown("**🔥 WASP-12b**")
+        st.markdown("""
+    This doomed planet is a hot Jupiter that orbits so close to its parent star, it's being torn apart. It takes this alien world only 1.1 days to completely circle its sun.    
+    [🔗 Learn More](https://science.nasa.gov/exoplanet-catalog/wasp-12-b/)
+    """)
+    st.markdown("---")
+    st.markdown("""<div style='text-align: left; margin-top: 2rem;'>
+                    <h2>🚀 Exploration Missions</h2>
+                  </div>""", unsafe_allow_html=True)
+    col7, col8 = st.columns(2)
+    with col7:
+        st.markdown("**🔭 Kepler**")
+        st.markdown("""
+                    The Kepler space telescope is a defunct space telescope launched by NASA in 2009 to discover Earth-sized planets orbiting other stars.    
+                    [🔗 Learn More](https://en.wikipedia.org/wiki/Kepler_space_telescope)
+                    """)
+        st.markdown(" ")
+        st.markdown("**📡 TESS**")
+        st.markdown("""
+                    Transiting Exoplanet Survey Satellite (TESS) is a space telescope for NASA's Explorer program, designed to search for exoplanets using the transit method in an area 400 times larger than that covered by the Kepler mission.    
+                    [🔗 Learn More](https://en.wikipedia.org/wiki/Transiting_Exoplanet_Survey_Satellite)
+                    """)           
+    with col8:
+        st.markdown("**🌠 JWST**")
+        st.markdown("""
+                    The James Webb Space Telescope (JWST) is a space telescope designed to conduct infrared astronomy. As the largest telescope in space, it is equipped with high-resolution and high-sensitivity instruments, allowing it to view objects too old, distant, or faint for the Hubble Space Telescope.    
+                    [🔗 Learn More](https://en.wikipedia.org/wiki/James_Webb_Space_Telescope)
+                    """)
+        st.markdown(" ")
+        st.markdown("**🛰️ PLATO (Coming soon)**")
+        st.markdown("""
+                    Planetary Transits and Oscillations of stars (PLATO) is a space telescope under development by the European Space Agency for launch in 2026.    
+                    [🔗 Learn More](https://en.wikipedia.org/wiki/PLATO_(spacecraft))
+                    """)
+
+    st.markdown("---")    
+    st.markdown("""<div style='text-align: left; margin-top: 2rem;'>
+                    <h2>📊 Exoplanet Stats</h2>
+                  </div>""", unsafe_allow_html=True)
+    st.markdown("""
+    - 🌌 **Discovered so far**: Over 5,000  
+    - 🧬 **Earth-like**: Around 60  
+    - 💠 **Habitable Zone Planets**: 30+  
+    [🌐 More Data](https://exoplanetarchive.ipac.caltech.edu/)
+    """)
 
 elif st.session_state.active_tab == "🚀 Missions":
-    st.title("🚀 Space Missions")
-    st.header("Mission Timeline")
-    st.write("Scroll through missions by year here.")
-    st.write("Mission videos or livestream links will be embedded.")
-    st.write("Badges for historic missions will be displayed here.")
+    st.markdown("<h1 style='text-align: center;'>🚀 Space Missions</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center;'>Explore humanity’s boldest steps into the cosmos.</p>", unsafe_allow_html=True)
+    
+    st.divider()
+    #Historic Missions
+    st.markdown("### 🕰️ Historic Missions")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("**🌕 Apollo 11**")
+        st.markdown("""
+        - **Objective**: Perform a crewed lunar landing and return to Earth.
+        - **Launch Date**: July 16, 1969
+        - **Highlights**: Neil Armstrong and Buzz Aldrin became the first humans to walk on the Moon on July 20, 1969.  
+        - **Learn More**: [NASA Apollo 11 Overview](https://www.nasa.gov/missions/apollo-11-mission-overview/)
+        """)
+    with col2:
+        st.markdown("**🛰️ Sputnik 1**")
+        st.markdown("""
+        - **Objective**: First artificial Earth satellite.
+        - **Launch Date**: October 4, 1957
+        - **Highlights**: Marked the beginning of the space age and the U.S.-U.S.S.R space race.  
+        - **Learn More**: [Sputnik 1 - Wikipedia](https://en.wikipedia.org/wiki/Sputnik_1)
+        """)
+    col3, col4 = st.columns(2)
+    with col3:
+        st.markdown("**🚀 Voyager 1**")
+        st.markdown("""
+        - **Objective**: Study the outer Solar System and interstellar space.
+        - **Launch Date**: September 5, 1977
+        - **Highlights**: First spacecraft to reach interstellar space; still transmitting data.  
+        - **Learn More**: [NASA Voyager Mission](https://voyager.jpl.nasa.gov/)
+        """)
+    with col4:
+        st.markdown("**🛸 Luna 2**")
+        st.markdown("""
+        - **Objective**: First human-made object to reach the Moon.
+        - **Launch Date**: September 12, 1959
+        - **Highlights**: Impacted the Moon's surface, confirming that the Moon had no significant magnetic field.  
+        - **Learn More**: [Luna 2 - Wikipedia](https://en.wikipedia.org/wiki/Luna_2)
+        """)
+    
+    st.divider()
+    #Current Missions
+    st.markdown("### 🛰️ Current Missions")
+    col5, col6 = st.columns(2)
+    with col5:
+        st.markdown("**🔭 James Webb Space Telescope (JWST)**")
+        st.markdown("""
+        - **Objective**: Observe the universe's first galaxies, stars, and planetary systems.
+        - **Launch Date**: December 25, 2021
+        - **Highlights**: Provides unprecedented infrared observations from the second Lagrange point (L2).  
+        - **Learn More**: [NASA JWST Mission](https://science.nasa.gov/mission/webb/)
+        """)
+    with col6:
+        st.markdown("**🚁 Perseverance & Ingenuity (Mars 2020)**")
+        st.markdown("""
+        - **Objective**: Search for signs of ancient life and collect Martian soil samples.
+        - **Launch Date**: July 30, 2020
+        - **Highlights**: Perseverance rover is exploring Mars; Ingenuity helicopter achieved the first powered flight on another planet.  
+        - **Learn More**: [NASA Mars 2020 Mission](https://mars.nasa.gov/mars2020/)
+        """)
+    col7, col8 = st.columns(2)
+    with col7:
+        st.markdown("**🛰️ Artemis I**")
+        st.markdown("""
+        - **Objective**: Uncrewed test flight around the Moon to prepare for future crewed missions.
+        - **Launch Date**: November 16, 2022
+        - **Highlights**: Successfully tested NASA's Space Launch System and Orion spacecraft.  
+        - **Learn More**: [NASA Artemis I Mission](https://www.nasa.gov/artemis-1)
+        """)
+    with col8:
+        st.markdown("**🪐 Juno**")
+        st.markdown("""
+        - **Objective**: Study Jupiter's composition, gravity field, magnetic field, and polar magnetosphere.
+        - **Launch Date**: August 5, 2011
+        - **Highlights**: Provided detailed images and data about Jupiter's atmosphere and magnetic field.  
+        - **Learn More**: [NASA Juno Mission](https://www.nasa.gov/mission_pages/juno/main/index.html)
+        """)
+
+    st.divider()
+    #Future & Upcoming Missions
+    st.markdown("### 🔮 Future & Upcoming Missions")
+    col9, col10 = st.columns(2)
+    with col9:
+        st.markdown("**🚀 Artemis II**")
+        st.markdown("""
+        - **Objective**: First crewed mission to orbit the Moon since Apollo 17.
+        - **Planned Launch**: Early 2026
+        - **Highlights**: Will test life-support systems and demonstrate capabilities for deep space missions.  
+        - **Learn More**: [NASA Artemis II Mission](https://www.nasa.gov/artemis-ii)
+        """)
+    with col10:
+        st.markdown("**🌌 LUVOIR (Large UV Optical Infrared Surveyor)**")
+        st.markdown("""
+        - **Objective**: Proposed space telescope to study a broad range of astrophysical questions.
+        - **Status**: Conceptual design phase
+        - **Highlights**: Aims to detect exoplanets and characterize their atmospheres.  
+        - **Learn More**: [NASA LUVOIR Concept](https://asd.gsfc.nasa.gov/luvoir/)
+        """)
+    col11, col12 = st.columns(2)
+    with col11:
+        st.markdown("**🪐 Dragonfly**")
+        st.markdown("""
+        - **Objective**: Explore Titan's prebiotic chemistry and habitability.
+        - **Planned Launch**: July 2028
+        - **Highlights**: Will use a rotorcraft to fly to multiple locations on Titan.  
+        - **Learn More**: [NASA Dragonfly Mission](https://dragonfly.jhuapl.edu/)
+        """)
+    with col12:
+        st.markdown("**🌍 Mars Sample Return**")
+        st.markdown("""
+        - **Objective**: Retrieve samples collected by Perseverance and return them to Earth.
+        - **Planned Launch**: Late 2020s
+        - **Highlights**: A collaborative effort between NASA and ESA to bring Martian samples to Earth.  
+        - **Learn More**: [Mars Sample Return](https://science.nasa.gov/mission/mars-sample-return/)
+        """)
+    
+    st.divider()
+    st.markdown("<h2 style='text-align: center;'>🔬 Key Space Experiments</h2>", unsafe_allow_html=True)
+
+    exp1, exp2 = st.columns(2)
+
+    with exp1:
+        st.markdown("**🧪 Microgravity Science**")
+        st.markdown("""
+        ISS experiments show how microgravity affects fluids, fire, and human biology.
+        [Learn more](https://en.wikipedia.org/wiki/Scientific_research_on_the_International_Space_Station)
+    """)
+        st.markdown("**🧬 GeneLab on ISS**")
+        st.markdown("""
+        Research on DNA and gene behavior in space—vital for long-duration missions.
+        [Learn more](https://www.nasa.gov/osdr-genelab-about/)
+    """)
+
+    with exp2:
+        st.markdown("**🥬 Veggie Experiment**")
+        st.markdown("""
+        Growing plants aboard the ISS to support food sustainability in space.
+        [Learn more](https://science.nasa.gov/mission/veggie/)
+    """)
+        st.markdown("**🛰 Cold Atom Lab**")
+        st.markdown("""
+        The first quantum physics lab in space—studies ultra-cold atoms in microgravity.
+        [Learn more](https://www.jpl.nasa.gov/missions/cold-atom-laboratory-cal/)
+    """)
+
+    # Earth Missions Section
+    st.divider()
+    st.markdown("<h2 style='text-align: center;'>🌍 Earth-Focused Missions</h2>", unsafe_allow_html=True)
+
+    earth1, earth2 = st.columns(2)
+
+    with earth1:
+        st.markdown("**🌀 Sentinel-6 Michael Freilich**")
+        st.markdown("""
+        Measures sea level rise, ocean circulation, and climate change indicators.
+        [Learn more](https://www.nasa.gov/sentinel-6/)
+    """)
+        st.markdown("**🌦️ GPM (Global Precipitation Measurement)**")
+        st.markdown("""
+        Tracks global rainfall and weather patterns in real time.
+        [Learn more](https://gpm.nasa.gov/)
+    """)
+
+    with earth2:
+        st.markdown("**🌍 Landsat 9**")
+        st.markdown("""
+        Continues a 50-year mission of capturing satellite imagery of Earth’s surface.
+        [Learn more](https://landsat.gsfc.nasa.gov/landsat-9/)
+    """)
+        st.markdown("**🌬️ OCO-2 (Carbon Observatory)**")
+        st.markdown("""
+        Monitors global CO₂ levels to study Earth’s carbon cycle.
+        [Learn more](https://science.nasa.gov/mission/oco-2/)
+    """)
+
+    # Mission of the Month Section
+    st.divider()
+    st.markdown("<h2 style='text-align: center;'>🧭 Mission of the Month</h2>", unsafe_allow_html=True)
+
+    st.markdown("""
+    <div style='text-align: center;'>
+    <h2>🚀 Europa Clipper</h4>
+    <h6>Launched in 2024, Europa Clipper will explore Jupiter’s icy moon Europa to determine if it could support life. It will carry a suite of scientific instruments to scan the moon’s surface, subsurface ocean, and magnetic environment.</h6>
+    <a href='https://europa.nasa.gov/' target='_blank'>🔗 Learn More</a>
+    </div>
+    """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "⚙️ Tech":
-    st.title("⚙️ Tech & Spacecraft")
-    st.header("Real vs Sci-Fi Comparison")
-    st.write("Side-by-side comparison cards will be shown here.")
-    st.write("Could it work? community rating will be added.")
-    st.write("3D models of spacecraft will be integrated if possible.")
+    st.markdown("""
+    <h1 style='text-align: center; margin-top: 1rem;'>⚙️ Space Technology</h1>
+    <p style='text-align: center; font-size: 18px;'>Explore the incredible technology powering our journey into the cosmos!</p>
+    """, unsafe_allow_html=True)
+
+    st.markdown("---")
+    st.markdown("### 🚀 Propulsion Systems")
+    propsys1, propsys2 = st.columns(2)    
+    with propsys1:
+        st.markdown("""
+        - **💥 Ion Thrusters** – Ion thrusters use electricity to accelerate ions, producing a small but continuous thrust. Although they’re not powerful enough to launch spacecraft from Earth, they are incredibly efficient for long-distance missions in space. NASA’s Dawn spacecraft used ion propulsion to explore Vesta and Ceres in the asteroid belt.  [🔗Learn More](https://en.wikipedia.org/wiki/Ion_thruster)
+        - **🔥 Chemical Rockets** – Chemical rockets are the most commonly used propulsion system for space launches. By igniting fuel and oxidizer in a combustion chamber, they generate high-pressure exhaust that propels spacecraft into orbit. They are powerful and reliable, ideal for lifting heavy payloads from Earth.  [🔗Learn More](https://en.wikipedia.org/wiki/Rocket_engine)
+        """)
+    with propsys2:
+        st.markdown("""
+        - **⚛️ Nuclear Thermal Propulsion** – Nuclear thermal propulsion involves heating a liquid propellant, like hydrogen, using a nuclear reactor, and expelling it to produce thrust. This method could cut travel time to Mars in half and is being explored as a future deep space transportation method.  [🔗Learn More](https://en.wikipedia.org/wiki/Nuclear_thermal_rocket)
+        - **🌕 Solar Sails** – Solar sails harness the pressure of sunlight to propel spacecraft. They have no fuel requirements and are ideal for extremely long-duration missions. NASA’s NEA Scout and the Planetary Society’s LightSail projects use this innovative propulsion system.  [🔗Learn More](https://en.wikipedia.org/wiki/Solar_sail)
+        """)
+    st.markdown("---")
+
+    st.markdown("### 👨‍🚀 Space Suits & Life Support")
+    suits1, suits2 = st.columns(2)    
+    with suits1:
+        st.markdown("""
+        - **🧑‍🚀 Artemis AxEMU Suits** – NASA's Exploration Extravehicular Mobility Unit (xEMU) suits are designed for the Artemis missions. They offer improved mobility, better dust protection, and longer life support than previous suits, allowing astronauts to explore the Moon's surface more effectively.  [🔗Learn More](https://www.axiomspace.com/axiom-suit)
+        - **🧊 Life Support Systems** – TLife support systems maintain habitable conditions for astronauts, controlling oxygen, carbon dioxide, humidity, and temperature. On the ISS, these systems recycle air and water, ensuring long-term survival in space.  [🔗Learn More](https://en.wikipedia.org/wiki/Life-support_system)
+        """)
+    with suits2:
+        st.markdown("""
+        - **🔬 Radiation Protection** – Space suits and habitats must shield astronauts from harmful radiation. Modern designs include multi-layer insulation and radiation-blocking materials, essential for deep space missions beyond Earth’s magnetic field.  [🔗Learn More](https://en.wikipedia.org/wiki/Life-support_system)
+        - **💨 CO₂ Scrubbers** – CO₂ scrubbers are critical components in spacecraft. They remove carbon dioxide exhaled by astronauts using chemical absorbers, keeping air breathable and preventing toxic buildup in closed environments.  [🔗Learn More](https://en.wikipedia.org/wiki/Solar_sail)
+        """)
+    st.markdown("---")
+
+    # 🤖 Rovers & Robotics
+    st.markdown("### 🤖 Rovers & Robotics")
+    st.markdown("""
+    - **Perseverance Rover** – AI-enhanced Mars rover capable of sample caching.
+    - **Autonomous Navigation** – Mars rovers navigate without human instructions.
+    - [🔗 Learn More](https://mars.nasa.gov/mars2020/)
+    """)
+    st.markdown("---")
+
+    # 🛖 Space Habitats
+    st.markdown("### 🛖 Space Habitats")
+    st.markdown("""
+    - **Lunar Gateway** – A planned space station orbiting the Moon for deep space missions.
+    - **3D-Printed Lunar Bases** – Structures made using lunar regolith.
+    - **BioDomes** – Closed-loop systems for growing food on other planets.
+    - [🔗 Learn More](https://www.nasa.gov/gateway/overview)
+    """)
+    st.markdown("---")
+
+    # 📡 Satellite Technology
+    st.markdown("### 📡 Satellite Technology")
+    st.markdown("""
+    - **CubeSats** – Small satellites used for research and education.
+    - **Communication Satellites** – Enabling global communication networks.
+    - **Earth Observation** – Monitoring weather, disasters, forests, and oceans.
+    - [🔗 Learn More](https://www.nasa.gov/mission_pages/smallsats)
+    """)
+    st.markdown("---")
+
+    # 🧠 Advanced Materials & AI
+    st.markdown("### 🧠 Advanced Materials & AI")
+    st.markdown("""
+    - **Aerogels** – Super-light materials used for insulation in space.
+    - **AI in Spacecraft** – Used for diagnostics, navigation, and data analysis.
+    - [🔗 Learn More](https://technology.nasa.gov/)
+    """)
+    st.markdown("---")
+
+    # 🔋 Energy Systems
+    st.markdown("### 🔋 Energy Systems")
+    st.markdown("""
+    - **ISS Solar Panels** – Powering the space station with solar energy.
+    - **Next-gen Solar Arrays** – Foldable and highly efficient power systems.
+    - **RTGs** – Radioisotope Thermoelectric Generators used in deep space probes.
+    """)
+    st.markdown("---")
+
+    # 🧲 Experimental Tech
+    st.markdown("### 🧲 Experimental Tech")
+    st.markdown("""
+    - **Magnetic Shielding** – Experimental protection against cosmic radiation.
+    - **Space Elevators** – A futuristic idea for direct transport to orbit.
+    - **Autonomous Cargo Landers** – Concepts like SpaceX’s Starship for resupply missions.
+    """)
+
+
+elif st.session_state.active_tab == "🧬 Astrobiology":
+    st.title("🧬 Astrobiology")
+    st.header("Planet Habitability Score")
+    st.write("Design an Alien game based on real conditions.")
+    st.write("Map of all known extremophile habitats will be shown.")
+
+elif st.session_state.active_tab == "⌛ Black Holes":
+    st.title("⌛ Black Holes & Time")
+    st.header("Spacetime Grid")
+    st.write("Mini-simulations like falling into a black hole will be here.")
+    st.write("Animated comic explaining time dilation will be added.")
 
 elif st.session_state.active_tab == "📰 News":
     st.title("📰 News")
@@ -255,18 +769,6 @@ elif st.session_state.active_tab == "💬 Theories":
     st.header("Top Thinker Badges")
     st.write("Voting and comment threads will be included here.")
     st.write("Random wild theory generator will be added for fun.")
-
-elif st.session_state.active_tab == "🧬 Astrobiology":
-    st.title("🧬 Astrobiology")
-    st.header("Planet Habitability Score")
-    st.write("Design an Alien game based on real conditions.")
-    st.write("Map of all known extremophile habitats will be shown.")
-
-elif st.session_state.active_tab == "⌛ Black Holes":
-    st.title("⌛ Black Holes & Time")
-    st.header("Spacetime Grid")
-    st.write("Mini-simulations like falling into a black hole will be here.")
-    st.write("Animated comic explaining time dilation will be added.")
 
 elif st.session_state.active_tab == "❓ Quizzes":
     st.title("❓ Interactive Quizzes")
