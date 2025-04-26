@@ -771,6 +771,7 @@ elif st.session_state.active_tab == "🧬 Astrobiology":
     <h1 style='text-align: center; margin-top: 1rem;'>🧬 Astrobiology</h1>
     <p style='text-align: center; font-size: 18px;'>Explore the origins, evolution, and possibilities of life beyond Earth. 🧬🌌</p>
     """, unsafe_allow_html=True)
+    st.divider()
     
     st.subheader("🌌 What is Astrobiology?")
     st.write("Astrobiology is the scientific study of life in the universe — its origins, evolution, distribution, and future. It combines biology, chemistry, physics, and planetary science to understand if life exists beyond Earth, and how it could thrive in different environments.")
@@ -887,7 +888,7 @@ elif st.session_state.active_tab == "🧬 Astrobiology":
         st.markdown("[Learn More](https://mars.nasa.gov/news/8302/organic-molecules-on-mars/)") 
     st.divider()
 
-    st.subheader("📈 Drake Equation")
+    st.subheader("📈 The Drake Equation")
     st.write("Developed by Frank Drake, this famous formula estimates the number of active, communicative extraterrestrial civilizations in the Milky Way.")
     st.markdown("[Learn More](https://en.wikipedia.org/wiki/Drake_equation)")
     st.divider()
