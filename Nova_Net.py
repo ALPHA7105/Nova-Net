@@ -182,15 +182,11 @@ if st.session_state.active_tab == "🏠 Home":
     if selected_option:
         st.markdown(f"<div style='text-align: center;'><h4>You chose: <strong>{selected_option}</strong></h4></div>", unsafe_allow_html=True)
 
-    st.markdown("""---""")
-    col1, col2 = st.columns(2)
-
-    with col2:
-        st.markdown("""
-        <div style='text-align: left; font-size:18px;'>
-             ➡️ Next: 🪐 Exoplanets 
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown("""
+    <div style='text-align: right; font-size:18px; margin-right: 30px;'>
+        <b>Next: 🔍 Mysteries ➡️</b>
+    </div>
+    """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "🔍 Mysteries":
     st.markdown("""
@@ -378,15 +374,11 @@ elif st.session_state.active_tab == "🔍 Mysteries":
     </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("""---""")
-    col1, col2 = st.columns(2)
-
-    with col2:
-        st.markdown("""
-        <div style='text-align: left; font-size:18px;'>
-             ➡️ Next: 🪐 Exoplanets 
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown("""
+    <div style='text-align: right; font-size:18px; margin-right: 30px;'>
+        <b>Next: 🪐 Exoplanets ➡️</b>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 elif st.session_state.active_tab == "🪐 Exoplanets":
@@ -505,15 +497,11 @@ elif st.session_state.active_tab == "🪐 Exoplanets":
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("""---""")
-    col1, col2 = st.columns(2)
-
-    with col2:
-        st.markdown("""
-        <div style='text-align: left; font-size:18px;'>
-             ➡️ Next: 🚀 Missions 
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown("""
+    <div style='text-align: right; font-size:18px; margin-right: 30px;'>
+        <b>Next: 🚀 Missions ➡️</b>
+    </div>
+    """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "🚀 Missions":
     st.markdown("<h1 style='text-align: center;'>🚀 Space Missions</h1>", unsafe_allow_html=True)
@@ -716,15 +704,11 @@ elif st.session_state.active_tab == "🚀 Missions":
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("""---""")
-    col1, col2 = st.columns(2)
-
-    with col2:
-        st.markdown("""
-        <div style='text-align: left; font-size:18px;'>
-             ➡️ Next: ⚙️ Tech 
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown("""
+    <div style='text-align: right; font-size:18px; margin-right: 30px;'>
+        <b>Next: ⚙️ Tech ➡️</b>
+    </div>
+    """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "⚙️ Tech":
     st.markdown("""
@@ -856,14 +840,11 @@ elif st.session_state.active_tab == "⚙️ Tech":
     </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("""---""")
-    col1, col2 = st.columns(2)
-    with col2:
-        st.markdown("""
-        <div style='text-align: left; font-size:18px;'>
-             ➡️ Next: 🧬 Astrobiology 
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown("""
+    <div style='text-align: right; font-size:18px; margin-right: 30px;'>
+        <b>Next: 🧬 Astrobiology ➡️</b>
+    </div>
+    """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "🧬 Astrobiology":
     st.markdown("""
@@ -1072,14 +1053,11 @@ elif st.session_state.active_tab == "🧬 Astrobiology":
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("""---""")
-    col1, col2 = st.columns(2)
-    with col2:
-        st.markdown("""
-        <div style='text-align: left; font-size:18px;'>
-             ➡️ Next: ⌛ Black Holes & Time
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown("""
+    <div style='text-align: right; font-size:18px; margin-right: 30px;'>
+        <b>Next: ⌛ Black Holes ➡️</b>
+    </div>
+    """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "⌛ Black Holes":
     st.title("⌛ Black Holes")
