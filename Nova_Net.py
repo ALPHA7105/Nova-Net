@@ -65,7 +65,7 @@ st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
 tabs = [
     "🏠 Home", "🔍 Mysteries", "🪐 Exoplanets", "🚀 Missions",
     "⚙️ Tech", "📰 News", "💬 Theories", "🧬 Astrobiology",
-    "⌛ Black Holes", "❓ Quizzes", "🤖 AI Conversations", "📖 About"
+    "⌛ Black Holes & Time", "❓ Quizzes", "🤖 AI Conversations", "📖 About"
 ]
 
 # Create buttons to switch tabs
@@ -93,8 +93,8 @@ with col6:
 col7, col8, col9, col10, col11, col12 = st.columns(6)
 
 with col7:
-    if st.button('⌛ Black Holes'):
-        st.session_state.active_tab = "⌛ Black Holes"
+    if st.button('⌛ Black Holes & Time'):
+        st.session_state.active_tab = "⌛ Black Holes & Time"
 with col8:
     if st.button('📰 News'):
         st.session_state.active_tab = "📰 News"
@@ -181,6 +181,23 @@ if st.session_state.active_tab == "🏠 Home":
     
     if selected_option:
         st.markdown(f"<div style='text-align: center;'><h4>You chose: <strong>{selected_option}</strong></h4></div>", unsafe_allow_html=True)
+
+    st.markdown("""---""")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("""
+        <div style='text-align: left;'>
+            <a href="#home" style="font-size:18px;">🏠 Home</a>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("""
+        <div style='text-align: right;'>
+            <a href="#mysteries" style="font-size:18px;">Next ➡️ (🔍 Mysteries)</a>
+        </div>
+        """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "🔍 Mysteries":
     st.markdown("""
@@ -356,6 +373,35 @@ elif st.session_state.active_tab == "🔍 Mysteries":
         </div>
         """, unsafe_allow_html=True)
 
+        st.markdown("""---""")
+    st.markdown("""
+    <div style='text-align: center;'>
+        <h2>🧩 Unlocking the Universe’s Secrets</h2>
+        <p style='font-size:18px;'>
+            The cosmos holds mysteries beyond our wildest dreams. 🛸✨<br><br>
+            From dark matter to ancient signals, each mystery invites us to imagine, explore, and question everything.<br><br>
+            The adventure has just begun — are you ready to solve the universe's greatest puzzles? 🔍🚀
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""---""")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("""
+        <div style='text-align: left;'>
+            <a href="#home" style="font-size:18px;">(🏠 Home) ⬅️ Previous</a>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("""
+        <div style='text-align: right;'>
+            <a href="#exoplanets" style="font-size:18px;">Next ➡️ (🪐 Exoplanets)</a>
+        </div>
+        """, unsafe_allow_html=True)
+
 elif st.session_state.active_tab == "🪐 Exoplanets":
     st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
                     <h1>🪐 Explore Exoplanets</h1>
@@ -458,6 +504,36 @@ elif st.session_state.active_tab == "🪐 Exoplanets":
     - 💠 **Habitable Zone Planets**: 30+  
     [🌐 More Data](https://exoplanetarchive.ipac.caltech.edu/)
     """)
+
+    st.markdown("""---""")
+    st.markdown("""
+    <div style='text-align: center;'>
+        <h2>🪐 Exploring Distant Worlds</h2>
+        <p style='font-size:18px;'>
+            Exoplanets remind us that our universe is vast, mysterious, and full of possibilities. 🌌<br><br>
+            From gas giants to Earth-like worlds, each discovery brings us closer to answering the ultimate question: <br><br>
+            <strong>Are we alone?</strong><br><br>
+            Keep looking up. The next Earth could be just a telescope away! 🔭
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""---""")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("""
+        <div style='text-align: left;'>
+            <a href="#mysteries" style="font-size:18px;">(🔍 Mysteries) ⬅️ Previous</a>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("""
+        <div style='text-align: right;'>
+            <a href="#missions" style="font-size:18px;">Next ➡️ (🚀 Missions)</a>
+        </div>
+        """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "🚀 Missions":
     st.markdown("<h1 style='text-align: center;'>🚀 Space Missions</h1>", unsafe_allow_html=True)
@@ -642,11 +718,40 @@ elif st.session_state.active_tab == "🚀 Missions":
 
     st.markdown("""
     <div style='text-align: center;'>
-    <h2>🚀 Europa Clipper</h4>
+    <h2>🌖 Europa Clipper</h4>
     <h6>Launched in 2024, Europa Clipper will explore Jupiter’s icy moon Europa to determine if it could support life. It will carry a suite of scientific instruments to scan the moon’s surface, subsurface ocean, and magnetic environment.</h6>
     <a href='https://europa.nasa.gov/' target='_blank'>🔗 Learn More</a>
     </div>
     """, unsafe_allow_html=True)
+
+    st.markdown("""---""")
+    st.markdown("""
+    <div style='text-align: center;'>
+        <h2>🚀 Missions: Humanity's Bold Steps into the Cosmos</h2>
+        <p style='font-size:18px;'>
+            Every mission — from Apollo to Perseverance to future journeys to Mars — tells a story of courage, innovation, and discovery. 🌍🌌<br><br>
+            These are not just spacecraft — they are dreams launched into the stars.<br><br>
+            🌠 The next giant leap could be just around the corner. Stay tuned, stay inspired!
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""---""")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("""
+        <div style='text-align: left;'>
+            <a href="#exoplanets" style="font-size:18px;">(🔍 Mysteries) ⬅️ Previous</a>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("""
+        <div style='text-align: right;'>
+            <a href="#tech" style="font-size:18px;">Next ➡️ (⚙️ Tech)</a>
+        </div>
+        """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "⚙️ Tech":
     st.markdown("""
@@ -765,6 +870,34 @@ elif st.session_state.active_tab == "⚙️ Tech":
         - **📦 Autonomous Cargo Landers** – SpaceX and other companies are developing spacecraft that can deliver supplies to the Moon or Mars autonomously, enabling frequent and reliable resupply missions.  [🔗Learn More](https://en.wikipedia.org/wiki/Starship_HLS)
         - **🛸 Plasma Propulsion** – This cutting-edge system uses superheated ionized gas for high-speed space travel. It offers potential for interplanetary journeys much faster than current technology.   [🔗Learn More](https://en.wikipedia.org/wiki/Plasma_propulsion_engine)
         """)
+
+    st.markdown("""---""")
+    st.markdown("""
+    <div style='text-align: center;'>
+        <h2>⚙️ The Future is Being Built</h2>
+        <p style='font-size:18px;'>
+            Every new engine, habitat, AI, and satellite brings humanity one step closer to becoming an interplanetary species. 🌍🚀<br><br>
+            Space technology is not just science fiction anymore — it’s shaping the future of exploration, survival, and discovery.<br><br>
+            🛠️ Keep watching the stars, and the innovations that get us there!
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""---""")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("""
+        <div style='text-align: left;'>
+            <a href="#missions" style="font-size:18px;">(🚀 Missions) ⬅️ Previous</a>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("""
+        <div style='text-align: right;'>
+            <a href="#astrobiology" style="font-size:18px;">Next ➡️ (🧬 Astrobiology)</a>
+        </div>
+        """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "🧬 Astrobiology":
     st.markdown("""
@@ -958,7 +1091,38 @@ elif st.session_state.active_tab == "🧬 Astrobiology":
         st.write("Speculative ideas include intelligent clouds of gas or purely electromagnetic 'life' with no physical form.")
         st.markdown("[Learn More](https://arxiv.org/abs/2102.05026)")
 
-elif st.session_state.active_tab == "⌛ Black Holes":
+    st.markdown("""---""")
+    st.markdown("""
+    <div style='text-align: center;'>
+        <h2>🛸 The Search Continues...</h2>
+        <p style='font-size:18px;'>
+            Astrobiology teaches us that life might be out there — waiting to be discovered among the stars. ✨<br><br>
+            With every mission, every experiment, and every observation, we get closer to answering one of humanity’s greatest questions:<br>
+            <b>Are we alone in the universe?</b>
+        </p>
+        <p style='font-size:18px;'>
+            🔭 Stay tuned for the latest discoveries, missions, and breakthroughs!
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""---""")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("""
+        <div style='text-align: left;'>
+            <a href="#tech" style="font-size:18px;">(⚙️ Tech) ⬅️ Previous</a>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("""
+        <div style='text-align: right;'>
+            <a href="#black-holes-and-time" style="font-size:18px;">Next ➡️ (⌛ Black Holes)</a>
+        </div>
+        """, unsafe_allow_html=True)
+
+elif st.session_state.active_tab == "⌛ Black Holes & Time":
     st.title("⌛ Black Holes & Time")
     st.header("Spacetime Grid")
     st.write("Mini-simulations like falling into a black hole will be here.")
