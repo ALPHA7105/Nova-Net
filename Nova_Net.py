@@ -185,17 +185,10 @@ if st.session_state.active_tab == "🏠 Home":
     st.markdown("""---""")
     col1, col2 = st.columns(2)
 
-    with col1:
-        st.markdown("""
-        <div style='text-align: left;'>
-            <a href="#home" style="font-size:18px;">🏠 Home</a>
-        </div>
-        """, unsafe_allow_html=True)
-
     with col2:
         st.markdown("""
-        <div style='text-align: right;'>
-            <a href="#mysteries" style="font-size:18px;">Next ➡️ (🔍 Mysteries)</a>
+        <div style='text-align: left; font-size:18px;'>
+             ➡️ Next: 🪐 Exoplanets 
         </div>
         """, unsafe_allow_html=True)
 
@@ -388,19 +381,13 @@ elif st.session_state.active_tab == "🔍 Mysteries":
     st.markdown("""---""")
     col1, col2 = st.columns(2)
 
-    with col1:
+    with col2:
         st.markdown("""
-        <div style='text-align: left;'>
-            <a href="#home" style="font-size:18px;">(🏠 Home) ⬅️ Previous</a>
+        <div style='text-align: left; font-size:18px;'>
+             ➡️ Next: 🪐 Exoplanets 
         </div>
         """, unsafe_allow_html=True)
 
-    with col2:
-        st.markdown("""
-        <div style='text-align: right;'>
-            <a href="#exoplanets" style="font-size:18px;">Next ➡️ (🪐 Exoplanets)</a>
-        </div>
-        """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "🪐 Exoplanets":
     st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
@@ -521,17 +508,10 @@ elif st.session_state.active_tab == "🪐 Exoplanets":
     st.markdown("""---""")
     col1, col2 = st.columns(2)
 
-    with col1:
-        st.markdown("""
-        <div style='text-align: left;'>
-            <a href="#mysteries" style="font-size:18px;">(🔍 Mysteries) ⬅️ Previous</a>
-        </div>
-        """, unsafe_allow_html=True)
-
     with col2:
         st.markdown("""
-        <div style='text-align: right;'>
-            <a href="#missions" style="font-size:18px;">Next ➡️ (🚀 Missions)</a>
+        <div style='text-align: left; font-size:18px;'>
+             ➡️ Next: 🚀 Missions 
         </div>
         """, unsafe_allow_html=True)
 
@@ -739,17 +719,10 @@ elif st.session_state.active_tab == "🚀 Missions":
     st.markdown("""---""")
     col1, col2 = st.columns(2)
 
-    with col1:
-        st.markdown("""
-        <div style='text-align: left;'>
-            <a href="#exoplanets" style="font-size:18px;">(🔍 Mysteries) ⬅️ Previous</a>
-        </div>
-        """, unsafe_allow_html=True)
-
     with col2:
         st.markdown("""
-        <div style='text-align: right;'>
-            <a href="#tech" style="font-size:18px;">Next ➡️ (⚙️ Tech)</a>
+        <div style='text-align: left; font-size:18px;'>
+             ➡️ Next: ⚙️ Tech 
         </div>
         """, unsafe_allow_html=True)
 
@@ -885,17 +858,10 @@ elif st.session_state.active_tab == "⚙️ Tech":
     
     st.markdown("""---""")
     col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("""
-        <div style='text-align: left;'>
-            <a href="#missions" style="font-size:18px;">(🚀 Missions) ⬅️ Previous</a>
-        </div>
-        """, unsafe_allow_html=True)
-
     with col2:
         st.markdown("""
-        <div style='text-align: right;'>
-            <a href="#astrobiology" style="font-size:18px;">Next ➡️ (🧬 Astrobiology)</a>
+        <div style='text-align: left; font-size:18px;'>
+             ➡️ Next: 🧬 Astrobiology 
         </div>
         """, unsafe_allow_html=True)
 
@@ -1108,17 +1074,10 @@ elif st.session_state.active_tab == "🧬 Astrobiology":
 
     st.markdown("""---""")
     col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("""
-        <div style='text-align: left;'>
-            <a href="#tech" style="font-size:18px;">(⚙️ Tech) ⬅️ Previous</a>
-        </div>
-        """, unsafe_allow_html=True)
-
     with col2:
         st.markdown("""
-        <div style='text-align: right;'>
-            <a href="#black-holes-and-time" style="font-size:18px;">Next ➡️ (⌛ Black Holes)</a>
+        <div style='text-align: left; font-size:18px;'>
+             ➡️ Next: ⌛ Black Holes & Time
         </div>
         """, unsafe_allow_html=True)
 
