@@ -768,9 +768,7 @@ elif st.session_state.active_tab == "⚙️ Tech":
 
 elif st.session_state.active_tab == "🧬 Astrobiology":
     st.markdown("<h1 style='text-align: center;'>🧬 Astrobiology</h1>", unsafe_allow_html=True)
-    st.markdown(<div style='text-align: center; font-size:18px; margin-top: -10px; margin-bottom: 30px; color: gray;'>
-    Explore the origins, evolution, and possibilities of life beyond Earth. 🧬🌌
-    </div>
+    st.markdown("<div style='text-align: center; font-size:18px; margin-top: -10px; margin-bottom: 30px; color: gray;'>Explore the origins, evolution, and possibilities of life beyond Earth. 🧬🌌</div>")
     st.divider()
     
     st.markdown("### 🌌 What is Astrobiology?")
