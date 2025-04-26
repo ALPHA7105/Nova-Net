@@ -767,107 +767,197 @@ elif st.session_state.active_tab == "⚙️ Tech":
         """)
 
 elif st.session_state.active_tab == "🧬 Astrobiology":
-    st.markdown("<h2 style='text-align: center;'>🧬 Astrobiology</h2>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>🧬 Astrobiology</h1>", unsafe_allow_html=True)
+    st.markdown(<div style='text-align: center; font-size:18px; margin-top: -10px; margin-bottom: 30px; color: gray;'>
+    Explore the origins, evolution, and possibilities of life beyond Earth. 🧬🌌
+    </div>
     st.divider()
+    
     st.markdown("### 🌌 What is Astrobiology?")
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("- Study of life in the universe")
-        st.markdown("- Combines biology, chemistry, astronomy")
-    with col2:
-        st.markdown("- Seeks how life began and evolves")
-        st.markdown("- Explores where life could exist beyond Earth")
+    st.write("Astrobiology is the scientific study of life in the universe — its origins, evolution, distribution, and future. It combines biology, chemistry, physics, and planetary science to understand if life exists beyond Earth, and how it could thrive in different environments.")
+    st.markdown("[Learn More](https://astrobiology.nasa.gov/about-astrobiology/)")
     st.divider()
     
     st.markdown("### 🌡️ Conditions for Life")
     col1, col2 = st.columns(2)
+
     with col1:
-        st.markdown("- Presence of liquid water")
-        st.markdown("- Stable atmosphere")
+        st.subheader("💧 Liquid Water")
+        st.write("Water is essential because it’s a perfect solvent for life's chemistry. Most life as we know it depends on the presence of liquid water.")
+        st.markdown("[Learn More](https://astrobiology.nasa.gov/ask-an-astrobiologist/question/?id=21995)")
+
+        st.subheader("🌎 Stable Atmosphere")
+        st.write("An atmosphere protects life from harmful radiation and helps regulate surface temperatures, making a planet habitable.")
+        st.markdown("[Learn More](https://exoplanets.nasa.gov/what-is-an-exoplanet/planet-types/habitable-zone/)")
+
     with col2:
-        st.markdown("- Suitable temperature range")
-        st.markdown("- Key chemical elements (C, H, O, N)")
+        st.subheader("🌡️ Right Temperature")
+        st.write("Planets need to be in the 'Goldilocks Zone' — not too hot and not too cold — so water can stay liquid.")
+        st.markdown("[Learn More](https://solarsystem.nasa.gov/planets/overview/)")
+
+        st.subheader("☀️ Energy Source")
+        st.write("A constant energy supply, like sunlight or geothermal heat, is necessary to power life processes.")
+        st.markdown("[Learn More](https://astrobiology.nasa.gov/news/energy-and-life-the-importance-of-energy-for-life/)")
     st.divider()
     
     st.markdown("### 🔥🧊 Extremophiles on Earth")
     col1, col2 = st.columns(2)
+
     with col1:
-        st.markdown("- Thrive in boiling vents")
-        st.markdown("- Live in frozen Antarctic ice")
+        st.subheader("🔥 Life in Hydrothermal Vent")
+        st.write("Microbes thrive deep underwater at boiling temperatures, proving that sunlight isn't required for life.")
+        st.markdown("[Learn More](https://oceanexplorer.noaa.gov/facts/vents.html)")
+
+        st.subheader("❄️ Life Beneath Antarctic Ice")
+        st.write("Bacteria and algae survive under kilometers of ice, hinting at possibilities for life on icy moons like Europa.")
+        st.markdown("[Learn More](https://www.nsf.gov/news/special_reports/life-under-ice/)")
+
     with col2:
-        st.markdown("- Survive in acidic lakes")
-        st.markdown("- Found deep underground")
+        st.subheader("🧪 Life in Acidic Lakes")
+        st.write("Some microbes flourish in highly acidic, toxic lakes, showing how adaptable life can be.")
+        st.markdown("[Learn More](https://microbewiki.kenyon.edu/index.php/Acidophiles)")
+
+        st.subheader("🧂 Halophiles in Salt Flats")
+        st.write("Salt-loving microbes inhabit extremely salty environments, similar to possible conditions on Mars.")
+        st.markdown("[Learn More](https://en.wikipedia.org/wiki/Halophile)")
     st.divider()
 
     st.markdown("### 🧪 Famous Experiments")
     col1, col2 = st.columns(2)
+
     with col1:
-        st.markdown("- Miller-Urey created amino acids")
-        st.markdown("- Proved organic molecules form naturally")
+        st.subheader("⚡ Miller-Urey Experiment")
+        st.write("In 1953, scientists simulated early Earth conditions and produced amino acids — life's building blocks — showing that organic molecules can form naturally.")
+        st.markdown("[Learn More](https://en.wikipedia.org/wiki/Miller–Urey_experiment)")
+
+        st.subheader("🧬 RNA World Hypothesis")
+        st.write("Suggests that life may have started with self-replicating RNA molecules before DNA-based life evolved.")
+        st.markdown("[Learn More](https://www.nature.com/scitable/topicpage/the-rna-world-839/)")
+
     with col2:
-        st.markdown("- Simulation of early Earth")
-        st.markdown("- Key breakthrough in understanding life's origins")
+        st.subheader("☄️ Panspermia Theory")
+        st.write("The idea that life or its ingredients may have been delivered to Earth via comets or meteorites.")
+        st.markdown("[Learn More](https://en.wikipedia.org/wiki/Panspermia)")
+
+        st.subheader("🌋 Deep-Sea Vent Theory")
+        st.write("Suggests that life began in deep-sea vents, protected from surface dangers like asteroid impacts.")
+        st.markdown("[Learn More](https://astrobiology.nasa.gov/research/life-origin/hydrothermal-vents/)")
     st.divider()
 
     st.markdown("### 🪐 Potential Places for Life")
     col1, col2 = st.columns(2)
+
     with col1:
-        st.markdown("- Mars (ancient rivers and lakes)")
-        st.markdown("- Europa (subsurface oceans)")
+        st.subheader("🔴 Mars")
+        st.write("Mars has water ice, ancient riverbeds, and seasonal methane releases — possible hints of past or even underground life.")
+        st.markdown("[Learn More](https://mars.nasa.gov/)")
+
+        st.subheader("🌊 Europa")
+        st.write("Jupiter’s icy moon Europa holds a global ocean beneath its crust, making it a top target for finding alien microbes.")
+        st.markdown("[Learn More](https://europa.nasa.gov/)")
+
     with col2:
-        st.markdown("- Enceladus (ice geysers)")
-        st.markdown("- Exoplanets in habitable zones")
+        st.subheader("🧊 Enceladus")
+        st.write("Saturn's moon Enceladus has geysers shooting water into space, suggesting a subsurface ocean with potential for life.")
+        st.markdown("[Learn More](https://solarsystem.nasa.gov/moons/saturn-moons/enceladus/overview/)")
+
+        st.subheader("🌑 Titan")
+        st.write("Titan has lakes of liquid methane and a thick atmosphere — could exotic, methane-based life exist there?")
+        st.markdown("[Learn More](https://solarsystem.nasa.gov/moons/saturn-moons/titan/overview/)")
     st.divider()
 
     st.markdown("### 🔎 Search for Biosignatures")
     col1, col2 = st.columns(2)
+
     with col1:
-        st.markdown("- Look for oxygen, methane in atmospheres")
-        st.markdown("- Analyze light spectra from distant planets")
+        st.subheader("🌀 Oxygen and Methane")
+        st.write("Scientists look for unexpected gases like oxygen and methane in exoplanet atmospheres, which could hint at biological activity.")
+        st.markdown("[Learn More](https://astrobiology.nasa.gov/news/biosignatures-of-life-in-the-atmospheres-of-rocky-exoplanets/)")
+
+        st.subheader("🎯 Spectroscopy Techniques")
+        st.write("Analyzing light from distant worlds reveals atmospheric chemicals — a key method for biosignature detection.")
+        st.markdown("[Learn More](https://exoplanets.nasa.gov/alien-worlds/ways-to-find-a-planet/)")
+
     with col2:
-        st.markdown("- Chemical clues hinting life")
-        st.markdown("- Missions designed to detect biosignatures")
+        st.subheader("📡 Technosignatures")
+        st.write("Scientists also search for evidence of technology, such as radio waves or industrial pollution on distant planets.")
+        st.markdown("[Learn More](https://astrobiology.nasa.gov/research/life-detection/technosignatures/)")
+
+        st.subheader("🧪 Organic Molecules on Mars")
+        st.write("The Curiosity rover has detected complex organics in Martian soil — key ingredients for life.")
+        st.markdown("[Learn More](https://mars.nasa.gov/news/8302/organic-molecules-on-mars/)") 
     st.divider()
 
     st.markdown("### 📈 Drake Equation")
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("- Estimates alien civilizations")
-        st.markdown("- Factors like star formation rate")
-    with col2:
-        st.markdown("- Planet habitability chances")
-        st.markdown("- Probability of intelligent life developing")
+    st.subheader("📈 Drake Equation")
+    st.write("Developed by Frank Drake, this famous formula estimates the number of active, communicative extraterrestrial civilizations in the Milky Way.")
+    st.markdown("[Learn More](https://en.wikipedia.org/wiki/Drake_equation)")
     st.divider()
 
     st.markdown("### 📡 SETI & Messages to Space")
     col1, col2 = st.columns(2)
+
     with col1:
-        st.markdown("- SETI listens for alien signals")
-        st.markdown("- Searches for non-natural radio patterns")
+        st.subheader("🔭 SETI (Search for Extraterrestrial Intelligence)")
+        st.write("SETI listens for artificial radio signals from space that might indicate alien civilizations.")
+        st.markdown("[Learn More](https://setiathome.berkeley.edu/)")
+
+        st.subheader("📜 Arecibo Message")
+        st.write("In 1974, a powerful radio message was sent from Earth to a distant star cluster, designed to introduce humanity to alien civilizations.")
+        st.markdown("[Learn More](https://en.wikipedia.org/wiki/Arecibo_message)")
+
     with col2:
-        st.markdown("- Arecibo Message sent to space")
-        st.markdown("- Efforts to communicate with extraterrestrials")
-    st.divider()
+        st.subheader("🌌 Voyager Golden Record")
+        st.write("The Voyager spacecrafts carry a golden record with images and sounds from Earth, intended as a message for any extraterrestrials.")
+        st.markdown("[Learn More](https://voyager.jpl.nasa.gov/golden-record/)")
+
+        st.subheader("🛰️ Breakthrough Listen")
+        st.write("A project dedicated to scanning the skies for signs of advanced alien technologies using powerful radio telescopes.")
+        st.markdown("[Learn More](https://breakthroughinitiatives.org/initiative/1)")
 
     st.markdown("### 🚀 Astrobiology Missions")
     col1, col2 = st.columns(2)
+
     with col1:
-        st.markdown("- Perseverance rover on Mars")
-        st.markdown("- Europa Clipper exploring icy moon")
+        st.subheader("🚀 Mars Perseverance Rover")
+        st.write("The rover is searching for ancient signs of microbial life and collecting samples to return to Earth.")
+        st.markdown("[Learn More](https://mars.nasa.gov/mars2020/)")
+
+        st.subheader("🛰️ Europa Clipper")
+        st.write("A NASA mission launching soon to explore Europa’s ocean and search for signs of habitability.")
+        st.markdown("[Learn More](https://europa.nasa.gov/)")
+
     with col2:
-        st.markdown("- Dragonfly mission to Titan")
-        st.markdown("- Future life-hunting telescopes")
+        st.subheader("🌖 Dragonfly Mission to Titan")
+        st.write("A NASA drone-like spacecraft will explore Titan’s surface and chemistry, searching for prebiotic conditions.")
+        st.markdown("[Learn More](https://dragonfly.jhuapl.edu/)")
+
+        st.subheader("🛰️ James Webb Space Telescope")
+        st.write("JWST is already analyzing exoplanet atmospheres for potential biosignatures.")
+        st.markdown("[Learn More](https://jwst.nasa.gov/content/about/mission.html)")
     st.divider()
 
     st.markdown("### 🧬👾 Life Beyond DNA?")
     col1, col2 = st.columns(2)
+    
     with col1:
-        st.markdown("- Silicon-based life possibilities")
-        st.markdown("- Plasma or exotic chemistry life")
+        st.subheader("🌌 Silicon-Based Life")
+        st.write("Silicon, like carbon, can form complex molecules. Some scientists speculate that alien life could be based on silicon instead of carbon.")
+        st.markdown("[Learn More](https://en.wikipedia.org/wiki/Silicon-based_life)")
+
+        st.subheader("🔥 Plasma Lifeforms")
+        st.write("Theoretical plasma-based life could exist inside stars or extreme environments, based purely on energy and particles.")
+        st.markdown("[Learn More](https://en.wikipedia.org/wiki/Plasma-based_life)")
+
     with col2:
-        st.markdown("- Non-water-based life forms")
-        st.markdown("- Thinking beyond Earth-like biology")
-    st.divider()
+        st.subheader("❄️ Ammonia-Based Life")
+        st.write("Instead of water, some life might use ammonia as a solvent, especially on colder planets and moons.")
+        st.markdown("[Learn More](https://www.nasa.gov/feature/astrobiology-ammonia-could-be-the-key-to-alien-life)")
+
+        st.subheader("🧠 Non-Carbon Consciousness")
+        st.write("Speculative ideas include intelligent clouds of gas or purely electromagnetic 'life' with no physical form.")
+        st.markdown("[Learn More](https://arxiv.org/abs/2102.05026)")
+    st.markdown("---")
 
 elif st.session_state.active_tab == "⌛ Black Holes":
     st.title("⌛ Black Holes & Time")
@@ -876,11 +966,14 @@ elif st.session_state.active_tab == "⌛ Black Holes":
     st.write("Animated comic explaining time dilation will be added.")
 
 elif st.session_state.active_tab == "📰 News":
-    st.title("📰 News")
-    st.header("Space Discoveries & News")
-    st.write("Category filters for Discoveries, Tech, Aliens, and Missions.")
-    st.write("Weekly space digest will be auto-created using AI summary.")
-    st.write("NovaNet Highlights: Your team’s top pick of the week.")
+    st.subheader("🌟 Featured Discovery of the Month: Organic Molecules on Mars!")
+    st.write("""
+    In 2022, NASA’s Perseverance Rover found **organic carbon molecules** in ancient rocks on Mars.  
+    This suggests Mars once had the right chemistry to support microbial life!  
+    While this isn't proof of life, it’s one of the most exciting astrobiological findings yet.  
+    Stay tuned as more data from Perseverance's sample returns could rewrite our understanding of life beyond Earth! 🚀
+    """)
+    st.markdown("[Learn More](https://mars.nasa.gov/news/9307/nasa-perseverance-rover-investigates-geologically-rich-mars-terrain/)")
 
 elif st.session_state.active_tab == "💬 Theories":
     st.title("💬 Community Theories")
