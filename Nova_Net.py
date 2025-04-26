@@ -767,9 +767,10 @@ elif st.session_state.active_tab == "⚙️ Tech":
         """)
 
 elif st.session_state.active_tab == "🧬 Astrobiology":
-    st.markdown("<h1 style='text-align: center;'>🧬 Astrobiology</h1>", unsafe_allow_html=True)
-    st.markdown("<div style='text-align: center; font-size:18px; margin-top: -10px; margin-bottom: 30px; color: gray;'>Explore the origins, evolution, and possibilities of life beyond Earth. 🧬🌌</div>")
-    st.divider()
+    st.markdown("""
+    <h1 style='text-align: center; margin-top: 1rem;'>🧬 Astrobiology</h1>
+    <p style='text-align: center; font-size: 18px;'>Explore the origins, evolution, and possibilities of life beyond Earth. 🧬🌌</p>
+    """, unsafe_allow_html=True)
     
     st.markdown("### 🌌 What is Astrobiology?")
     st.write("Astrobiology is the scientific study of life in the universe — its origins, evolution, distribution, and future. It combines biology, chemistry, physics, and planetary science to understand if life exists beyond Earth, and how it could thrive in different environments.")
@@ -798,7 +799,7 @@ elif st.session_state.active_tab == "🧬 Astrobiology":
         st.markdown("[Learn More](https://astrobiology.nasa.gov/news/energy-and-life-the-importance-of-energy-for-life/)")
     st.divider()
     
-    st.markdown("### 🔥🧊 Extremophiles on Earth")
+    st.markdown("### 🧊 Extremophiles on Earth")
     col1, col2 = st.columns(2)
 
     with col1:
@@ -887,12 +888,11 @@ elif st.session_state.active_tab == "🧬 Astrobiology":
     st.divider()
 
     st.markdown("### 📈 Drake Equation")
-    st.subheader("📈 Drake Equation")
     st.write("Developed by Frank Drake, this famous formula estimates the number of active, communicative extraterrestrial civilizations in the Milky Way.")
     st.markdown("[Learn More](https://en.wikipedia.org/wiki/Drake_equation)")
     st.divider()
 
-    st.markdown("### 📡 SETI & Messages to Space")
+    st.markdown("### 📡Messages to Space")
     col1, col2 = st.columns(2)
 
     with col1:
@@ -912,12 +912,13 @@ elif st.session_state.active_tab == "🧬 Astrobiology":
         st.subheader("🛰️ Breakthrough Listen")
         st.write("A project dedicated to scanning the skies for signs of advanced alien technologies using powerful radio telescopes.")
         st.markdown("[Learn More](https://breakthroughinitiatives.org/initiative/1)")
+    st.divider()
 
     st.markdown("### 🚀 Astrobiology Missions")
     col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader("🚀 Mars Perseverance Rover")
+        st.subheader("🔴 Mars Perseverance Rover")
         st.write("The rover is searching for ancient signs of microbial life and collecting samples to return to Earth.")
         st.markdown("[Learn More](https://mars.nasa.gov/mars2020/)")
 
@@ -935,7 +936,7 @@ elif st.session_state.active_tab == "🧬 Astrobiology":
         st.markdown("[Learn More](https://jwst.nasa.gov/content/about/mission.html)")
     st.divider()
 
-    st.markdown("### 🧬👾 Life Beyond DNA?")
+    st.markdown("### 🧬 Life Beyond DNA? 👾")
     col1, col2 = st.columns(2)
     
     with col1:
