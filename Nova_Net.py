@@ -65,7 +65,7 @@ st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
 tabs = [
     "🏠 Home", "🔍 Mysteries", "🪐 Exoplanets", "🚀 Missions",
     "⚙️ Tech", "📰 News", "💬 Theories", "🧬 Astrobiology",
-    "⌛ Black Holes & Time", "❓ Quizzes", "🤖 AI Conversations", "📖 About"
+    "⌛ Black Holes", "❓ Quizzes", "🤖 AI Conversations", "📖 About"
 ]
 
 # Create buttons to switch tabs
@@ -93,8 +93,8 @@ with col6:
 col7, col8, col9, col10, col11, col12 = st.columns(6)
 
 with col7:
-    if st.button('⌛ Black Holes & Time'):
-        st.session_state.active_tab = "⌛ Black Holes & Time"
+    if st.button('⌛ Black Holes'):
+        st.session_state.active_tab = "⌛ Black Holes"
 with col8:
     if st.button('📰 News'):
         st.session_state.active_tab = "📰 News"
@@ -1081,8 +1081,8 @@ elif st.session_state.active_tab == "🧬 Astrobiology":
         </div>
         """, unsafe_allow_html=True)
 
-elif st.session_state.active_tab == "⌛ Black Holes & Time":
-    st.title("⌛ Black Holes & Time")
+elif st.session_state.active_tab == "⌛ Black Holes":
+    st.title("⌛ Black Holes")
     st.header("Spacetime Grid")
     st.write("Mini-simulations like falling into a black hole will be here.")
     st.write("Animated comic explaining time dilation will be added.")
