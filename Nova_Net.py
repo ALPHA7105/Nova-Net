@@ -183,6 +183,7 @@ if st.session_state.active_tab == "🏠 Home":
         st.markdown(f"<div style='text-align: center;'><h4>You chose: <strong>{selected_option}</strong></h4></div>", unsafe_allow_html=True)
 
     st.markdown("""
+    <br><br>
     <div style='text-align: right; font-size:18px; margin-right: 30px;'>
         <b>Next: 🔍 Mysteries ➡️</b>
     </div>
@@ -375,6 +376,7 @@ elif st.session_state.active_tab == "🔍 Mysteries":
     """, unsafe_allow_html=True)
     
     st.markdown("""
+    <br><br>
     <div style='text-align: right; font-size:18px; margin-right: 30px;'>
         <b>Next: 🪐 Exoplanets ➡️</b>
     </div>
@@ -498,6 +500,7 @@ elif st.session_state.active_tab == "🪐 Exoplanets":
     """, unsafe_allow_html=True)
 
     st.markdown("""
+    <br><br>
     <div style='text-align: right; font-size:18px; margin-right: 30px;'>
         <b>Next: 🚀 Missions ➡️</b>
     </div>
@@ -705,6 +708,7 @@ elif st.session_state.active_tab == "🚀 Missions":
     """, unsafe_allow_html=True)
 
     st.markdown("""
+    <br><br>
     <div style='text-align: right; font-size:18px; margin-right: 30px;'>
         <b>Next: ⚙️ Tech ➡️</b>
     </div>
@@ -841,6 +845,7 @@ elif st.session_state.active_tab == "⚙️ Tech":
     """, unsafe_allow_html=True)
     
     st.markdown("""
+    <br><br>
     <div style='text-align: right; font-size:18px; margin-right: 30px;'>
         <b>Next: 🧬 Astrobiology ➡️</b>
     </div>
@@ -1054,6 +1059,7 @@ elif st.session_state.active_tab == "🧬 Astrobiology":
     """, unsafe_allow_html=True)
 
     st.markdown("""
+    <br><br>
     <div style='text-align: right; font-size:18px; margin-right: 30px;'>
         <b>Next: ⌛ Black Holes ➡️</b>
     </div>
