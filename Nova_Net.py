@@ -767,10 +767,118 @@ elif st.session_state.active_tab == "⚙️ Tech":
         """)
 
 elif st.session_state.active_tab == "🧬 Astrobiology":
-    st.title("🧬 Astrobiology")
-    st.header("Planet Habitability Score")
-    st.write("Design an Alien game based on real conditions.")
-    st.write("Map of all known extremophile habitats will be shown.")
+    st.markdown("<h2 style='text-align: center;'>🧬 Astrobiology</h2>", unsafe_allow_html=True)
+st.divider()
+
+# 🌌 What is Astrobiology?
+st.markdown("### 🌌 What is Astrobiology?")
+col1, col2 = st.columns(2)
+with col1:
+    st.markdown("- Study of life in the universe")
+    st.markdown("- Combines biology, chemistry, astronomy")
+with col2:
+    st.markdown("- Seeks how life began and evolves")
+    st.markdown("- Explores where life could exist beyond Earth")
+st.divider()
+
+# 🌡️ Conditions for Life
+st.markdown("### 🌡️ Conditions for Life")
+col1, col2 = st.columns(2)
+with col1:
+    st.markdown("- Presence of liquid water")
+    st.markdown("- Stable atmosphere")
+with col2:
+    st.markdown("- Suitable temperature range")
+    st.markdown("- Key chemical elements (C, H, O, N)")
+st.divider()
+
+# 🔥🧊 Extremophiles on Earth
+st.markdown("### 🔥🧊 Extremophiles on Earth")
+col1, col2 = st.columns(2)
+with col1:
+    st.markdown("- Thrive in boiling vents")
+    st.markdown("- Live in frozen Antarctic ice")
+with col2:
+    st.markdown("- Survive in acidic lakes")
+    st.markdown("- Found deep underground")
+st.divider()
+
+# 🧪 Famous Experiments
+st.markdown("### 🧪 Famous Experiments")
+col1, col2 = st.columns(2)
+with col1:
+    st.markdown("- Miller-Urey created amino acids")
+    st.markdown("- Proved organic molecules form naturally")
+with col2:
+    st.markdown("- Simulation of early Earth")
+    st.markdown("- Key breakthrough in understanding life's origins")
+st.divider()
+
+# 🪐 Potential Places for Life
+st.markdown("### 🪐 Potential Places for Life")
+col1, col2 = st.columns(2)
+with col1:
+    st.markdown("- Mars (ancient rivers and lakes)")
+    st.markdown("- Europa (subsurface oceans)")
+with col2:
+    st.markdown("- Enceladus (ice geysers)")
+    st.markdown("- Exoplanets in habitable zones")
+st.divider()
+
+# 🔎 Search for Biosignatures
+st.markdown("### 🔎 Search for Biosignatures")
+col1, col2 = st.columns(2)
+with col1:
+    st.markdown("- Look for oxygen, methane in atmospheres")
+    st.markdown("- Analyze light spectra from distant planets")
+with col2:
+    st.markdown("- Chemical clues hinting life")
+    st.markdown("- Missions designed to detect biosignatures")
+st.divider()
+
+# 📈 Drake Equation
+st.markdown("### 📈 Drake Equation")
+col1, col2 = st.columns(2)
+with col1:
+    st.markdown("- Estimates alien civilizations")
+    st.markdown("- Factors like star formation rate")
+with col2:
+    st.markdown("- Planet habitability chances")
+    st.markdown("- Probability of intelligent life developing")
+st.divider()
+
+# 📡 SETI & Messages to Space
+st.markdown("### 📡 SETI & Messages to Space")
+col1, col2 = st.columns(2)
+with col1:
+    st.markdown("- SETI listens for alien signals")
+    st.markdown("- Searches for non-natural radio patterns")
+with col2:
+    st.markdown("- Arecibo Message sent to space")
+    st.markdown("- Efforts to communicate with extraterrestrials")
+st.divider()
+
+# 🚀 Astrobiology Missions
+st.markdown("### 🚀 Astrobiology Missions")
+col1, col2 = st.columns(2)
+with col1:
+    st.markdown("- Perseverance rover on Mars")
+    st.markdown("- Europa Clipper exploring icy moon")
+with col2:
+    st.markdown("- Dragonfly mission to Titan")
+    st.markdown("- Future life-hunting telescopes")
+st.divider()
+
+# 🧬👾 Life Beyond DNA?
+st.markdown("### 🧬👾 Life Beyond DNA?")
+col1, col2 = st.columns(2)
+with col1:
+    st.markdown("- Silicon-based life possibilities")
+    st.markdown("- Plasma or exotic chemistry life")
+with col2:
+    st.markdown("- Non-water-based life forms")
+    st.markdown("- Thinking beyond Earth-like biology")
+st.divider()
 
 elif st.session_state.active_tab == "⌛ Black Holes":
     st.title("⌛ Black Holes & Time")
