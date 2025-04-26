@@ -957,7 +957,6 @@ elif st.session_state.active_tab == "🧬 Astrobiology":
         st.subheader("🧠 Non-Carbon Consciousness")
         st.write("Speculative ideas include intelligent clouds of gas or purely electromagnetic 'life' with no physical form.")
         st.markdown("[Learn More](https://arxiv.org/abs/2102.05026)")
-    st.markdown("---")
 
 elif st.session_state.active_tab == "⌛ Black Holes":
     st.title("⌛ Black Holes & Time")
