@@ -1066,17 +1066,17 @@ elif st.session_state.active_tab == "🧬 Astrobiology":
     """, unsafe_allow_html=True)
 
 if st.session_state.active_tab == "⌛ Black Holes":
-    st.markdown("<h2 style='text-align: center;'>⌛ Black Holes</h2>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>⌛ Black Holes</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center;'>Explore the most mysterious and powerful objects in the universe — black holes! 🌌</p>", unsafe_allow_html=True)
 
     st.markdown("---")
 
     st.markdown("### 🕳️ What Are Black Holes?")
     st.write("""
-Black holes are regions in space where gravity is so intense that nothing—not even light—can escape. 
-They form from the collapse of massive stars after they burn out their nuclear fuel. 
-Rather than sucking everything nearby, black holes only affect objects that come very close. 
-They were predicted by Einstein's theory of general relativity and later confirmed through astronomical observations.
+    Black holes are regions in space where gravity is so intense that nothing—not even light—can escape. 
+    They form from the collapse of massive stars after they burn out their nuclear fuel. 
+    Rather than sucking everything nearby, black holes only affect objects that come very close. 
+    They were predicted by Einstein's theory of general relativity and later confirmed through astronomical observations.
     """)
     st.markdown("[🔗 Learn More](https://science.nasa.gov/astrophysics/focus-areas/black-holes)")
 
@@ -1084,11 +1084,11 @@ They were predicted by Einstein's theory of general relativity and later confirm
 
     st.markdown("### 🔭 Types of Black Holes")
     st.write("""
-Black holes come in different sizes:
-- **Stellar Black Holes**: Created from collapsing massive stars.
-- **Supermassive Black Holes**: Found at galactic centers, millions to billions of times the Sun's mass.
-- **Intermediate Black Holes**: Rare middleweights that may explain galactic formation.
-- **Primordial Black Holes**: Hypothetical black holes from the early universe.
+    Black holes come in different sizes:
+    - **Stellar Black Holes**: Created from collapsing massive stars.
+    - **Supermassive Black Holes**: Found at galactic centers, millions to billions of times the Sun's mass.
+    - **Intermediate Black Holes**: Rare middleweights that may explain galactic formation.
+    - **Primordial Black Holes**: Hypothetical black holes from the early universe.
 
     """)
     st.markdown("[🔗 Learn More](https://imagine.gsfc.nasa.gov/science/objects/black_holes1.html)")
@@ -1097,10 +1097,10 @@ Black holes come in different sizes:
 
     st.markdown("### 🧠 Anatomy of a Black Hole")
     st.write("""
-A black hole consists of:
-- **Event Horizon**: The boundary beyond which escape is impossible.
-- **Singularity**: The infinitely dense center.
-- **Accretion Disk**: A hot, glowing ring of matter falling inward, often visible by X-rays.
+    A black hole consists of:
+    - **Event Horizon**: The boundary beyond which escape is impossible.
+    - **Singularity**: The infinitely dense center.
+    - **Accretion Disk**: A hot, glowing ring of matter falling inward, often visible by X-rays.
 
     """)
     st.markdown("[🔗 Learn More](https://www.space.com/15421-black-holes-facts-formation-discovery-sdcmp.html)")
@@ -1109,9 +1109,9 @@ A black hole consists of:
 
     st.markdown("### ⏳ Time Dilation and Black Holes")
     st.write("""
-Near black holes, time slows dramatically—a prediction of Einstein's theory.
-Objects falling into a black hole appear frozen at the event horizon to distant observers.
-Meanwhile, for the falling object, time passes normally but leads to an unavoidable fate.
+    Near black holes, time slows dramatically—a prediction of Einstein's theory.
+    Objects falling into a black hole appear frozen at the event horizon to distant observers.
+    Meanwhile, for the falling object, time passes normally but leads to an unavoidable fate.
     """)
     st.markdown("[🔗 Learn More](https://www.space.com/38651-black-hole-time-dilation.html)")
 
@@ -1119,11 +1119,11 @@ Meanwhile, for the falling object, time passes normally but leads to an unavoida
 
     st.markdown("### 📸 Famous Black Holes")
     st.write("""
-Two major black holes made history:
-- **Sagittarius A\***: The supermassive black hole at our galaxy’s core.
-- **M87\***: The first black hole ever photographed, showing a stunning 'shadow'.
+    Two major black holes made history:
+    - **Sagittarius A\***: The supermassive black hole at our galaxy’s core.
+    - **M87\***: The first black hole ever photographed, showing a stunning 'shadow'.
 
-These discoveries transformed black holes from theory to reality.
+    These discoveries transformed black holes from theory to reality.
     """)
     st.markdown("[🔗 Learn More](https://eventhorizontelescope.org/)")
 
@@ -1131,11 +1131,11 @@ These discoveries transformed black holes from theory to reality.
 
     st.markdown("### 🌌🌀 Theoretical Concepts and Wild Ideas")
     st.write("""
-Exciting black hole theories include:
-- **Wormholes**: Hypothetical bridges through spacetime.
-- **White Holes**: Possible opposites that expel matter.
-- **Hawking Radiation**: The slow evaporation of black holes.
-- **Time Travel**: Speculative theories using spinning black holes.
+    Exciting black hole theories include:
+    - **Wormholes**: Hypothetical bridges through spacetime.
+    - **White Holes**: Possible opposites that expel matter.
+    - **Hawking Radiation**: The slow evaporation of black holes.
+    - **Time Travel**: Speculative theories using spinning black holes.
 
     """)
     st.markdown("[🔗 Learn More](https://www.scientificamerican.com/article/are-wormholes-real/)")
@@ -1144,12 +1144,12 @@ Exciting black hole theories include:
 
     st.markdown("### 🤯 Mysteries That Puzzle Scientists")
     st.write("""
-Black holes leave scientists with big questions:
-- What happens at the singularity?
-- Is information lost forever?
-- Could black holes spawn new universes?
+    Black holes leave scientists with big questions:
+    - What happens at the singularity?
+    - Is information lost forever?
+    - Could black holes spawn new universes?
 
-Answering these could unlock quantum gravity theories.
+    Answering these could unlock quantum gravity theories.
     """)
     st.markdown("[🔗 Learn More](https://www.nasa.gov/black-holes)")
 
@@ -1157,12 +1157,12 @@ Answering these could unlock quantum gravity theories.
 
     st.markdown("### 📡 How We Observe Black Holes")
     st.write("""
-Even invisible, black holes reveal themselves by:
-- **X-ray emissions** from accretion disks.
-- **Gravitational waves** from black hole mergers.
-- **Star motions** indicating hidden massive objects.
+    Even invisible, black holes reveal themselves by:
+    - **X-ray emissions** from accretion disks.
+    - **Gravitational waves** from black hole mergers.
+    - **Star motions** indicating hidden massive objects.
 
-New tools like the Event Horizon Telescope are making the invisible visible.
+    New tools like the Event Horizon Telescope are making the invisible visible.
     """)
     st.markdown("[🔗 Learn More](https://www.ligo.caltech.edu/page/black-holes)")
 
@@ -1170,12 +1170,12 @@ New tools like the Event Horizon Telescope are making the invisible visible.
 
     st.markdown("### 🚀 Black Holes and Future Space Travel")
     st.write("""
-Wild ideas suggest:
-- Using spinning black holes to generate energy (Penrose Process).
-- Using black holes as cosmic engines.
-- Exploring wormholes for interstellar shortcuts.
+    Wild ideas suggest:
+    - Using spinning black holes to generate energy (Penrose Process).
+    - Using black holes as cosmic engines.
+    - Exploring wormholes for interstellar shortcuts.
 
-Black holes continue to stretch the limits of our imagination.
+    Black holes continue to stretch the limits of our imagination.
     """)
     st.markdown("[🔗 Learn More](https://www.space.com/32600-black-holes-energy-source.html)")
 
