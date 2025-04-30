@@ -2,9 +2,9 @@ import streamlit as st
 import pandas as pd
 import requests
 import random
+import json
 import csv
 import os
-
 
 st.set_page_config(page_title="Nova Net", layout="wide", page_icon="💫")
 
@@ -1342,55 +1342,80 @@ elif st.session_state.active_tab == "📰 News":
             st.error("🚫 Failed to fetch global space news.")
     except Exception as e:
         st.error("🚫 Request failed or timed out.")
-        
-    st.markdown("---")
-    
-    file_path = "user_news_submissions.csv"
-    report_file = "reported_submissions.csv"
-
-    st.markdown("## 🧑‍🚀 User News Submissions")
-    st.markdown("Share your exciting discoveries, opinions, or events related to space exploration!")
-
-    # --- Submission form ---
-    with st.form("user_submission_form"):
-        name = st.text_input("Your Name")
-        summary = st.text_area("Your Space Theory or News Summary", height=150)
-        submitted = st.form_submit_button("🚀 Submit")
-
-        if submitted and name and summary:
-            with open(file_path, "a") as f:
-                f.write(f"{name},{summary}\n")
-            st.success("✅ Your submission has been added!")
-
-    # --- Display submissions ---
-    if os.path.exists(file_path):
-        df = pd.read_csv(file_path, header=None, names=["name", "summary"])
-
-        st.markdown("### 🌟 Submitted Theories")
-
-        for index, row in df.iterrows():
-            with st.expander(f"🛰️ {row['name']} – {row['summary'][:30]}..."):
-                st.write(row['summary'])
-
-                col1, col2 = st.columns(2)
-                with col1:
-                    if st.button(f"🗑️ Delete", key=f"del_{index}"):
-                        df.drop(index, inplace=True)
-                        df.to_csv(file_path, index=False, header=False)
-                        st.success("Submission deleted.")
-                        st.rerun()
-
-                with col2:
-                    if st.button(f"🚩 Report", key=f"rep_{index}"):
-                        with open(report_file, "a") as f:
-                            f.write(f"{index},{row['name']},{row['summary']}\n")
-                        st.warning("Reported. It will be reviewed.")
 
 elif st.session_state.active_tab == "💬 Theories":
-    st.title("💬 Community Theories")
-    st.header("Top Thinker Badges")
-    st.write("Voting and comment threads will be included here.")
-    st.write("Random wild theory generator will be added for fun.")
+    THEORY_FILE = "theories.json"
+    REPORT_FILE = "reports.json"
+
+    st.title("💬 Public Theories")
+    st.markdown("Share your space theories or browse what others think. Inspire and be inspired.")
+
+    # Ensure files exist
+    if not os.path.exists(THEORY_FILE):
+        with open(THEORY_FILE, "w") as f:
+            json.dump([], f)
+
+    if not os.path.exists(REPORT_FILE):
+        with open(REPORT_FILE, "w") as f:
+            json.dump([], f)
+
+    # Load theories
+    with open(THEORY_FILE, "r") as f:
+        theories = json.load(f)
+
+    # --- Submit a Theory ---
+    st.markdown("### ✍️ Submit Your Theory")
+    name = st.text_input("Your Name")
+    theory_content = st.text_area("Your Theory", height=150)
+
+    if st.button("📤 Submit"):
+        if name.strip() and theory_content.strip():
+            new_theory = {"name": name.strip(), "content": theory_content.strip()}
+            theories.append(new_theory)
+
+            with open(THEORY_FILE, "w") as f:
+                json.dump(theories, f, indent=2)
+
+            st.success("✅ Theory submitted!")
+            st.rerun()
+        else:
+            st.error("⚠️ Both name and theory are required.")
+
+    st.markdown("---")
+
+    # --- Show Theories ---
+    st.markdown("### 🌌 Theories from the Community")
+
+    if not theories:
+        st.info("No theories yet. Be the first to share!")
+    else:
+        for i, theory in enumerate(reversed(theories)):  # show newest first
+            with st.container():
+                st.markdown(f"**🧑 {theory['name']}**")
+                st.markdown(f"> {theory['content']}")
+
+                col1, col2 = st.columns(2)
+
+                with col1:
+                    if st.button("🚩 Report", key=f"report_{i}"):
+                        with open(REPORT_FILE, "r") as rf:
+                            reports = json.load(rf)
+
+                        if theory not in reports:
+                            reports.append(theory)
+                            with open(REPORT_FILE, "w") as rf:
+                                json.dump(reports, rf, indent=2)
+                            st.success("🚩 Report submitted for review.")
+                        else:
+                            st.info("Already reported.")
+
+                with col2:
+                    if st.button("🗑️ Delete (if yours)", key=f"delete_{i}"):
+                        theories.pop(len(theories) - 1 - i)
+                        with open(THEORY_FILE, "w") as f:
+                            json.dump(theories, f, indent=2)
+                        st.success("Deleted successfully.")
+                        st.rerun()
 
 elif st.session_state.active_tab == "❓ Quizzes":
     st.title("❓ Interactive Quizzes")
