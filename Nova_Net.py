@@ -1254,8 +1254,8 @@ elif st.session_state.active_tab == "📰 News":
     st.markdown("## 🧪 Science Spotlight")
     st.markdown("Get insights into fascinating space experiments, discoveries, and innovations from across the galaxy.")
     
-    API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJUZWNoUG9ydCIsImV4cCI6MTc0NjEyMTk0MSwibmJmIjoxNzQ2MDM1NTQxLCJTRVNTSU9OX0lEIjoieVBCM3dZQ25Jd1JMOTFkQnIwWnRCTjlCbEVDZTN3NEF1TmpiIiwiRklOR0VSUFJJTlRfSEFTSCI6Ijk3RThCNEQ0OUI1NTkyQTNCN0NDMDhBREJEMjc5QTE5RTYxMjVGMkM0OEJBMkE4NjA2NjExOTQwRTMyNzlDRkQifQ.aBYXl0ajVbVgMlDSXlWDvvlUehs3GIPNNiqUdlQvB_M"
-    SCIENCE_URL = f"https://api.nasa.gov/techport/api/projects?api_key=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJUZWNoUG9ydCIsImV4cCI6MTc0NjEyMTk0MSwibmJmIjoxNzQ2MDM1NTQxLCJTRVNTSU9OX0lEIjoieVBCM3dZQ25Jd1JMOTFkQnIwWnRCTjlCbEVDZTN3NEF1TmpiIiwiRklOR0VSUFJJTlRfSEFTSCI6Ijk3RThCNEQ0OUI1NTkyQTNCN0NDMDhBREJEMjc5QTE5RTYxMjVGMkM0OEJBMkE4NjA2NjExOTQwRTMyNzlDRkQifQ.aBYXl0ajVbVgMlDSXlWDvvlUehs3GIPNNiqUdlQvB_M"
+    API_KEY = "5UIz1h1dXg1bFTEQUf2zk8zMy9zrdo1jTHJTwXa7"
+    SCIENCE_URL = f"https://api.nasa.gov/techport/api/projects?api_key=5UIz1h1dXg1bFTEQUf2zk8zMy9zrdo1jTHJTwXa7"
 
     response = requests.get(SCIENCE_URL)
     data = response.json()
