@@ -1237,22 +1237,29 @@ elif st.session_state.active_tab == "📰 News":
    
     API_KEY = "pub_83956fe7ac44c59d22831b1cd7d23e188272d"
     URL = f"https://newsdata.io/api/1/news?apikey=pub_83956fe7ac44c59d22831b1cd7d23e188272d&q=astronomy&language=en&category=science"
+    
+    API_URL = "https://your-api-url.com"  # Replace with your actual API URL
 
-    response = requests.get(URL)
-    data = response.json()
+    try:
+        response = requests.get(API_URL, timeout=10)
+        response.raise_for_status()  # Raise error for bad status codes
+        data = response.json()
 
-    if data.get("results"):
-        st.markdown("## 📰 This Week in Space")
+        if isinstance(data, dict) and "results" in data:
+            results = data["results"]
+            if results:
+                st.success("✅ Articles fetched successfully.")
+            else:
+                st.warning("⚠️ No results found.")
+        else:
+            st.error("🚫 Unexpected data format received from API.")
 
-        col1, col2 = st.columns(2)
-        for i, article in enumerate(data["results"][:4]):  # Show top 4
-            column = col1 if i % 2 == 0 else col2
-            with column:
-                st.markdown(f"#### {article['title']}")
-                st.write(article['description'] or "No description available.")
-                st.markdown(f"[🔗 Read More]({article['link']})")
-    else:
-        st.warning("🚧 Unable to load weekly updates at the moment.")
+    except requests.exceptions.Timeout:
+        st.error("⏳ The request timed out. Try again later.")
+    except requests.exceptions.RequestException as e:
+        st.error(f"🚨 An error occurred: {str(e)}")
+    except ValueError:
+        st.error("❌ Could not decode the response as JSON.")
         
     st.markdown("---")
 
