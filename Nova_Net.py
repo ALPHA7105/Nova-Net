@@ -1254,8 +1254,8 @@ elif st.session_state.active_tab == "📰 News":
     st.markdown("## 🧪 Science Spotlight")
     st.markdown("Get insights into fascinating space experiments, discoveries, and innovations from across the galaxy.")
     
-    API_KEY = "5UIz1h1dXg1bFTEQUf2zk8zMy9zrdo1jTHJTwXa7"
-    SCIENCE_URL = "https://newsdata.io/api/1/news?apikey=pub_83956fe7ac44c59d22831b1cd7d23e188272d&q=Astrophysics&language=en&category=science"
+    API_KEY = "pub_83956fe7ac44c59d22831b1cd7d23e188272d"
+    SCIENCE_URL = "https://newsdata.io/api/1/news?apikey=pub_83956fe7ac44c59d22831b1cd7d23e188272d&q=Discovery&language=en&category=science"
 
     response = requests.get(SCIENCE_URL, timeout=10)
     if response.status_code == 200:
