@@ -1349,15 +1349,19 @@ elif st.session_state.active_tab == "💬 Theories":
 
     st.title("💬 Public Theories")
     st.markdown("Share your space theories or browse what others think. Inspire and be inspired.")
-
+    
     # Ensure files exist
     if not os.path.exists(THEORY_FILE):
         with open(THEORY_FILE, "w") as f:
             json.dump([], f)
-
+            
+    st.caption(f"📁 Saving/Loading from: `{os.path.abspath(THEORY_FILE)}`")
+    
     if not os.path.exists(REPORT_FILE):
         with open(REPORT_FILE, "w") as f:
             json.dump([], f)
+
+    st.caption(f"✅ Theory file path: `{os.path.abspath(THEORY_FILE)}`")
 
     # Load theories
     with open(THEORY_FILE, "r") as f:
