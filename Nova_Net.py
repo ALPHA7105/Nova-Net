@@ -1226,7 +1226,30 @@ elif st.session_state.active_tab == "📰 News":
             st.markdown(f"### 📰 {article['title']}", unsafe_allow_html=True)
             st.markdown(f"{article['summary'][:150]}...", unsafe_allow_html=True)
             st.markdown(f"<a href='{article['url']}' target='_blank' style='color: #1f77b4; font-weight: bold;'>🔗 Read More</a>", unsafe_allow_html=True)
-            st.markdown("---")
+
+    def display_this_week_in_space():
+        st.markdown("""
+        <div style='text-align: center; margin-top: 2rem;'>
+            <h2>📆 This Week in Space</h2>
+            <p style="font-size: 18px;">Stay updated with the most exciting events and discoveries from this past week.</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+        response = requests.get("https://api.spaceflightnewsapi.net/v4/articles/?limit=4")
+        if response.status_code == 200:
+            articles = response.json()["results"]
+            col1, col2 = st.columns(2)
+    
+            for i, article in enumerate(articles):
+                column = col1 if i % 2 == 0 else col2
+                with column:
+                    st.image(article["image_url"], use_container_width=True)
+                    st.subheader(article["title"])
+                    st.write(article["summary"][:200] + "...")
+                    st.markdown(f"[🔗 Read More]({article['url']})", unsafe_allow_html=True)
+                    st.markdown("---")
+        else:
+            st.warning("🚧 Unable to load weekly updates at the moment.")
 
 elif st.session_state.active_tab == "💬 Theories":
     st.title("💬 Community Theories")
