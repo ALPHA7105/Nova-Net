@@ -1364,8 +1364,6 @@ elif st.session_state.active_tab == "💬 Theories":
     with open(THEORY_FILE, "r") as f:
         theories = json.load(f)
 
-    st.markdown(f"📁 Saving/Loading from: `{os.path.abspath(THEORY_FILE)}`")
-
     # --- Submit a Theory ---
     st.markdown("### ✍️ Submit Your Theory")
     name = st.text_input("Your Name")
@@ -1381,8 +1379,6 @@ elif st.session_state.active_tab == "💬 Theories":
                 f.flush()  # <-- ensure data is flushed to disk
 
             st.success("✅ Theory submitted!")
-            time.sleep(0.2)
-            st.rerun()
         else:
             st.error("⚠️ Both name and theory are required.")
 
