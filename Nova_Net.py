@@ -1265,7 +1265,7 @@ elif st.session_state.active_tab == "📰 News":
         if results:
             col1, col2 = st.columns(2)
 
-            for i, article in enumerate(results[0])
+            for i, article in enumerate(results[0]):
                 column = col1 if i % 2 == 0 else col2
                 with column:
                     st.markdown(f"#### {article['title']}")
