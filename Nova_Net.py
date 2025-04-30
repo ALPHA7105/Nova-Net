@@ -1255,7 +1255,7 @@ elif st.session_state.active_tab == "📰 News":
     st.markdown("Get insights into fascinating space experiments, discoveries, and innovations from across the galaxy.")
     
     API_KEY = "pub_83956fe7ac44c59d22831b1cd7d23e188272d"
-    SCIENCE_URL = "https://newsdata.io/api/1/news?apikey=pub_83956fe7ac44c59d22831b1cd7d23e188272d&q=Discovery&language=en&category=science"
+    SCIENCE_URL = "https://newsdata.io/api/1/news?apikey=pub_83956fe7ac44c59d22831b1cd7d23e188272d&q=Astronomy%20Discovery&language=en&category=science"
 
     response = requests.get(SCIENCE_URL, timeout=10)
     if response.status_code == 200:
@@ -1263,10 +1263,9 @@ elif st.session_state.active_tab == "📰 News":
         results = data.get("results", [])
 
         if results:
-            st.markdown("## 🧪 Science Spotlight")
             col1, col2 = st.columns(2)
 
-            for i, article in enumerate(results[:4]):  # Show top 4 articles
+            for i, article in enumerate(results[0])
                 column = col1 if i % 2 == 0 else col2
                 with column:
                     st.markdown(f"#### {article['title']}")
