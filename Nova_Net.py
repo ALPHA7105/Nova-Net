@@ -1210,7 +1210,7 @@ if st.session_state.active_tab == "⌛ Black Holes":
 elif st.session_state.active_tab == "📰 News":
     st.markdown("""
         <div style='text-align: center; margin-top: 2rem;'>
-            <h2>🚀 Latest Space News</h2>
+            <h1>🚀 Latest Space News</h1>
             <p>Stay updated with breaking space missions, launches, and discoveries.</p>
         </div>
     """, unsafe_allow_html=True)
@@ -1226,6 +1226,8 @@ elif st.session_state.active_tab == "📰 News":
             st.markdown(f"### 📰 {article['title']}", unsafe_allow_html=True)
             st.markdown(f"{article['summary'][:150]}...", unsafe_allow_html=True)
             st.markdown(f"<a href='{article['url']}' target='_blank' style='color: #1f77b4; font-weight: bold;'>🔗 Read More</a>", unsafe_allow_html=True)
+
+    st.markdown("---")
    
     API_KEY = "pub_83956fe7ac44c59d22831b1cd7d23e188272d"
     URL = f"https://newsdata.io/api/1/news?apikey=pub_83956fe7ac44c59d22831b1cd7d23e188272d&q=space&language=en&category=science"
@@ -1240,9 +1242,12 @@ elif st.session_state.active_tab == "📰 News":
             st.markdown(f"### {article['title']}")
             st.write(article['description'] or "No description available.")
             st.markdown(f"[🔗 Read More]({article['link']})")
-            st.markdown("---")
     else:
         st.warning("🚧 Unable to load weekly updates at the moment.")
+        
+    st.markdown("---")
+
+    
 
 elif st.session_state.active_tab == "💬 Theories":
     st.title("💬 Community Theories")
