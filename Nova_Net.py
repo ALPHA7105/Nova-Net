@@ -1303,6 +1303,33 @@ elif st.session_state.active_tab == "📰 News":
     except Exception as e:
         st.error("🚫 Failed to fetch upcoming launches.")
 
+    st.markdown("## 🌐 Global Space News")
+    st.markdown("Explore space updates from around the world – ISRO, CNSA, ESA, JAXA and more.")
+
+    API_KEY = "pub_83956fe7ac44c59d22831b1cd7d23e188272d"
+    GLOBAL_NEWS_URL = f"https://newsdata.io/api/1/news?apikey=pub_83956fe7ac44c59d22831b1cd7d23e188272d&q=ISRO OR CNSA OR ESA OR JAXA&language=en&category=science"
+
+    try:
+        response = requests.get(GLOBAL_NEWS_URL, timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            articles = data.get("results", [])
+
+            if articles:
+                col1, col2 = st.columns(2)
+                for i, article in enumerate(articles[:4]):  # Show top 4 articles
+                    column = col1 if i % 2 == 0 else col2
+                    with column:
+                        st.markdown(f"#### 🌍 {article['title']}")
+                        st.write(article.get('description', 'No description available.'))
+                        st.markdown(f"[🔗 Read More]({article['link']})", unsafe_allow_html=True)
+            else:
+                st.warning("⚠️ No global articles found at the moment.")
+        else:
+            st.error("🚫 Failed to fetch global space news.")
+    except Exception as e:
+        st.error("🚫 Request failed or timed out.")
+
 elif st.session_state.active_tab == "💬 Theories":
     st.title("💬 Community Theories")
     st.header("Top Thinker Badges")
