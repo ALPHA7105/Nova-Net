@@ -3,6 +3,7 @@ import pandas as pd
 import requests
 import random
 import json
+import time
 import csv
 import os
 
@@ -1377,8 +1378,10 @@ elif st.session_state.active_tab == "💬 Theories":
 
             with open(THEORY_FILE, "w") as f:
                 json.dump(theories, f, indent=2)
+                f.flush()  # <-- ensure data is flushed to disk
 
             st.success("✅ Theory submitted!")
+            time.sleep(0.2)
             st.rerun()
         else:
             st.error("⚠️ Both name and theory are required.")
