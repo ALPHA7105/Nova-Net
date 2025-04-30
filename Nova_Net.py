@@ -1255,21 +1255,25 @@ elif st.session_state.active_tab == "📰 News":
     st.markdown("Get insights into fascinating space experiments, discoveries, and innovations from across the galaxy.")
     
     API_KEY = "5UIz1h1dXg1bFTEQUf2zk8zMy9zrdo1jTHJTwXa7"
-    SCIENCE_URL = f"https://api.nasa.gov/techport/api/projects?api_key=5UIz1h1dXg1bFTEQUf2zk8zMy9zrdo1jTHJTwXa7"
+    URL = "https://api.nasa.gov/techport/api/projects/17792?api_key=5UIz1h1dXg1bFTEQUf2zk8zMy9zrdo1jTHJTwXa7"
+    response = requests.get(URL, timeout=10)
 
-    response = requests.get(SCIENCE_URL)
-    data = response.json()
+    if response.status_code == 200:
+        try:
+            data = response.json()
+            project = data["project"]
 
-    if data.get("results"):
-        col1, col2 = st.columns(2)
-        for i, article in enumerate(data["results"][:4]):
-            column = col1 if i % 2 == 0 else col2
-            with column:
-                st.markdown(f"#### 🔭 {article['title']}")
-                st.write(article['description'] or "No summary available.")
-                st.markdown(f"[🔗 Read More]({article['link']})")
+            st.markdown("## 🔬 Science Spotlight")
+            st.markdown(f"### {project['title']}")
+            st.write(project["description"])
+            st.markdown(f"🔗 [View on NASA TechPort](https://techport.nasa.gov/view/{project['projectId']})")
+
+        except ValueError:
+            st.error("❌ Couldn't decode JSON.")
+            st.text(response.text)
     else:
-        st.warning("⚠️ Science articles couldn't be fetched right now.")
+        st.error(f"🚨 API Error: {response.status_code}")
+        st.text(response.text)
 
 elif st.session_state.active_tab == "💬 Theories":
     st.title("💬 Community Theories")
