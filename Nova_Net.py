@@ -1,6 +1,10 @@
 import streamlit as st
+import pandas as pd
 import requests
 import random
+import csv
+import os
+
 
 st.set_page_config(page_title="Nova Net", layout="wide", page_icon="💫")
 
@@ -1334,18 +1338,46 @@ elif st.session_state.active_tab == "📰 News":
         
     st.markdown("---")
     
-    st.markdown("## 📢 User News Submissions")
-    st.markdown("Have something space-related to share with the community? Submit below:")
+    file_path = "user_news_submissions.csv"
+    report_file = "reported_submissions.csv"
 
-    user_name = st.text_input("🧑 Your Name")
-    user_headline = st.text_input("📝 News Headline")
-    user_story = st.text_area("📖 Share your story or news")
+    st.markdown("## 🧑‍🚀 User News Submissions")
+    st.markdown("Share your exciting discoveries, opinions, or events related to space exploration!")
 
-    if st.button("🚀 Submit News"):
-        if user_name and user_headline and user_story:
-            st.success("✅ Thank you! Your submission will be reviewed and shared.")
-        else:
-            st.warning("⚠️ Please fill in all fields before submitting.")
+    # --- Submission form ---
+    with st.form("user_submission_form"):
+        name = st.text_input("Your Name")
+        summary = st.text_area("Your Space Theory or News Summary", height=150)
+        submitted = st.form_submit_button("🚀 Submit")
+
+        if submitted and name and summary:
+            with open(file_path, "a") as f:
+                f.write(f"{name},{summary}\n")
+            st.success("✅ Your submission has been added!")
+
+    # --- Display submissions ---
+    if os.path.exists(file_path):
+        df = pd.read_csv(file_path, header=None, names=["name", "summary"])
+
+        st.markdown("### 🌟 Submitted Theories")
+
+        for index, row in df.iterrows():
+            with st.expander(f"🛰️ {row['name']} – {row['summary'][:30]}..."):
+                st.write(row['summary'])
+
+                col1, col2 = st.columns(2)
+                with col1:
+                    if st.button(f"🗑️ Delete", key=f"del_{index}"):
+                        df.drop(index, inplace=True)
+                        df.to_csv(file_path, index=False, header=False)
+                        st.success("Submission deleted.")
+                        st.experimental_rerun()
+
+                with col2:
+                    if st.button(f"🚩 Report", key=f"rep_{index}"):
+                        with open(report_file, "a") as f:
+                            f.write(f"{index},{row['name']},{row['summary']}\n")
+                        st.warning("Reported. It will be reviewed.")
 
 elif st.session_state.active_tab == "💬 Theories":
     st.title("💬 Community Theories")
