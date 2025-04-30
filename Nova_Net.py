@@ -1255,25 +1255,27 @@ elif st.session_state.active_tab == "📰 News":
     st.markdown("Get insights into fascinating space experiments, discoveries, and innovations from across the galaxy.")
     
     API_KEY = "5UIz1h1dXg1bFTEQUf2zk8zMy9zrdo1jTHJTwXa7"
-    URL = "https://api.nasa.gov/techport/api/projects/17792?api_key=5UIz1h1dXg1bFTEQUf2zk8zMy9zrdo1jTHJTwXa7"
-    response = requests.get(URL, timeout=10)
+    SCIENCE_URL = "https://newsdata.io/api/1/news?apikey=pub_83956fe7ac44c59d22831b1cd7d23e188272d&q=Astrophysics&language=en&category=science"
 
+    response = requests.get(SCIENCE_URL, timeout=10)
     if response.status_code == 200:
-        try:
-            data = response.json()
-            project = data["project"]
+        data = response.json()
+        results = data.get("results", [])
 
-            st.markdown("## 🔬 Science Spotlight")
-            st.markdown(f"### {project['title']}")
-            st.write(project["description"])
-            st.markdown(f"🔗 [View on NASA TechPort](https://techport.nasa.gov/view/{project['projectId']})")
+        if results:
+            st.markdown("## 🧪 Science Spotlight")
+            col1, col2 = st.columns(2)
 
-        except ValueError:
-            st.error("❌ Couldn't decode JSON.")
-            st.text(response.text)
+            for i, article in enumerate(results[:4]):  # Show top 4 articles
+                column = col1 if i % 2 == 0 else col2
+                with column:
+                    st.markdown(f"#### {article['title']}")
+                    st.write(article.get('description', 'No summary available.'))
+                    st.markdown(f"[🔗 Read More]({article['link']})", unsafe_allow_html=True)
+        else:
+            st.warning("⚠️ No science articles found at the moment.")
     else:
-        st.error(f"🚨 API Error: {response.status_code}")
-        st.text(response.text)
+        st.error("🚫 Failed to fetch science news.")
 
 elif st.session_state.active_tab == "💬 Theories":
     st.title("💬 Community Theories")
