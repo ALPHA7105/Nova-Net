@@ -1214,6 +1214,7 @@ elif st.session_state.active_tab == "📰 News":
             <p>Stay updated with breaking space missions, launches, and discoveries.</p>
         </div>
     """, unsafe_allow_html=True)
+    st.markdown("---")
     response = requests.get("https://api.spaceflightnewsapi.net/v4/articles/?limit=6")
     data = response.json()
     
@@ -1230,7 +1231,7 @@ elif st.session_state.active_tab == "📰 News":
     st.markdown("---")
    
     API_KEY = "pub_83956fe7ac44c59d22831b1cd7d23e188272d"
-    URL = f"https://newsdata.io/api/1/news?apikey=pub_83956fe7ac44c59d22831b1cd7d23e188272d&q=space&language=en&category=science"
+    URL = f"https://newsdata.io/api/1/news?apikey=pub_83956fe7ac44c59d22831b1cd7d23e188272d&q=astronomy&language=en&category=science"
 
     response = requests.get(URL)
     data = response.json()
@@ -1250,7 +1251,25 @@ elif st.session_state.active_tab == "📰 News":
         
     st.markdown("---")
 
+    st.markdown("## 🧪 Science Spotlight")
+    st.markdown("Get insights into fascinating space experiments, discoveries, and innovations from across the galaxy.")
     
+    API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJUZWNoUG9ydCIsImV4cCI6MTc0NjEyMTk0MSwibmJmIjoxNzQ2MDM1NTQxLCJTRVNTSU9OX0lEIjoieVBCM3dZQ25Jd1JMOTFkQnIwWnRCTjlCbEVDZTN3NEF1TmpiIiwiRklOR0VSUFJJTlRfSEFTSCI6Ijk3RThCNEQ0OUI1NTkyQTNCN0NDMDhBREJEMjc5QTE5RTYxMjVGMkM0OEJBMkE4NjA2NjExOTQwRTMyNzlDRkQifQ.aBYXl0ajVbVgMlDSXlWDvvlUehs3GIPNNiqUdlQvB_M"
+    SCIENCE_URL = f"https://api.nasa.gov/techport/api/projects?api_key=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJUZWNoUG9ydCIsImV4cCI6MTc0NjEyMTk0MSwibmJmIjoxNzQ2MDM1NTQxLCJTRVNTSU9OX0lEIjoieVBCM3dZQ25Jd1JMOTFkQnIwWnRCTjlCbEVDZTN3NEF1TmpiIiwiRklOR0VSUFJJTlRfSEFTSCI6Ijk3RThCNEQ0OUI1NTkyQTNCN0NDMDhBREJEMjc5QTE5RTYxMjVGMkM0OEJBMkE4NjA2NjExOTQwRTMyNzlDRkQifQ.aBYXl0ajVbVgMlDSXlWDvvlUehs3GIPNNiqUdlQvB_M"
+
+    response = requests.get(SCIENCE_URL)
+    data = response.json()
+
+    if data.get("results"):
+        col1, col2 = st.columns(2)
+        for i, article in enumerate(data["results"][:4]):
+            column = col1 if i % 2 == 0 else col2
+            with column:
+                st.markdown(f"#### 🔭 {article['title']}")
+                st.write(article['description'] or "No summary available.")
+                st.markdown(f"[🔗 Read More]({article['link']})")
+    else:
+        st.warning("⚠️ Science articles couldn't be fetched right now.")
 
 elif st.session_state.active_tab == "💬 Theories":
     st.title("💬 Community Theories")
