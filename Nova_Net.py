@@ -1112,7 +1112,7 @@ if st.session_state.active_tab == "⌛ Black Holes":
     Near black holes, time slows dramatically—a prediction of Einstein's theory.
     Objects falling into a black hole appear frozen at the event horizon to distant observers.
     Meanwhile, for the falling object, time passes normally but leads to an unavoidable fate.
-    <br><br>
+    
     For advanced readers: Gravitational time dilation happens when time moves at different speeds depending on how close you are to something with a lot of gravity. If you're closer to a strong source of gravity (like a planet or a star), time passes more slowly for you. If you move farther away, time speeds up.
 
     Albert Einstein predicted this effect in his theory of relativity, and scientists have confirmed it with experiments. For example, atomic clocks placed at different heights (where gravity is slightly weaker or stronger) show tiny differences in time — just a few billionths of a second.
@@ -1208,14 +1208,27 @@ if st.session_state.active_tab == "⌛ Black Holes":
     """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "📰 News":
-    st.subheader("🌟 Featured Discovery of the Month: Organic Molecules on Mars!")
-    st.write("""
-    In 2022, NASA’s Perseverance Rover found **organic carbon molecules** in ancient rocks on Mars.  
-    This suggests Mars once had the right chemistry to support microbial life!  
-    While this isn't proof of life, it’s one of the most exciting astrobiological findings yet.  
-    Stay tuned as more data from Perseverance's sample returns could rewrite our understanding of life beyond Earth! 🚀
-    """)
-    st.markdown("[Learn More](https://mars.nasa.gov/news/9307/nasa-perseverance-rover-investigates-geologically-rich-mars-terrain/)")
+    st.markdown("<h2 style='text-align: center;'>🚀 Space News Updates</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center;'>Latest articles, discoveries, and mission updates from around the space industry.</p>", unsafe_allow_html=True)
+
+    # Fetching latest space news
+    url = "https://api.spaceflightnewsapi.net/v4/articles/"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        data = response.json()
+        articles = data["results"][:6]  # You can increase the number if you want
+
+        for article in articles:
+            with st.container():
+                st.image(article["image_url"], use_column_width=True)
+                st.markdown(f"### {article['title']}")
+                st.write(article["summary"])
+                st.markdown(f"[📰 Read Full Article]({article['url']})", unsafe_allow_html=True)
+                st.markdown("---")
+
+    else:
+        st.error("Failed to fetch news. Please try again later.")
 
 elif st.session_state.active_tab == "💬 Theories":
     st.title("💬 Community Theories")
