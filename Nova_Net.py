@@ -1103,7 +1103,7 @@ if st.session_state.active_tab == "⌛ Black Holes":
     - **Accretion Disk**: A hot, glowing ring of matter falling inward, often visible by X-rays.
 
     """)
-    st.markdown("[🔗 Learn More](https://www.space.com/15421-black-holes-facts-formation-discovery-sdcmp.html)")
+    st.markdown("[🔗 Learn More](https://science.nasa.gov/universe/black-holes/anatomy/)")
 
     st.markdown("---")
 
@@ -1112,8 +1112,14 @@ if st.session_state.active_tab == "⌛ Black Holes":
     Near black holes, time slows dramatically—a prediction of Einstein's theory.
     Objects falling into a black hole appear frozen at the event horizon to distant observers.
     Meanwhile, for the falling object, time passes normally but leads to an unavoidable fate.
+    <br><br>
+    For advanced readers: Gravitational time dilation happens when time moves at different speeds depending on how close you are to something with a lot of gravity. If you're closer to a strong source of gravity (like a planet or a star), time passes more slowly for you. If you move farther away, time speeds up.
+
+    Albert Einstein predicted this effect in his theory of relativity, and scientists have confirmed it with experiments. For example, atomic clocks placed at different heights (where gravity is slightly weaker or stronger) show tiny differences in time — just a few billionths of a second.
+
+    Over billions of years, this tiny effect adds up: Earth's core is about 2.5 years younger than its surface! To see bigger time differences, we would need to measure farther away from Earth or near a much bigger gravitational source.
     """)
-    st.markdown("[🔗 Learn More](https://www.space.com/38651-black-hole-time-dilation.html)")
+    st.markdown("[🔗 Learn More](https://science.nasa.gov/universe/what-happens-when-something-gets-too-close-to-a-black-hole/)")
 
     st.markdown("---")
 
@@ -1125,7 +1131,7 @@ if st.session_state.active_tab == "⌛ Black Holes":
 
     These discoveries transformed black holes from theory to reality.
     """)
-    st.markdown("[🔗 Learn More](https://eventhorizontelescope.org/)")
+    st.markdown("[🔗 Learn More](https://en.wikipedia.org/wiki/List_of_most_massive_black_holes)")
 
     st.markdown("---")
 
@@ -1138,7 +1144,7 @@ if st.session_state.active_tab == "⌛ Black Holes":
     - **Time Travel**: Speculative theories using spinning black holes.
 
     """)
-    st.markdown("[🔗 Learn More](https://www.scientificamerican.com/article/are-wormholes-real/)")
+    st.markdown("🔗 Learn More About: [Wormholes ](https://en.wikipedia.org/wiki/Wormhole), [White Holes ](https://en.wikipedia.org/wiki/White_hole), [Hawking Radiation ](https://en.wikipedia.org/wiki/Hawking_radiation), [Time Travel](https://en.wikipedia.org/wiki/Time_travel)")
 
     st.markdown("---")
 
@@ -1151,7 +1157,7 @@ if st.session_state.active_tab == "⌛ Black Holes":
 
     Answering these could unlock quantum gravity theories.
     """)
-    st.markdown("[🔗 Learn More](https://www.nasa.gov/black-holes)")
+    st.markdown("[🔗 Learn More](https://news.uchicago.edu/explainer/black-holes-explained)")
 
     st.markdown("---")
 
@@ -1164,7 +1170,7 @@ if st.session_state.active_tab == "⌛ Black Holes":
 
     New tools like the Event Horizon Telescope are making the invisible visible.
     """)
-    st.markdown("[🔗 Learn More](https://www.ligo.caltech.edu/page/black-holes)")
+    st.markdown("[🔗 Learn More](https://science.nasa.gov/universe/black-holes/#:~:text=Finding%20Black%20Holes&text=Scientists%20primarily%20detect%20and%20study,wavelengths%2C%20including%20X%2Drays.)")
 
     st.markdown("---")
 
@@ -1177,12 +1183,28 @@ if st.session_state.active_tab == "⌛ Black Holes":
 
     Black holes continue to stretch the limits of our imagination.
     """)
-    st.markdown("[🔗 Learn More](https://www.space.com/32600-black-holes-energy-source.html)")
+    st.markdown("[🔗 Learn More](https://www.nsf.gov/news/could-we-harness-energy-black-holes)")
 
     st.markdown("---")
+    st.markdown("""
+    <div style='text-align: center; margin-top: 3rem;'>
+        <h3>🌌 The Mystery Deepens...</h3>
+        <p style='font-size: 18px;'>
+            Black holes challenge everything we know about the universe — from gravity to the nature of time itself. 🕳️✨<br><br>
+            As we explore deeper into space and decode the data from telescopes and simulations,<br>
+            the secrets of the cosmos may finally begin to unfold.<br><br>
+            🧠 Could black holes be keys to understanding the universe... or even gateways to others?<br><br>
+            <b>Keep watching the skies. The story isn't over yet.</b>
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
     
-    # Final line + NEXT button
-    st.markdown("<div style='margin-top: 4rem; text-align: right;'><a href='#' style='font-size: 18px; text-decoration: none;'>Next ➡️</a></div>", unsafe_allow_html=True)
+    st.markdown("""
+    <br><br>
+    <div style='text-align: right; font-size:18px; margin-right: 30px;'>
+        <b>Next: 📰 News ➡️</b>
+    </div>
+    """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "📰 News":
     st.subheader("🌟 Featured Discovery of the Month: Organic Molecules on Mars!")
