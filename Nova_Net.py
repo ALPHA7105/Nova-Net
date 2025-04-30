@@ -1344,7 +1344,7 @@ elif st.session_state.active_tab == "📰 News":
         st.error("🚫 Request failed or timed out.")
 
 elif st.session_state.active_tab == "💬 Theories":
-    THEORY_FILE = "theories.json"
+    THEORY_FILE = "/mount/src/nova-net/theories.json"
     REPORT_FILE = "reports.json"
 
     st.title("💬 Public Theories")
@@ -1354,14 +1354,10 @@ elif st.session_state.active_tab == "💬 Theories":
     if not os.path.exists(THEORY_FILE):
         with open(THEORY_FILE, "w") as f:
             json.dump([], f)
-            
-    st.caption(f"📁 Saving/Loading from: `{os.path.abspath(THEORY_FILE)}`")
     
     if not os.path.exists(REPORT_FILE):
         with open(REPORT_FILE, "w") as f:
             json.dump([], f)
-
-    st.caption(f"✅ Theory file path: `{os.path.abspath(THEORY_FILE)}`")
 
     # Load theories
     with open(THEORY_FILE, "r") as f:
