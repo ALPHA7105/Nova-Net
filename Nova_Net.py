@@ -1189,23 +1189,7 @@ if st.session_state.active_tab == "⌛ Black Holes":
 
     st.markdown("""
     <div style='text-align: center; margin-top: 3rem;'>
-        <h2>🎥 Black Hole Spotlight</h2>
-    </div>
-
-    <div style='text-align: center; margin-top: 1.5rem; font-size: 18px;'>
-        <p>🌀 <strong>"Dancing Black Holes" Simulation (2025)</strong><br>
-        Astronomers have released a <em>brand-new simulation</em> of two <strong>supermassive black holes in a death spiral</strong>, expected to merge in the next few thousand years. These cosmic giants distort time and space around them in unbelievable ways.</p>
-
-        <p><a href="https://science.nasa.gov/missions/galex/intricate-dance-of-black-holes/" target="_blank" style="font-size: 17px; font-weight: bold; text-decoration: none; color: #1f77b4;">
-            📺 Watch the Simulation & Learn More (NASA)
-        </a></p>
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("---")
-    st.markdown("""
-    <div style='text-align: center; margin-top: 3rem;'>
-        <h3>🌌 The Mystery Deepens...</h3>
+        <h2>🌌 The Mystery Deepens...</h2>
         <p style='font-size: 18px;'>
             Black holes challenge everything we know about the universe — from gravity to the nature of time itself. 🕳️✨<br><br>
             As we explore deeper into space and decode the data from telescopes and simulations,<br>
