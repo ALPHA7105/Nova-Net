@@ -1227,6 +1227,7 @@ elif st.session_state.active_tab == "📰 News":
             st.markdown(f"### 📰 {article['title']}", unsafe_allow_html=True)
             st.markdown(f"{article['summary'][:150]}...", unsafe_allow_html=True)
             st.markdown(f"<a href='{article['url']}' target='_blank' style='color: #1f77b4; font-weight: bold;'>🔗 Read More</a>", unsafe_allow_html=True)
+            st.markdown(" ")
 
     st.markdown("---")
    
@@ -1275,7 +1276,32 @@ elif st.session_state.active_tab == "📰 News":
             st.warning("⚠️ No science articles found at the moment.")
     else:
         st.error("🚫 Failed to fetch science news.")
+        
+    st.markdown("---")
 
+    st.markdown("## 🗓️ Upcoming Events & Launches")
+    st.markdown("Never miss an important mission, launch, or skywatching event.")
+
+    try:
+        launch_response = requests.get("https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=6", timeout=10)
+        launch_data = launch_response.json()
+        launches = launch_data.get("results", [])
+
+        if launches:
+            col1, col2 = st.columns(2)
+
+            for i, launch in enumerate(launches):
+                column = col1 if i % 2 == 0 else col2
+                with column:
+                    st.markdown(f"### 🚀 {launch.get('name', 'No Name')}")
+                    st.markdown(f"**Date:** {launch.get('net', 'TBD')}")
+                    st.markdown(f"**Location:** {launch.get('pad', {}).get('location', {}).get('name', 'Unknown')}")
+                    st.markdown(f"**Provider:** {launch.get('launch_service_provider', {}).get('name', 'Unknown')}")
+                    st.markdown(f"[🔗 More Info]({launch.get('url', '#')})", unsafe_allow_html=True)
+        else:
+            st.warning("⚠️ No upcoming launches found right now.")
+    except Exception as e:
+        st.error("🚫 Failed to fetch upcoming launches.")
 
 elif st.session_state.active_tab == "💬 Theories":
     st.title("💬 Community Theories")
