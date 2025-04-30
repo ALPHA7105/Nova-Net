@@ -1250,6 +1250,8 @@ elif st.session_state.active_tab == "📰 News":
                     st.markdown("---")
         else:
             st.warning("🚧 Unable to load weekly updates at the moment.")
+    
+    display_this_week_in_space()
 
 elif st.session_state.active_tab == "💬 Theories":
     st.title("💬 Community Theories")
