@@ -1238,10 +1238,13 @@ elif st.session_state.active_tab == "📰 News":
     if data.get("results"):
         st.markdown("## 📰 This Week in Space")
 
-        for article in data["results"][:4]:  # Show only top 4 articles
-            st.markdown(f"### {article['title']}")
-            st.write(article['description'] or "No description available.")
-            st.markdown(f"[🔗 Read More]({article['link']})")
+        col1, col2 = st.columns(2)
+        for i, article in enumerate(data["results"][:4]):  # Show top 4
+            column = col1 if i % 2 == 0 else col2
+            with column:
+                st.markdown(f"#### {article['title']}")
+                st.write(article['description'] or "No description available.")
+                st.markdown(f"[🔗 Read More]({article['link']})")
     else:
         st.warning("🚧 Unable to load weekly updates at the moment.")
         
