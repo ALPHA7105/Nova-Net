@@ -1363,6 +1363,8 @@ elif st.session_state.active_tab == "💬 Theories":
     with open(THEORY_FILE, "r") as f:
         theories = json.load(f)
 
+    st.markdown(f"📁 Saving/Loading from: `{os.path.abspath(THEORY_FILE)}`")
+
     # --- Submit a Theory ---
     st.markdown("### ✍️ Submit Your Theory")
     name = st.text_input("Your Name")
