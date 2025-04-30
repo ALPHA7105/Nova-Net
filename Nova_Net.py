@@ -1135,6 +1135,23 @@ if st.session_state.active_tab == "⌛ Black Holes":
 
     st.markdown("---")
 
+    st.markdown("""
+    <div style='text-align: center; margin-top: 3rem;'>
+        <h2>🎥 Black Hole Spotlight</h2>
+    </div>
+
+    <div style='text-align: center; margin-top: 1.5rem; font-size: 18px;'>
+        <p>🌀 <strong>"Dancing Black Holes" Simulation (2025)</strong><br>
+        Astronomers have released a <em>brand-new simulation</em> of two <strong>supermassive black holes in a death spiral</strong>, expected to merge in the next few thousand years. These cosmic giants distort time and space around them in unbelievable ways.</p>
+
+        <a href="https://www.nasa.gov/feature/goddard/2024/new-simulation-shows-dancing-black-holes" target="_blank" style="font-size: 17px; font-weight: bold; text-decoration: none; color: #1f77b4;">📺 Watch the Simulation & Learn More (NASA)</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+st.markdown("---")
+
+    st.markdown("---")
+
     st.markdown("### 🌌🌀 Theoretical Concepts and Wild Ideas")
     st.write("""
     Exciting black hole theories include:
