@@ -1208,27 +1208,25 @@ if st.session_state.active_tab == "⌛ Black Holes":
     """, unsafe_allow_html=True)
 
 elif st.session_state.active_tab == "📰 News":
-    st.markdown("<h2 style='text-align: center;'>🚀 Space News Updates</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center;'>Latest articles, discoveries, and mission updates from around the space industry.</p>", unsafe_allow_html=True)
+    st.markdown("""
+        <div style='text-align: center; margin-top: 2rem;'>
+            <h2>🚀 Latest Space News</h2>
+            <p>Stay updated with breaking space missions, launches, and discoveries.</p>
+        </div>
+    """, unsafe_allow_html=True)
+    response = requests.get("https://api.spaceflightnewsapi.net/v4/articles/?limit=6")
+    data = response.json()
+    
+    col1, col2 = st.columns(2)
+    for i, article in enumerate(data["results"]):
+        column = col1 if i % 2 == 0 else col2
 
-    # Fetching latest space news
-    url = "https://api.spaceflightnewsapi.net/v4/articles/"
-    response = requests.get(url)
-
-    if response.status_code == 200:
-        data = response.json()
-        articles = data["results"][:6]  # You can increase the number if you want
-
-        for article in articles:
-            with st.container():
-                st.image(article["image_url"], use_container_width=True)
-                st.markdown(f"### {article['title']}")
-                st.write(article["summary"])
-                st.markdown(f"[📰 Read Full Article]({article['url']})", unsafe_allow_html=True)
-                st.markdown("---")
-
-    else:
-        st.error("Failed to fetch news. Please try again later.")
+        with column:
+            st.image(article["image_url"], width=280, caption=None, use_container_width=False)
+            st.markdown(f"### 📰 {article['title']}", unsafe_allow_html=True)
+            st.markdown(f"{article['summary'][:150]}...", unsafe_allow_html=True)
+            st.markdown(f"<a href='{article['url']}' target='_blank' style='color: #1f77b4; font-weight: bold;'>🔗 Read More</a>", unsafe_allow_html=True)
+            st.markdown("---")
 
 elif st.session_state.active_tab == "💬 Theories":
     st.title("💬 Community Theories")
