@@ -1221,7 +1221,7 @@ elif st.session_state.active_tab == "📰 News":
 
         for article in articles:
             with st.container():
-                st.image(article["image_url"], use_column_width=True)
+                st.image(article["image_url"], use_container_width=True)
                 st.markdown(f"### {article['title']}")
                 st.write(article["summary"])
                 st.markdown(f"[📰 Read Full Article]({article['url']})", unsafe_allow_html=True)
