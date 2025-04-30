@@ -1196,7 +1196,7 @@ if st.session_state.active_tab == "⌛ Black Holes":
         <p>🌀 <strong>"Dancing Black Holes" Simulation (2025)</strong><br>
         Astronomers have released a <em>brand-new simulation</em> of two <strong>supermassive black holes in a death spiral</strong>, expected to merge in the next few thousand years. These cosmic giants distort time and space around them in unbelievable ways.</p>
 
-        <a href="https://science.nasa.gov/missions/galex/intricate-dance-of-black-holes/" target="_blank" style="font-size: 17px; font-weight: bold; text-decoration: none; color: #1f77b4;'>
+        <a href="https://science.nasa.gov/missions/galex/intricate-dance-of-black-holes/" target="_blank" style="font-size: 17px; font-weight: bold; text-decoration: none; color: #1f77b4;">
             📺 Watch the Simulation & Learn More (NASA)
         </a>
     </div>
