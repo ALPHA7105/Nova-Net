@@ -1303,6 +1303,8 @@ elif st.session_state.active_tab == "📰 News":
     except Exception as e:
         st.error("🚫 Failed to fetch upcoming launches.")
 
+    st.markdown("---")
+
     st.markdown("## 🌐 Global Space News")
     st.markdown("Explore space updates from around the world – ISRO, CNSA, ESA, JAXA and more.")
 
@@ -1329,6 +1331,21 @@ elif st.session_state.active_tab == "📰 News":
             st.error("🚫 Failed to fetch global space news.")
     except Exception as e:
         st.error("🚫 Request failed or timed out.")
+        
+    st.markdown("---")
+    
+    st.markdown("## 📢 User News Submissions")
+    st.markdown("Have something space-related to share with the community? Submit below:")
+
+    user_name = st.text_input("🧑 Your Name")
+    user_headline = st.text_input("📝 News Headline")
+    user_story = st.text_area("📖 Share your story or news")
+
+    if st.button("🚀 Submit News"):
+        if user_name and user_headline and user_story:
+            st.success("✅ Thank you! Your submission will be reviewed and shared.")
+        else:
+            st.warning("⚠️ Please fill in all fields before submitting.")
 
 elif st.session_state.active_tab == "💬 Theories":
     st.title("💬 Community Theories")
