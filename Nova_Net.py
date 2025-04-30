@@ -1254,27 +1254,28 @@ elif st.session_state.active_tab == "📰 News":
     st.markdown("## 🧪 Science Spotlight")
     st.markdown("Get insights into fascinating space experiments, discoveries, and innovations from across the galaxy.")
     
-    API_KEY = "pub_83956fe7ac44c59d22831b1cd7d23e188272d"
     SCIENCE_URL = "https://newsdata.io/api/1/news?apikey=pub_83956fe7ac44c59d22831b1cd7d23e188272d&q=Space%20Discovery&language=en&category=science"
 
     response = requests.get(SCIENCE_URL, timeout=10)
+
     if response.status_code == 200:
         data = response.json()
         results = data.get("results", [])
 
-        if results:
-            col1, col2 = st.columns(2)
+        if results and isinstance(results[0], dict):
+            article = results[0]
+            title = article.get("title", "No Title")
+            description = article.get("description", "No summary available.")
+            link = article.get("link", "#")
 
-            for i, article in enumerate(results[0]):
-                column = col1 if i % 2 == 0 else col2
-                with column:
-                    st.markdown(f"#### {article['title']}")
-                    st.write(article.get('description', 'No summary available.'))
-                    st.markdown(f"[🔗 Read More]({article['link']})", unsafe_allow_html=True)
+            st.markdown(f"#### {title}")
+            st.write(description)
+            st.markdown(f"[🔗 Read More]({link})", unsafe_allow_html=True)
         else:
             st.warning("⚠️ No science articles found at the moment.")
     else:
         st.error("🚫 Failed to fetch science news.")
+
 
 elif st.session_state.active_tab == "💬 Theories":
     st.title("💬 Community Theories")
