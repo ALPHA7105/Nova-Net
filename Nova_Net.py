@@ -1148,7 +1148,7 @@ if st.session_state.active_tab == "⌛ Black Holes":
     </div>
     """, unsafe_allow_html=True)
 
-st.markdown("---")
+    st.markdown("---")
 
     st.markdown("---")
 
