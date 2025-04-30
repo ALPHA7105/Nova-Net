@@ -1378,7 +1378,7 @@ elif st.session_state.active_tab == "📰 News":
                         df.drop(index, inplace=True)
                         df.to_csv(file_path, index=False, header=False)
                         st.success("Submission deleted.")
-                        st.experimental_rerun()
+                        st.rerun()
 
                 with col2:
                     if st.button(f"🚩 Report", key=f"rep_{index}"):
