@@ -1247,12 +1247,10 @@ elif st.session_state.active_tab == "📰 News":
     st.markdown("---")
    
     API_KEY = "pub_83956fe7ac44c59d22831b1cd7d23e188272d"
-    URL = f"https://newsdata.io/api/1/news?apikey=pub_83956fe7ac44c59d22831b1cd7d23e188272d&q=astronomy&language=en&category=science"
-    
-    API_URL = "https://your-api-url.com"  # Replace with your actual API URL
+    URL = f"https://newsdata.io/api/1/news?apikey={API_KEY}&q=astronomy&language=en&category=science"
 
     try:
-        response = requests.get(API_URL, timeout=10)
+        response = requests.get(URL, timeout=10)
         response.raise_for_status()  # Raise error for bad status codes
         data = response.json()
 
@@ -1260,6 +1258,11 @@ elif st.session_state.active_tab == "📰 News":
             results = data["results"]
             if results:
                 st.success("✅ Articles fetched successfully.")
+                for article in results[:5]:  # show only top 5 articles
+                    st.markdown(f"### 📰 {article.get('title', 'No Title')}")
+                    st.write(article.get('description', 'No description available.'))
+                    st.markdown(f"[Read More]({article.get('link', '#')})")
+                    st.markdown("---")
             else:
                 st.warning("⚠️ No results found.")
         else:
