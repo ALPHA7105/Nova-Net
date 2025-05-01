@@ -1452,19 +1452,25 @@ elif st.session_state.active_tab == "❓ Quizzes":
     if 'current_q' not in st.session_state:
         st.session_state.current_q = None
 
-    # Countdown Timer
-    time_left = 15 - int(time.time() - st.session_state.start_time)
-    if time_left > 0 and not st.session_state.quiz_done:
-        st.info(f"⏳ Time Left: {time_left} seconds")
-    else:
-        if not st.session_state.quiz_done:
-            st.warning("⏰ Time's up! Auto-skipping to next question...")
-            st.session_state.question_num += 1
-            st.session_state.start_time = time.time()
-            st.session_state.current_q = None  # Force fetch a new question
-            if st.session_state.question_num >= 5:
-                st.session_state.quiz_done = True
+    timer_placeholder = st.empty()
+    question_duration = 15
+
+    if 'start_time' not in st.session_state:
+        st.session_state.start_time = time.time()
+
+    elapsed = int(time.time() - st.session_state.start_time)
+    remaining = question_duration - elapsed
+
+    if remaining > 0 and not st.session_state.quiz_done and not st.session_state.get("answered", False):
+        for i in range(remaining, 0, -1):
+            with timer_placeholder.container():
+                st.info(f"⏳ Time Left: {i} seconds")
+            time.sleep(1)
             st.rerun()
+    else:
+        if not st.session_state.get("answered", False):
+            st.warning("⏰ Time's up! You missed this question.")
+            st.session_state.answered = True
 
     # Styling
     st.markdown("""
@@ -1499,6 +1505,8 @@ elif st.session_state.active_tab == "❓ Quizzes":
         if st.session_state.current_q is None:
             q, opts, ans = fetch_question()
             st.session_state.current_q = (q, opts, ans)
+            st.session_state.start_time = time.time()
+            st.session_state.answered = False
         else:
             q, opts, ans = st.session_state.current_q
 
@@ -1508,21 +1516,24 @@ elif st.session_state.active_tab == "❓ Quizzes":
 
             selected = st.radio("Choose your answer:", opts, index=None, key=f"q_{st.session_state.question_num}")
 
-            if st.button("🚀 Submit Answer"):
+            if not st.session_state.answered and st.button("🚀 Submit Answer"):
+                st.session_state.answered = True
                 if selected == ans:
                     st.success("✅ Correct!")
                     st.session_state.score += 1
                 else:
                     st.error(f"❌ Incorrect! The right answer was: **{ans}**")
 
-                st.session_state.question_num += 1
-                st.session_state.current_q = None
-                st.session_state.start_time = time.time()
-
-                if st.session_state.question_num >= 5:
-                    st.session_state.quiz_done = True
-                else:
-                    st.rerun()
+            if st.session_state.answered:
+                if st.button("➡️ Next Question"):
+                    st.session_state.question_num += 1
+                    st.session_state.current_q = None
+                    st.session_state.answered = False
+                    st.session_state.start_time = time.time()
+                    if st.session_state.question_num >= 5:
+                        st.session_state.quiz_done = True
+                    else:
+                        st.experimental_rerun()
         else:
             st.warning("Could not load a question. Please try again.")
     else:
