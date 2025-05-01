@@ -1279,6 +1279,8 @@ elif st.session_state.active_tab == "📰 News":
     except ValueError:
         st.error("❌ Could not decode the response as JSON.")
 
+    st.markdown("---")
+
     st.markdown("## 🧪 Science Spotlight")
     st.markdown("Get insights into fascinating space experiments, discoveries, and innovations from across the galaxy.")
     
