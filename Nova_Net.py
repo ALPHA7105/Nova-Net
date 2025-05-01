@@ -1267,7 +1267,6 @@ elif st.session_state.active_tab == "📰 News":
                         st.markdown(f"### 📰 {article.get('title', 'No Title')}")
                         st.write(article.get('description', 'No description available.'))
                         st.markdown(f"[Read More]({article.get('link', '#')})")
-                        st.markdown("---")
             else:
                 st.warning("⚠️ No results found.")
         else:
