@@ -1364,7 +1364,7 @@ elif st.session_state.active_tab == "💬 Theories":
 
     # 🔹 Authenticate with Google Sheets
     scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-    creds = Credentials.from_service_account_file("sheets_key.json", scopes=scope)
+    creds = Credentials.from_service_account_file("mount/src/nova-net/sheets_key.json", scopes=scope)
     client = gspread.authorize(creds)
     sheet = client.open_by_key("1rv5UIK88qMWSMfXuhu0mYUaPYOD_KZ4-JWxOQZsWtqs").sheet1
 
