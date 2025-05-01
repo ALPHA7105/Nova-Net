@@ -1358,24 +1358,31 @@ elif st.session_state.active_tab == "💬 Theories":
     st.title("💬 Public Theories")
     st.markdown("Share your space theories or browse what others think. Inspire and be inspired.")
 
-    # 🔹 Authenticate with Google Sheets
-    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("sheets_key.json", scope)
-    client = gspread.authorize(creds)
-
-    # 🔹 Open your Google Sheet by ID and worksheet name
-    sheet = client.open_by_key("1rv5UIK88qMWSMfXuhu0mYUaPYOD_KZ4-JWxOQZsWtqs").sheet1
-
-    # 🔹 Submit a Theory
-    st.markdown("### ✍️ Submit Your Theory")
+    # User inputs
     name = st.text_input("Your Name")
     theory_content = st.text_area("Your Theory", height=150)
 
+    # 🔹 Authenticate with Google Sheets
+    scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+    creds = Credentials.from_service_account_file("sheets_key.json", scopes=scope)
+    client = gspread.authorize(creds)
+    sheet = client.open_by_key("1rv5UIK88qMWSMfXuhu0mYUaPYOD_KZ4-JWxOQZsWtqs").sheet1
+
+    # 🔹 Submit a Theory
     if st.button("📤 Submit"):
         if name.strip() and theory_content.strip():
-            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            sheet.append_row([name.strip(), theory_content.strip(), timestamp, "False"])
-            st.success("✅ Theory submitted!")
+            new_theory = {
+                "name": name.strip(),
+                "content": theory_content.strip(),
+                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "reported": "No"
+            }
+
+            try:
+                sheet.append_row([new_theory["name"], new_theory["content"], new_theory["timestamp"], new_theory["reported"]])
+                st.success("✅ Theory submitted to Google Sheets!")
+            except Exception as e:
+                st.error(f"❌ Failed to send to Google Sheets: {e}")
         else:
             st.error("⚠️ Both name and theory are required.")
 
@@ -1406,44 +1413,10 @@ elif st.session_state.active_tab == "💬 Theories":
 
                 with col2:
                     if st.button("🗑️ Delete (if yours)", key=f"delete_{i}"):
-                        sheet.delete_rows(len(data) - i + 1)
+                        sheet.delete_rows(i + 2)  # +2 accounts for header
                         st.success("Deleted successfully.")
                         st.rerun()
 
-                with col2:
-                    if st.button("🗑️ Delete (if yours)", key=f"delete_{i}"):
-                        sheet.delete_rows(i + 2)  # i+2 accounts for header
-                        st.success("Deleted successfully.")
-                        st.rerun()
-
-    if st.button("📤 Submit"):
-        if name.strip() and theory_content.strip():
-            new_theory = {
-                "name": name.strip(),
-                "content": theory_content.strip(),
-                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "reported": "No"
-            }
-
-            try:
-                # Google Sheets integration
-                scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-                creds = Credentials.from_service_account_file("sheets_key.json", scopes=scope)
-                client = gspread.authorize(creds)
-
-                # Your Google Sheet ID
-                sheet_id = "1rv5UIK88qMWSMfXuhu0mYUaPYOD_KZ4-JWxOQZsWtqs"
-                sheet = client.open_by_key(sheet_id).sheet1
-
-                # Append the new theory
-                sheet.append_row([new_theory["name"], new_theory["content"], new_theory["timestamp"], new_theory["reported"]])
-                st.success("✅ Theory submitted to Google Sheets!")
-
-            except Exception as e:
-                st.error(f"❌ Failed to send to Google Sheets: {e}")
-
-        else:
-            st.error("⚠️ Both name and theory are required.")
 
 elif st.session_state.active_tab == "❓ Quizzes":
     st.title("❓ Interactive Quizzes")
