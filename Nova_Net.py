@@ -1250,7 +1250,7 @@ elif st.session_state.active_tab == "📰 News":
     st.markdown("Get weekly updates in astronomy and space science."
    
     API_KEY = "pub_83956fe7ac44c59d22831b1cd7d23e188272d"
-    URL = f"https://newsdata.io/api/1/news?apikey={API_KEY}&q=astronomy&language=en&category=science"
+    URL = f"https://newsdata.io/api/1/news?apikey=pub_83956fe7ac44c59d22831b1cd7d23e188272d&q=astronomy&language=en&category=science"
 
     try:
         response = requests.get(URL, timeout=10)
