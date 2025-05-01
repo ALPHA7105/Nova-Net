@@ -1435,7 +1435,7 @@ elif st.session_state.active_tab == "❓ Quizzes":
     if st.button("🔄 Restart Quiz"):
         for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
             st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
-        st.experimental_rerun()
+        st.rerun()
 
     if not st.session_state.quiz_started:
         col1, col2 = st.columns(2)
@@ -1454,7 +1454,7 @@ elif st.session_state.active_tab == "❓ Quizzes":
             st.session_state.quiz_started = True
             st.session_state.category_id = category_map[category_choice]
             st.session_state.difficulty = difficulty.lower()
-            st.experimental_rerun()
+            st.rerun()
 
     elif not st.session_state.quiz_done:
         def fetch_question():
@@ -1517,7 +1517,7 @@ elif st.session_state.active_tab == "❓ Quizzes":
 
                 if st.session_state.question_num >= 5:
                     st.session_state.quiz_done = True
-                st.experimental_rerun()
+                st.rerun()
 
     else:
         st.balloons()
