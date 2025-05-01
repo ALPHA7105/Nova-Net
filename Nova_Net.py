@@ -1,6 +1,9 @@
+from oauth2client.service_account import ServiceAccountCredentials
+from datetime import datetime
 import streamlit as st
 import pandas as pd
 import requests
+import gspread
 import random
 import json
 import time
@@ -17,6 +20,13 @@ def get_apod():
     url = f"https://api.nasa.gov/planetary/apod?api_key=ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
     response = requests.get(url)
     return response.json()
+
+def connect_to_sheet():
+    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+    creds = ServiceAccountCredentials.from_json_keyfile_name("sheets_key.json", scope)
+    client = gspread.authorize(creds)
+    sheet = client.open_by_key("1rv5UIK88qMWSMfXuhu0mYUaPYOD_KZ4-JWxOQZsWtqs").sheet1  # Use your sheet ID here
+    return sheet
 
 if "active_tab" not in st.session_state:
     st.session_state.active_tab = "🏠 Home"
@@ -1345,76 +1355,64 @@ elif st.session_state.active_tab == "📰 News":
         st.error("🚫 Request failed or timed out.")
 
 elif st.session_state.active_tab == "💬 Theories":
-    THEORY_FILE = "/mount/src/nova-net/theories.json"
-    REPORT_FILE = "reports.json"
-
     st.title("💬 Public Theories")
     st.markdown("Share your space theories or browse what others think. Inspire and be inspired.")
-    
-    # Ensure files exist
-    if not os.path.exists(THEORY_FILE):
-        with open(THEORY_FILE, "w") as f:
-            json.dump([], f)
-    
-    if not os.path.exists(REPORT_FILE):
-        with open(REPORT_FILE, "w") as f:
-            json.dump([], f)
 
-    # Load theories
-    with open(THEORY_FILE, "r") as f:
-        theories = json.load(f)
+    # 🔹 Authenticate with Google Sheets
+    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+    creds = ServiceAccountCredentials.from_json_keyfile_name("sheets_key.json", scope)
+    client = gspread.authorize(creds)
 
-    # --- Submit a Theory ---
+    # 🔹 Open your Google Sheet by ID and worksheet name
+    sheet = client.open_by_key("1rv5UIK88qMWSMfXuhu0mYUaPYOD_KZ4-JWxOQZsWtqs").sheet1
+
+    # 🔹 Submit a Theory
     st.markdown("### ✍️ Submit Your Theory")
     name = st.text_input("Your Name")
     theory_content = st.text_area("Your Theory", height=150)
 
     if st.button("📤 Submit"):
         if name.strip() and theory_content.strip():
-            new_theory = {"name": name.strip(), "content": theory_content.strip()}
-            theories.append(new_theory)
-
-            with open(THEORY_FILE, "w") as f:
-                json.dump(theories, f, indent=2)
-                f.flush()  # <-- ensure data is flushed to disk
-
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            sheet.append_row([name.strip(), theory_content.strip(), timestamp, "False"])
             st.success("✅ Theory submitted!")
         else:
             st.error("⚠️ Both name and theory are required.")
 
     st.markdown("---")
-
-    # --- Show Theories ---
     st.markdown("### 🌌 Theories from the Community")
 
-    if not theories:
+    # 🔹 Load all theories from the sheet
+    data = sheet.get_all_records()
+
+    if not data:
         st.info("No theories yet. Be the first to share!")
     else:
-        for i, theory in enumerate(reversed(theories)):  # show newest first
+        for i, row in enumerate(reversed(data)):
             with st.container():
-                st.markdown(f"**🧑 {theory['name']}**")
-                st.markdown(f"> {theory['content']}")
+                st.markdown(f"**🧑 {row['Name']}**")
+                st.markdown(f"> {row['Theory']}  \n*🕒 {row['Timestamp']}*")
 
                 col1, col2 = st.columns(2)
 
                 with col1:
                     if st.button("🚩 Report", key=f"report_{i}"):
-                        with open(REPORT_FILE, "r") as rf:
-                            reports = json.load(rf)
-
-                        if theory not in reports:
-                            reports.append(theory)
-                            with open(REPORT_FILE, "w") as rf:
-                                json.dump(reports, rf, indent=2)
+                        if row["Reported"] != "True":
+                            cell = sheet.find(row["Theory"])
+                            sheet.update_cell(cell.row, 4, "True")
                             st.success("🚩 Report submitted for review.")
                         else:
                             st.info("Already reported.")
 
                 with col2:
                     if st.button("🗑️ Delete (if yours)", key=f"delete_{i}"):
-                        theories.pop(len(theories) - 1 - i)
-                        with open(THEORY_FILE, "w") as f:
-                            json.dump(theories, f, indent=2)
+                        sheet.delete_rows(len(data) - i + 1)
+                        st.success("Deleted successfully.")
+                        st.rerun()
+
+                with col2:
+                    if st.button("🗑️ Delete (if yours)", key=f"delete_{i}"):
+                        sheet.delete_rows(i + 2)  # i+2 accounts for header
                         st.success("Deleted successfully.")
                         st.rerun()
 
