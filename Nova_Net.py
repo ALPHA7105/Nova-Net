@@ -1429,7 +1429,7 @@ elif st.session_state.active_tab == "❓ Quizzes":
     st.markdown("Test your knowledge of the cosmos, science, and space discoveries! 💫")
 
     # Select Difficulty & Category
-    difficulty = st.selectbox("🎯 Choose Difficulty", ["easy", "medium", "hard"])
+    difficulty = st.selectbox("🎯 Choose Difficulty", ["Easy", "Medium", "Hard"])
 
     category_map = {
         "Science & Nature": 17,
@@ -1449,18 +1449,22 @@ elif st.session_state.active_tab == "❓ Quizzes":
         st.session_state.quiz_done = False
     if 'start_time' not in st.session_state:
         st.session_state.start_time = time.time()
+    if 'current_q' not in st.session_state:
+        st.session_state.current_q = None
 
     # Countdown Timer
     time_left = 15 - int(time.time() - st.session_state.start_time)
     if time_left > 0 and not st.session_state.quiz_done:
         st.info(f"⏳ Time Left: {time_left} seconds")
-    elif not st.session_state.quiz_done:
-        st.warning("⏰ Time's up! Auto-skipping to next question...")
-        st.session_state.question_num += 1
-        st.session_state.start_time = time.time()
-        if st.session_state.question_num >= 5:
-            st.session_state.quiz_done = True
-        st.rerun()
+    else:
+        if not st.session_state.quiz_done:
+            st.warning("⏰ Time's up! Auto-skipping to next question...")
+            st.session_state.question_num += 1
+            st.session_state.start_time = time.time()
+            st.session_state.current_q = None  # Force fetch a new question
+            if st.session_state.question_num >= 5:
+                st.session_state.quiz_done = True
+            st.rerun()
 
     # Styling
     st.markdown("""
@@ -1491,24 +1495,28 @@ elif st.session_state.active_tab == "❓ Quizzes":
                 return question, options, correct
         return None, None, None
 
-    # Main Quiz Logic
     if not st.session_state.quiz_done:
-        question, options, correct_answer = fetch_question()
+        if st.session_state.current_q is None:
+            q, opts, ans = fetch_question()
+            st.session_state.current_q = (q, opts, ans)
+        else:
+            q, opts, ans = st.session_state.current_q
 
-        if question:
+        if q:
             st.markdown(f"### Question {st.session_state.question_num + 1}")
-            st.write(question)
+            st.write(q)
 
-            selected = st.radio("Choose your answer:", options, key=st.session_state.question_num)
+            selected = st.radio("Choose your answer:", opts, index=None, key=f"q_{st.session_state.question_num}")
 
             if st.button("🚀 Submit Answer"):
-                if selected == correct_answer:
+                if selected == ans:
                     st.success("✅ Correct!")
                     st.session_state.score += 1
                 else:
-                    st.error(f"❌ Incorrect! The right answer was: **{correct_answer}**")
+                    st.error(f"❌ Incorrect! The right answer was: **{ans}**")
 
                 st.session_state.question_num += 1
+                st.session_state.current_q = None
                 st.session_state.start_time = time.time()
 
                 if st.session_state.question_num >= 5:
