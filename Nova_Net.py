@@ -1295,8 +1295,10 @@ elif st.session_state.active_tab == "📰 News":
         # Filter articles for relevant space or science content
         filtered_results = [
             article for article in results
-            if ('space' in article.get("title", "").lower() or 'space' in article.get("description", "").lower() or
-                'science' in article.get("title", "").lower() or 'science' in article.get("description", "").lower())
+            if ('space' in (article.get("title", "") or "").lower() or
+                'space' in (article.get("description", "") or "").lower() or
+                'science' in (article.get("title", "") or "").lower() or
+                'science' in (article.get("description", "") or "").lower())
         ]
 
         if filtered_results:
