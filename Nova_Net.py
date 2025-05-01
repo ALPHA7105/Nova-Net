@@ -1260,7 +1260,6 @@ elif st.session_state.active_tab == "📰 News":
         if isinstance(data, dict) and "results" in data:
             results = data["results"]
             if results:
-                st.success("✅ Articles fetched successfully.")
                 for article in results[:5]:  # show only top 5 articles
                     st.markdown(f"### 📰 {article.get('title', 'No Title')}")
                     st.write(article.get('description', 'No description available.'))
@@ -1277,8 +1276,6 @@ elif st.session_state.active_tab == "📰 News":
         st.error(f"🚨 An error occurred: {str(e)}")
     except ValueError:
         st.error("❌ Could not decode the response as JSON.")
-        
-    st.markdown("---")
 
     st.markdown("## 🧪 Science Spotlight")
     st.markdown("Get insights into fascinating space experiments, discoveries, and innovations from across the galaxy.")
