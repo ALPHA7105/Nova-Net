@@ -1302,14 +1302,15 @@ elif st.session_state.active_tab == "📰 News":
         ]
 
         if filtered_results:
-            for article in filtered_results:
-                title = article.get("title", "No Title")
-                description = article.get("description", "No summary available.")
-                link = article.get("link", "#")
+            article = filtered_results[0]
+            title = article.get("title", "No Title")
+            description = article.get("description", "No summary available.")
+            link = article.get("link", "#")
 
-                st.markdown(f"#### {title}")
-                st.write(description)
-                st.markdown(f"[🔗 Read More]({link})", unsafe_allow_html=True)
+            st.markdown(f"#### {title}")
+            st.write(description)
+            st.markdown(f"[🔗 Read More]({link})", unsafe_allow_html=True)
+
         else:
             st.warning("⚠️ No space or science articles found at the moment.")
     else:
