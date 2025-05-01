@@ -1425,116 +1425,100 @@ elif st.session_state.active_tab == "💬 Theories":
                         st.rerun()
 
 elif st.session_state.active_tab == "❓ Quizzes":
+    for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
+        if key not in st.session_state:
+            st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
+
     st.title("Science & Space Quiz")
     st.markdown("Test your knowledge of the cosmos, science, and space discoveries! 💫")
 
-    # Select Difficulty & Category
-    difficulty = st.selectbox("🎯 Choose Difficulty", ["Easy", "Medium", "Hard"])
+    if st.button("🔄 Restart Quiz"):
+        for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
+            st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
+        st.experimental_rerun()
 
-    category_map = {
-        "Science & Nature": 17,
-        "General Knowledge": 9,
-        "Computers": 18,
-        "Mathematics": 19
-    }
-    category_choice = st.selectbox("🧬 Choose Category", list(category_map.keys()))
-    category_id = category_map[category_choice]
+    if not st.session_state.quiz_started:
+        col1, col2 = st.columns(2)
+        with col1:
+            category_map = {
+                "Science & Nature": 17,
+                "General Knowledge": 9,
+                "Computers": 18,
+                "Mathematics": 19
+            }
+            category_choice = st.selectbox("🧬 Category", list(category_map.keys()), key="cat")
+        with col2:
+            difficulty = st.selectbox("🎯 Difficulty", ["easy", "medium", "hard"], key="diff")
 
-    # Initialize session state
-    if 'score' not in st.session_state:
-        st.session_state.score = 0
-    if 'question_num' not in st.session_state:
-        st.session_state.question_num = 0
-    if 'quiz_done' not in st.session_state:
-        st.session_state.quiz_done = False
-    if 'start_time' not in st.session_state:
-        st.session_state.start_time = time.time()
-    if 'current_q' not in st.session_state:
-        st.session_state.current_q = None
+        if st.button("🚀 Start Quiz"):
+            st.session_state.quiz_started = True
+            st.session_state.category_id = category_map[category_choice]
+            st.session_state.difficulty = difficulty.lower()
+            st.experimental_rerun()
 
-    timer_placeholder = st.empty()
-    question_duration = 15
+    elif not st.session_state.quiz_done:
+        def fetch_question():
+            url = f"https://opentdb.com/api.php?amount=1&category={st.session_state.category_id}&type=multiple&difficulty={st.session_state.difficulty}"
+            res = requests.get(url)
+            if res.status_code == 200:
+                data = res.json()
+                if data["results"]:
+                    qd = data["results"][0]
+                    q = html.unescape(qd["question"])
+                    correct = html.unescape(qd["correct_answer"])
+                    incorrect = [html.unescape(i) for i in qd["incorrect_answers"]]
+                    opts = incorrect + [correct]
+                    random.shuffle(opts)
+                    return q, opts, correct
+            return None, None, None
 
-    if 'start_time' not in st.session_state:
-        st.session_state.start_time = time.time()
+        if 'start_time' not in st.session_state or st.session_state.start_time is None:
+            st.session_state.start_time = time.time()
 
-    elapsed = int(time.time() - st.session_state.start_time)
-    remaining = question_duration - elapsed
+        question_duration = 15
+        remaining = int(question_duration - (time.time() - st.session_state.start_time))
+        timer_placeholder = st.empty()
+        if remaining > 0 and not st.session_state.answered:
+            timer_placeholder.info(f"⏳ Time Left: {remaining} seconds")
 
-    if remaining > 0 and not st.session_state.quiz_done and not st.session_state.get("answered", False):
-        for i in range(remaining, 0, -1):
-            with timer_placeholder.container():
-                st.info(f"⏳ Time Left: {i} seconds")
-            time.sleep(1)
-    else:
-        if not st.session_state.get("answered", False):
-            st.warning("⏰ Time's up! You missed this question.")
-            st.session_state.answered = True
-
-    # Styling
-    st.markdown("""
-        <style>
-        body {
-            background-color: #0f0f2d;
-            color: white;
-        }
-        .stButton button {
-            background-color: #1f77b4;
-            color: white;
-        }
-        </style>
-    """, unsafe_allow_html=True)
-
-    def fetch_question():
-        url = f"https://opentdb.com/api.php?amount=1&category={category_id}&type=multiple&difficulty={difficulty.lower()}"
-        response = requests.get(url)
-        if response.status_code == 200:
-            data = response.json()
-            if data["results"]:
-                q_data = data["results"][0]
-                question = html.unescape(q_data["question"])
-                correct = html.unescape(q_data["correct_answer"])
-                incorrect = [html.unescape(ans) for ans in q_data["incorrect_answers"]]
-                options = incorrect + [correct]
-                random.shuffle(options)
-                return question, options, correct
-        return None, None, None
-
-    if not st.session_state.quiz_done:
         if st.session_state.current_q is None:
             q, opts, ans = fetch_question()
-            st.session_state.current_q = (q, opts, ans)
-            st.session_state.start_time = time.time()
-            st.session_state.answered = False
-        else:
-            q, opts, ans = st.session_state.current_q
+            if q:
+                st.session_state.current_q = (q, opts, ans)
+            else:
+                st.warning("Could not load a question. Try again.")
+                st.stop()
 
-        if q:
-            st.markdown(f"### Question {st.session_state.question_num + 1}")
-            st.write(q)
+        q, opts, ans = st.session_state.current_q
 
-            selected = st.radio("Choose your answer:", opts, index=None, key=f"q_{st.session_state.question_num}")
+        st.markdown(f"### Question {st.session_state.question_num + 1}")
+        st.write(q)
 
-            if not st.session_state.answered and st.button("🚀 Submit Answer"):
-                st.session_state.answered = True
-                if selected == ans:
-                    st.success("✅ Correct!")
-                    st.session_state.score += 1
-                else:
-                    st.error(f"❌ Incorrect! The right answer was: **{ans}**")
+        selected = st.radio("Choose your answer:", opts, index=None, key=f"q{st.session_state.question_num}")
 
-            if st.session_state.answered:
-                if st.button("➡️ Next Question"):
-                    st.session_state.question_num += 1
-                    st.session_state.current_q = None
-                    st.session_state.answered = False
-                    st.session_state.start_time = time.time()
-                    if st.session_state.question_num >= 5:
-                        st.session_state.quiz_done = True
-                    else:
-                        st.rerun()
-        else:
-            st.warning("Could not load a question. Please try again.")
+        if remaining <= 0 and not st.session_state.answered:
+            st.warning("⏰ Time's up! No answer submitted.")
+            st.session_state.answered = True
+
+        if not st.session_state.answered and st.button("✅ Submit"):
+            if selected == ans:
+                st.success("✅ Correct!")
+                st.session_state.score += 1
+            else:
+                st.error(f"❌ Incorrect! The correct answer was: **{ans}**")
+            st.session_state.answered = True
+
+        if st.session_state.answered:
+            if st.button("➡️ Next"):
+                st.session_state.question_num += 1
+                st.session_state.current_q = None
+                st.session_state.answered = False
+                st.session_state.start_time = time.time()
+
+                if st.session_state.question_num >= 5:
+                    st.session_state.quiz_done = True
+                st.experimental_rerun()
+
     else:
         st.balloons()
         st.markdown("## 🎉 Quiz Completed!")
@@ -1546,13 +1530,6 @@ elif st.session_state.active_tab == "❓ Quizzes":
             st.info("🌌 Great job! You know your science well.")
         else:
             st.warning("🛰️ Keep exploring. The universe has much to teach!")
-
-        if st.button("🔄 Try Again"):
-            st.session_state.score = 0
-            st.session_state.question_num = 0
-            st.session_state.quiz_done = False
-            st.session_state.start_time = time.time()
-            st.rerun()
 
 elif st.session_state.active_tab == "🤖 AI Conversations":
     st.title("🤖 AI Conversations")
