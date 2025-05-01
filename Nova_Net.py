@@ -1,12 +1,10 @@
-from google.oauth2.service_account import Credentials
-from datetime import datetime
 import streamlit as st
 import pandas as pd
 import requests
-import gspread
 import random
 import json
 import time
+import html
 import csv
 import os
 
@@ -1427,10 +1425,111 @@ elif st.session_state.active_tab == "💬 Theories":
                         st.rerun()
 
 elif st.session_state.active_tab == "❓ Quizzes":
-    st.title("❓ Interactive Quizzes")
-    st.header("Space Explorer Levels")
-    st.write("User progress tracking and quiz results sharing.")
-    st.write("AI-generated custom quizzes will be created after 3 completions.")
+    st.title("Science & Space Quiz")
+    st.markdown("Test your knowledge of the cosmos, science, and space discoveries! 💫")
+
+    difficulty = st.selectbox("🎯 Choose Difficulty", ["easy", "medium", "hard"])
+
+    category_map = {
+        "Science & Nature": 17,
+        "General Knowledge": 9,
+        "Computers": 18,
+        "Mathematics": 19
+    }
+    category_choice = st.selectbox("🧬 Choose Category", list(category_map.keys()))
+    category_id = category_map[category_choice]
+
+    if 'start_time' not in st.session_state:
+        st.session_state.start_time = time.time()
+
+    time_left = 15 - int(time.time() - st.session_state.start_time)
+    if time_left > 0:
+        st.info(f"⏳ Time Left: {time_left} seconds")
+    else:
+        st.warning("⏰ Time's up! Auto-skipping to next question...")
+        st.session_state.question_num += 1
+        st.session_state.start_time = time.time()
+        if st.session_state.question_num >= 5:
+            st.session_state.quiz_done = True
+        st.rerun()
+    st.session_state.start_time = time.time()
+
+    if 'score' not in st.session_state:
+        st.session_state.score = 0
+    if 'question_num' not in st.session_state:
+        st.session_state.question_num = 0
+    if 'quiz_done' not in st.session_state:
+        st.session_state.quiz_done = False
+
+    st.markdown("""
+        <style>
+        body {
+            background-color: #0f0f2d;
+            color: white;
+        }
+        .stButton button {
+            background-color: #1f77b4;
+            color: white;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
+    def fetch_question():
+        url = f"https://opentdb.com/api.php?amount=1&category={category_id}&type=multiple&difficulty={difficulty.lower()}"
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            if data["results"]:
+                q_data = data["results"][0]
+                question = html.unescape(q_data["question"])
+                correct = html.unescape(q_data["correct_answer"])
+                incorrect = [html.unescape(ans) for ans in q_data["incorrect_answers"]]
+                options = incorrect + [correct]
+                random.shuffle(options)
+                return question, options, correct
+        return None, None, None
+
+    if not st.session_state.quiz_done:
+        question, options, correct_answer = fetch_question()
+
+        if question:
+            st.markdown(f"### Question {st.session_state.question_num + 1}")
+            st.write(question)
+
+            selected = st.radio("Choose your answer:", options, key=st.session_state.question_num)
+
+            if st.button("🚀 Submit Answer"):
+                if selected == correct_answer:
+                    st.success("✅ Correct!")
+                    st.session_state.score += 1
+                else:
+                    st.error(f"❌ Incorrect! The right answer was: **{correct_answer}**")
+
+                st.session_state.question_num += 1
+
+                if st.session_state.question_num >= 5:
+                    st.session_state.quiz_done = True
+                else:
+                    st.experimental_rerun()
+        else:
+            st.warning("Could not load a question. Please try again.")
+    else:
+        st.balloons()
+        st.markdown("## 🎉 Quiz Completed!")
+        st.markdown(f"**Your Final Score: {st.session_state.score} / 5**")
+
+        if st.session_state.score == 5:
+            st.success("🚀 Stellar! You're a true space expert!")
+        elif st.session_state.score >= 3:
+            st.info("🌌 Great job! You know your science well.")
+        else:
+            st.warning("🛰️ Keep exploring. The universe has much to teach!")
+
+        if st.button("🔄 Try Again"):
+            st.session_state.score = 0
+            st.session_state.question_num = 0
+            st.session_state.quiz_done = False
+            st.experimental_rerun()
 
 elif st.session_state.active_tab == "🤖 AI Conversations":
     st.title("🤖 AI Conversations")
