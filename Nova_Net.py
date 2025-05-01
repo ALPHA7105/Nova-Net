@@ -1357,66 +1357,57 @@ elif st.session_state.active_tab == "📰 News":
 elif st.session_state.active_tab == "💬 Theories":
     st.title("💬 Public Theories")
     st.markdown("Share your space theories or browse what others think. Inspire and be inspired.")
+    st.markdown("_This is a prototype version. Theories are not stored permanently and will reset when the app refreshes._")
 
-    # User inputs
+    if "theories" not in st.session_state:
+        st.session_state.theories = []
+
+    # Input form
     name = st.text_input("Your Name")
-    theory_content = st.text_area("Your Theory", height=150)
+    theory_title = st.text_input("Theory Title")
+    theory_content = st.text_area("Your Theory")
 
-    # 🔹 Authenticate with Google Sheets
-    scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-    creds = Credentials.from_service_account_file("mount/src/nova-net/sheets_key.json", scopes=scope)
-    client = gspread.authorize(creds)
-    sheet = client.open_by_key("1rv5UIK88qMWSMfXuhu0mYUaPYOD_KZ4-JWxOQZsWtqs").sheet1
-
-    # 🔹 Submit a Theory
     if st.button("📤 Submit"):
-        if name.strip() and theory_content.strip():
+        if name.strip() and theory_title.strip() and theory_content.strip():
             new_theory = {
                 "name": name.strip(),
+                "title": theory_title.strip(),
                 "content": theory_content.strip(),
                 "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "reported": "No"
+                "reported": False
             }
-
-            try:
-                sheet.append_row([new_theory["name"], new_theory["content"], new_theory["timestamp"], new_theory["reported"]])
-                st.success("✅ Theory submitted to Google Sheets!")
-            except Exception as e:
-                st.error(f"❌ Failed to send to Google Sheets: {e}")
+            st.session_state.theories.append(new_theory)
+            st.success("✅ Theory submitted!")
         else:
-            st.error("⚠️ Both name and theory are required.")
+            st.error("⚠️ Name, title, and theory content are all required.")
 
     st.markdown("---")
     st.markdown("### 🌌 Theories from the Community")
 
-    # 🔹 Load all theories from the sheet
-    data = sheet.get_all_records()
-
-    if not data:
+    if not st.session_state.theories:
         st.info("No theories yet. Be the first to share!")
     else:
-        for i, row in enumerate(reversed(data)):
+        for i, theory in enumerate(reversed(st.session_state.theories)):
             with st.container():
-                st.markdown(f"**🧑 {row['Name']}**")
-                st.markdown(f"> {row['Theory']}  \n*🕒 {row['Timestamp']}*")
+                st.markdown(f"**🧑 {theory['name']}**")
+                st.markdown(f"### 📝 {theory['title']}")
+                st.markdown(f"> {theory['content']}  \n*🕒 {theory['timestamp']}*")
 
                 col1, col2 = st.columns(2)
 
                 with col1:
-                    if st.button("🚩 Report", key=f"report_{i}"):
-                        if row["Reported"] != "True":
-                            cell = sheet.find(row["Theory"])
-                            sheet.update_cell(cell.row, 4, "True")
+                    if not theory["reported"]:
+                        if st.button("🚩 Report", key=f"report_{i}"):
+                            theory["reported"] = True
                             st.success("🚩 Report submitted for review.")
-                        else:
-                            st.info("Already reported.")
+                    else:
+                        st.info("Already reported.")
 
                 with col2:
                     if st.button("🗑️ Delete (if yours)", key=f"delete_{i}"):
-                        sheet.delete_rows(i + 2)  # +2 accounts for header
+                        del st.session_state.theories[len(st.session_state.theories) - 1 - i]
                         st.success("Deleted successfully.")
                         st.rerun()
-
 
 elif st.session_state.active_tab == "❓ Quizzes":
     st.title("❓ Interactive Quizzes")
