@@ -1260,11 +1260,14 @@ elif st.session_state.active_tab == "📰 News":
         if isinstance(data, dict) and "results" in data:
             results = data["results"]
             if results:
-                for article in results[:5]:  # show only top 5 articles
-                    st.markdown(f"### 📰 {article.get('title', 'No Title')}")
-                    st.write(article.get('description', 'No description available.'))
-                    st.markdown(f"[Read More]({article.get('link', '#')})")
-                    st.markdown("---")
+                col1, col2 = st.columns(2)
+
+                for idx, article in enumerate(results[:6]):  # Adjust number of articles as needed
+                    with (col1 if idx % 2 == 0 else col2):
+                        st.markdown(f"### 📰 {article.get('title', 'No Title')}")
+                        st.write(article.get('description', 'No description available.'))
+                        st.markdown(f"[Read More]({article.get('link', '#')})")
+                        st.markdown("---")
             else:
                 st.warning("⚠️ No results found.")
         else:
