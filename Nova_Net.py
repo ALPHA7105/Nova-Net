@@ -1428,6 +1428,7 @@ elif st.session_state.active_tab == "❓ Quizzes":
     st.title("Science & Space Quiz")
     st.markdown("Test your knowledge of the cosmos, science, and space discoveries! 💫")
 
+    # Select Difficulty & Category
     difficulty = st.selectbox("🎯 Choose Difficulty", ["easy", "medium", "hard"])
 
     category_map = {
@@ -1439,28 +1440,29 @@ elif st.session_state.active_tab == "❓ Quizzes":
     category_choice = st.selectbox("🧬 Choose Category", list(category_map.keys()))
     category_id = category_map[category_choice]
 
-    if 'start_time' not in st.session_state:
-        st.session_state.start_time = time.time()
-
-    time_left = 15 - int(time.time() - st.session_state.start_time)
-    if time_left > 0:
-        st.info(f"⏳ Time Left: {time_left} seconds")
-    else:
-        st.warning("⏰ Time's up! Auto-skipping to next question...")
-        st.session_state.question_num += 1
-        st.session_state.start_time = time.time()
-        if st.session_state.question_num >= 5:
-            st.session_state.quiz_done = True
-        st.rerun()
-    st.session_state.start_time = time.time()
-
+    # Initialize session state
     if 'score' not in st.session_state:
         st.session_state.score = 0
     if 'question_num' not in st.session_state:
         st.session_state.question_num = 0
     if 'quiz_done' not in st.session_state:
         st.session_state.quiz_done = False
+    if 'start_time' not in st.session_state:
+        st.session_state.start_time = time.time()
 
+    # Countdown Timer
+    time_left = 15 - int(time.time() - st.session_state.start_time)
+    if time_left > 0 and not st.session_state.quiz_done:
+        st.info(f"⏳ Time Left: {time_left} seconds")
+    elif not st.session_state.quiz_done:
+        st.warning("⏰ Time's up! Auto-skipping to next question...")
+        st.session_state.question_num += 1
+        st.session_state.start_time = time.time()
+        if st.session_state.question_num >= 5:
+            st.session_state.quiz_done = True
+        st.rerun()
+
+    # Styling
     st.markdown("""
         <style>
         body {
@@ -1489,6 +1491,7 @@ elif st.session_state.active_tab == "❓ Quizzes":
                 return question, options, correct
         return None, None, None
 
+    # Main Quiz Logic
     if not st.session_state.quiz_done:
         question, options, correct_answer = fetch_question()
 
@@ -1506,11 +1509,12 @@ elif st.session_state.active_tab == "❓ Quizzes":
                     st.error(f"❌ Incorrect! The right answer was: **{correct_answer}**")
 
                 st.session_state.question_num += 1
+                st.session_state.start_time = time.time()
 
                 if st.session_state.question_num >= 5:
                     st.session_state.quiz_done = True
                 else:
-                    st.experimental_rerun()
+                    st.rerun()
         else:
             st.warning("Could not load a question. Please try again.")
     else:
@@ -1529,7 +1533,8 @@ elif st.session_state.active_tab == "❓ Quizzes":
             st.session_state.score = 0
             st.session_state.question_num = 0
             st.session_state.quiz_done = False
-            st.experimental_rerun()
+            st.session_state.start_time = time.time()
+            st.rerun()
 
 elif st.session_state.active_tab == "🤖 AI Conversations":
     st.title("🤖 AI Conversations")
