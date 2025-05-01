@@ -1,4 +1,4 @@
-from oauth2client.service_account import ServiceAccountCredentials
+from google.oauth2.service_account import Credentials
 from datetime import datetime
 import streamlit as st
 import pandas as pd
@@ -1417,33 +1417,33 @@ elif st.session_state.active_tab == "💬 Theories":
                         st.rerun()
 
     if st.button("📤 Submit"):
-        if name.strip() and theory_content.strip():
-            new_theory = {
-                "name": name.strip(),
-                "content": theory_content.strip(),
-                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "reported": "No"
-            }
+    if name.strip() and theory_content.strip():
+        new_theory = {
+            "name": name.strip(),
+            "content": theory_content.strip(),
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "reported": "No"
+        }
 
-            try:
-                # Google Sheets integration
-                scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-                creds = ServiceAccountCredentials.from_json_keyfile_name("sheets_key.json", scope)
-                client = gspread.authorize(creds)
+        try:
+            # Google Sheets integration
+            scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+            creds = Credentials.from_service_account_file("sheets_key.json", scopes=scope)
+            client = gspread.authorize(creds)
 
-                # Your Google Sheet ID here
-                sheet_id = "1rv5UIK88qMWSMfXuhu0mYUaPYOD_KZ4-JWxOQZsWtqs"
-                sheet = client.open_by_key(sheet_id).sheet1
+            # Your Google Sheet ID
+            sheet_id = "1rv5UIK88qMWSMfXuhu0mYUaPYOD_KZ4-JWxOQZsWtqs"
+            sheet = client.open_by_key(sheet_id).sheet1
 
-                # Add the row
-                sheet.append_row([new_theory["name"], new_theory["content"], new_theory["timestamp"], new_theory["reported"]])
-                st.success("✅ Theory submitted to Google Sheets!")
+            # Append the new theory
+            sheet.append_row([new_theory["name"], new_theory["content"], new_theory["timestamp"], new_theory["reported"]])
+            st.success("✅ Theory submitted to Google Sheets!")
 
-            except Exception as e:
-                st.error(f"❌ Failed to send to Google Sheets: {e}")
+        except Exception as e:
+            st.error(f"❌ Failed to send to Google Sheets: {e}")
 
-        else:
-            st.error("⚠️ Both name and theory are required.")
+    else:
+        st.error("⚠️ Both name and theory are required.")
 
 elif st.session_state.active_tab == "❓ Quizzes":
     st.title("❓ Interactive Quizzes")
