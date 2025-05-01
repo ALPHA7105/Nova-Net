@@ -1417,7 +1417,7 @@ elif st.session_state.active_tab == "💬 Theories":
                         st.rerun()
 
     if st.button("📤 Submit"):
-            if name.strip() and theory_content.strip():
+        if name.strip() and theory_content.strip():
             new_theory = {
                 "name": name.strip(),
                 "content": theory_content.strip(),
