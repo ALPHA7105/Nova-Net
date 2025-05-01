@@ -1466,7 +1466,6 @@ elif st.session_state.active_tab == "❓ Quizzes":
             with timer_placeholder.container():
                 st.info(f"⏳ Time Left: {i} seconds")
             time.sleep(1)
-            st.rerun()
     else:
         if not st.session_state.get("answered", False):
             st.warning("⏰ Time's up! You missed this question.")
@@ -1533,7 +1532,7 @@ elif st.session_state.active_tab == "❓ Quizzes":
                     if st.session_state.question_num >= 5:
                         st.session_state.quiz_done = True
                     else:
-                        st.experimental_rerun()
+                        st.rerun()
         else:
             st.warning("Could not load a question. Please try again.")
     else:
