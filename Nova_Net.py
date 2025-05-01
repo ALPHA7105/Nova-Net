@@ -1472,14 +1472,31 @@ elif st.session_state.active_tab == "❓ Quizzes":
                     return q, opts, correct
             return None, None, None
 
-        if 'start_time' not in st.session_state or st.session_state.start_time is None:
-            st.session_state.start_time = time.time()
+    if 'start_time' not in st.session_state or st.session_state.start_time is None:
+        st.session_state.start_time = time.time()
 
-        question_duration = 15
-        remaining = int(question_duration - (time.time() - st.session_state.start_time))
-        timer_placeholder = st.empty()
-        if remaining > 0 and not st.session_state.answered:
-            timer_placeholder.info(f"⏳ Time Left: {remaining} seconds")
+    question_duration = 15
+    time_remaining = question_duration - int(time.time() - st.session_state.start_time)
+    if time_remaining < 0:
+        time_remaining = 0
+
+
+    st.markdown(f"""
+        <script>
+            let countdown = {time_remaining};
+            const el = document.getElementById("timer");
+            const interval = setInterval(function() {{
+                if (countdown > 0) {{
+                    countdown--;
+                    document.getElementById("timer").innerText = "⏳ Time Left: " + countdown + " seconds";
+                }} else {{
+                    clearInterval(interval);
+                    document.getElementById("timer").innerText = "⏰ Time's up!";
+                }}
+            }}, 1000);
+        </script>
+        <h4 id="timer">⏳ Time Left: {time_remaining} seconds</h4>
+    """, unsafe_allow_html=True)
 
         if st.session_state.current_q is None:
             q, opts, ans = fetch_question()
