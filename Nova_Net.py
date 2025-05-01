@@ -1292,17 +1292,24 @@ elif st.session_state.active_tab == "📰 News":
         data = response.json()
         results = data.get("results", [])
 
-        if results and isinstance(results[0], dict):
-            article = results[0]
-            title = article.get("title", "No Title")
-            description = article.get("description", "No summary available.")
-            link = article.get("link", "#")
+        # Filter articles for relevant space or science content
+        filtered_results = [
+            article for article in results
+            if ('space' in article.get("title", "").lower() or 'space' in article.get("description", "").lower() or
+                'science' in article.get("title", "").lower() or 'science' in article.get("description", "").lower())
+        ]
 
-            st.markdown(f"#### {title}")
-            st.write(description)
-            st.markdown(f"[🔗 Read More]({link})", unsafe_allow_html=True)
+        if filtered_results:
+            for article in filtered_results:
+                title = article.get("title", "No Title")
+                description = article.get("description", "No summary available.")
+                link = article.get("link", "#")
+
+                st.markdown(f"#### {title}")
+                st.write(description)
+                st.markdown(f"[🔗 Read More]({link})", unsafe_allow_html=True)
         else:
-            st.warning("⚠️ No science articles found at the moment.")
+            st.warning("⚠️ No space or science articles found at the moment.")
     else:
         st.error("🚫 Failed to fetch science news.")
         
