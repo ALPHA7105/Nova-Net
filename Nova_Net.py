@@ -1498,24 +1498,24 @@ elif st.session_state.active_tab == "❓ Quizzes":
         <h4 id="timer">⏳ Time Left: {time_remaining} seconds</h4>
     """, unsafe_allow_html=True)
 
-            if st.session_state.current_q is None:
-                q, opts, ans = fetch_question()
-                if q:
-                    st.session_state.current_q = (q, opts, ans)
-                else:
-                    st.warning("Could not load a question. Try again.")
-                    st.stop()
+        if st.session_state.current_q is None:
+            q, opts, ans = fetch_question()
+            if q:
+                st.session_state.current_q = (q, opts, ans)
+            else:
+                st.warning("Could not load a question. Try again.")
+                st.stop()
 
-            q, opts, ans = st.session_state.current_q
+        q, opts, ans = st.session_state.current_q
 
-            st.markdown(f"### Question {st.session_state.question_num + 1}")
-            st.write(q)
+        st.markdown(f"### Question {st.session_state.question_num + 1}")
+        st.write(q)
 
-            selected = st.radio("Choose your answer:", opts, index=None, key=f"q{st.session_state.question_num}")
+        selected = st.radio("Choose your answer:", opts, index=None, key=f"q{st.session_state.question_num}")
 
-            if remaining <= 0 and not st.session_state.answered:
-                st.warning("⏰ Time's up! No answer submitted.")
-                st.session_state.answered = True
+        if remaining <= 0 and not st.session_state.answered:
+            st.warning("⏰ Time's up! No answer submitted.")
+            st.session_state.answered = True
 
         if not st.session_state.answered and st.button("✅ Submit"):
             if selected == ans:
