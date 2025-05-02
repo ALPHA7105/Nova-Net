@@ -1432,6 +1432,14 @@ elif st.session_state.active_tab == "❓ Quizzes":
     st.markdown("## 🧠 Nova Quiz")
     st.markdown("Test your knowledge across space, science, tech, and more!")
 
+    if st.session_state.get("quiz_started", False):
+    col1, col2 = st.columns([8, 1])
+    with col2:
+        if st.button("🔄 Restart"):
+            for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
+                st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
+            st.rerun()
+
     def restart_quiz():
         for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
             st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
@@ -1473,14 +1481,10 @@ elif st.session_state.active_tab == "❓ Quizzes":
             st.rerun()
 
     else:
-        # Show restart top-right corner
-        st.markdown("""
-        <div style='text-align: right; margin-top: -30px;'>
-            <form action="#" method="post">
-                <button style='padding:4px 10px; font-size:13px;' onclick='window.location.reload();'>🔄 Restart</button>
-            </form>
-        </div>
-        """, unsafe_allow_html=True)
+        col1, col2 = st.columns([9, 1])
+        with col2:
+            if st.button("🔄 Restart"):
+                restart_quiz()
 
         if not st.session_state.quiz_done:
             def fetch_question():
