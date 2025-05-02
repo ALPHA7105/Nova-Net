@@ -1427,7 +1427,7 @@ elif st.session_state.active_tab == "💬 Theories":
 elif st.session_state.active_tab == "❓ Quizzes":
     API_KEY = 'LhnphY42akQ+Pus7Uf99eg==1VlY6UDe3GH4VZAA'
     API_URL = 'https://api.api-ninjas.com/v1/trivia'
-    HEADERS = {'X-Api-Key': LhnphY42akQ+Pus7Uf99eg==1VlY6UDe3GH4VZAA}
+    HEADERS = {'X-Api-Key': 'LhnphY42akQ+Pus7Uf99eg==1VlY6UDe3GH4VZAA'}
 
     for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
         if key not in st.session_state:
