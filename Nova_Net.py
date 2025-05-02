@@ -1425,17 +1425,16 @@ elif st.session_state.active_tab == "💬 Theories":
                         st.rerun()
 
 elif st.session_state.active_tab == "❓ Quizzes":
-    # Initialize session state variables
-    for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered', 'start_time']:
+    # Initialize session state
+    for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
         if key not in st.session_state:
             st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
 
-    st.title("🧠 Nova Quiz")
-    st.markdown("Challenge your brain with questions from science, space, computers, mathematics, and more! 🚀")
+    st.markdown("## 🧠 Nova Quiz")
+    st.markdown("Test your knowledge across space, science, tech, and more!")
 
-    # Restart button
+    # Category, Difficulty, and Restart in same row
     col1, col2, col3 = st.columns([3, 3, 1])
-
     with col1:
         category_map = {
             "Science & Nature": 17,
@@ -1443,58 +1442,31 @@ elif st.session_state.active_tab == "❓ Quizzes":
             "Computers": 18,
             "Mathematics": 19
         }
-        category_choice = st.selectbox("🧬 Category", list(category_map.keys()), key="cat")
+        category_choice = st.selectbox("🧬 Category", list(category_map.keys()), key="quiz_category")
 
     with col2:
-        difficulty = st.selectbox("🎯 Difficulty", ["Easy", "Medium", "Hard"], key="diff")  # Capitalized
+        difficulty = st.selectbox("🎯 Difficulty", ["Easy", "Medium", "Hard"], key="quiz_difficulty")
 
     with col3:
-        st.markdown("###")
         if st.button("🔄", help="Restart Quiz"):
             for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
                 st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
             st.rerun()
 
+    # Instructions
     if not st.session_state.quiz_started:
+        st.markdown("### 📋 Instructions")
         st.markdown("""
-        ### 📋 Instructions:
-        - You’ll get **5 random trivia questions**.
-        - Select the **correct option** and click **Submit**.
-        - Your final score will be shown at the end.
-        - Questions cover space, science, math, computers and more!
+        - Select a category and difficulty level.
+        - You'll get 5 multiple-choice questions.
+        - Click **Submit** to check your answer, then **Next**.
+        - Your score will be shown at the end!
         """)
         if st.button("🚀 Start Quiz"):
             st.session_state.quiz_started = True
+            st.session_state.category_id = category_map[category_choice]
+            st.session_state.difficulty = difficulty.lower()
             st.rerun()
-
-    # Start screen
-    col1, col2, col3 = st.columns([3, 3, 1])
-
-    with col1:
-        category_map = {
-            "Science & Nature": 17,
-            "General Knowledge": 9,
-            "Computers": 18,
-            "Mathematics": 19
-        }
-        category_choice = st.selectbox("🧬 Category", list(category_map.keys()), key="cat")
-
-    with col2:
-        difficulty = st.selectbox("🎯 Difficulty", ["Easy", "Medium", "Hard"], key="diff")
-
-    with col3:
-        st.markdown("###")
-        if st.button("🔄", help="Restart Quiz"):
-            for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
-                st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
-            st.rerun()
-
-    if st.button("🚀 Start Quiz"):
-        st.session_state.quiz_started = True
-        st.session_state.category_id = category_map[category_choice]
-        st.session_state.difficulty = difficulty.lower()
-        st.session_state.start_time = time.time()
-        st.rerun()
 
     elif not st.session_state.quiz_done:
         def fetch_question():
@@ -1512,11 +1484,20 @@ elif st.session_state.active_tab == "❓ Quizzes":
                     return q, opts, correct
             return None, None, None
 
+        if st.session_state.current_q is None:
+            q, opts, ans = fetch_question()
+            if q:
+                st.session_state.current_q = (q, opts, ans)
+            else:
+                st.warning("Could not load a question. Try again.")
+                st.stop()
+
         q, opts, ans = st.session_state.current_q
+
         st.markdown(f"### Question {st.session_state.question_num + 1}")
         st.write(q)
 
-        selected = st.radio("Choose your answer:", opts, index=None, key=f"q{st.session_state.question_num}")
+        selected = st.radio("Choose your answer:", opts, index=None, key=f"quiz_q{st.session_state.question_num}")
 
         if not st.session_state.answered and st.button("✅ Submit"):
             if selected == ans:
@@ -1531,7 +1512,6 @@ elif st.session_state.active_tab == "❓ Quizzes":
                 st.session_state.question_num += 1
                 st.session_state.current_q = None
                 st.session_state.answered = False
-                st.session_state.start_time = time.time()
 
                 if st.session_state.question_num >= 5:
                     st.session_state.quiz_done = True
