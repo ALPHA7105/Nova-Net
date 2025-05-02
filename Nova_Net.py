@@ -19,13 +19,6 @@ def get_apod():
     response = requests.get(url)
     return response.json()
 
-def connect_to_sheet():
-    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("sheets_key.json", scope)
-    client = gspread.authorize(creds)
-    sheet = client.open_by_key("1rv5UIK88qMWSMfXuhu0mYUaPYOD_KZ4-JWxOQZsWtqs").sheet1  # Use your sheet ID here
-    return sheet
-
 if "active_tab" not in st.session_state:
     st.session_state.active_tab = "🏠 Home"
 
@@ -1440,6 +1433,7 @@ elif st.session_state.active_tab == "❓ Quizzes":
         - Click **Submit** after selecting your answer.
         - Click **Next** to move to the next question.
         - Your final score will be shown at the end.
+        - You can restart the quiz by clicking the **Quizzes** tab again.
         """)
 
         category_map = {
@@ -1539,10 +1533,128 @@ elif st.session_state.active_tab == "🤖 AI Conversations":
     st.markdown("Talk to Gemini AI about space, science, or anything cosmic!")
 
 elif st.session_state.active_tab == "📖 About":
-    st.title("📖 About Nova Net")
-    st.write("Your origin story + dream for NovaNet.")
-    st.write("Roadmap with planned future features.")
-    st.write("Collaborators or contributors can be invited here.")
+    st.title("📖 About NovaNet")
+
+    st.markdown("""
+    ## 🌌 Welcome to NovaNet
+    Welcome to **NovaNet**, your gateway to space exploration and scientific discovery. Our mission is to provide you with the most up-to-date, interactive, and inspiring knowledge about space, futuristic technology, and the deepest mysteries of the cosmos. NovaNet is more than just a website—it's a growing space knowledge ecosystem.
+
+    ---
+
+    ## 👦 Sarvesh's Story
+    I'm **Sarvesh Kore**, a 13-year-old space and science enthusiast. I created NovaNet as part of the **ADNOC ENERGYai Challenge** to explore how AI can be used in space education and innovation. From sketching ideas on paper to writing real code, NovaNet is a product of my passion, dedication, and belief that space education should be accessible and exciting for everyone.
+
+    ---
+
+    ## 🧩 Platform Features
+    NovaNet offers a wide range of sections designed for learning, interaction, and discovery:
+    - 🔍 **Mysteries** – Dive into mind-bending theories and unexplained phenomena in the universe
+    - 🪐 **Exoplanets** – Explore thousands of worlds orbiting stars beyond our solar system
+    - 🚀 **Missions** – Learn about space missions from Apollo to Artemis and beyond
+    - ⚙️ **Tech** – Discover the cutting-edge technology making space exploration possible
+    - 🧬 **Astrobiology** – Investigate the search for life in the universe and the conditions that support it
+    - ⌛ **Black Holes** – Understand time, gravity, and singularities in one of space’s most extreme phenomena
+    - 📰 **News** – Stay updated with the latest space science discoveries and missions
+    - 💬 **Theories** – Share your thoughts and read what others think about the universe
+    - ❓ **Quizzes** – Challenge your knowledge and test your learning with smart quizzes
+    - 🤖 **AI Conversations** – Chat with AI on topics like space science, missions, and technology
+
+    ---
+
+    ## 🏆 The ADNOC ENERGYai Challenge
+    NovaNet was born as a submission to the **ADNOC ENERGYai Challenge**, which encourages futuristic uses of artificial intelligence. Through this platform, I aim to showcase how AI can be used to teach, simulate, and explore the cosmos. It’s my vision for how students of tomorrow might learn.
+
+    ---
+
+    ## 🚀 Future Plans
+    - Add a new **Science** section covering chemistry, physics, and biology
+    - Launch **AI-powered learning paths** personalized to each user's interests
+    - Enable **user login & profiles** through "Join the Crew"
+    - Build an interactive **community theory sharing and rating** system
+    - Expand features of the **AI assistant** for real-time simulation and learning
+
+    ---
+
+    ## 🚧 Behind the Scenes
+    NovaNet is built using tools like **Python**, **Streamlit**, **Google Sheets**, **Firebase**, and the **LLaMA 4** API. Managing data flow, designing a clean UI, and integrating AI models presented challenges—but each problem taught me new skills in programming, debugging, and UI design. From local testing to deploying cloud-based data systems, every step was a learning journey.
+
+    ---
+
+    ## 🧪 Tech Stack
+    - 🐍 Python – for backend logic and integration
+    - 🌐 Streamlit – for rapid development of interactive apps
+    - 📄 Google Sheets – for live data storage
+    - 🔐 Firebase – for future authentication features
+    - 🤖 LLaMA 4 API – for AI-based chat and interactions
+    - 🧠 Scratch – used in my separate AI simulation project, **Cypheron**
+
+    ---
+
+    ## 📅 Development Timeline
+    - 💡 Idea Stage: March 2025 – Brainstormed NovaNet for ADNOC ENERGYai
+    - 🛠️ First Build: April 2024 – Created first working prototype with quizzes and theory sharing
+    - 🌐 Online Expansion: May 2024 – Will be adding Google Sheets integration, full content sections
+    - 🔮 Future: July 2024+ – User accounts, science expansion, and AI-driven learning paths
+
+    ---
+
+    ## 🎯 NovaNet's Goals
+    - **Short-term**: Make space science fun and interactive for all ages
+    - **Long-term**: Create a **self-learning AI space assistant** that helps users explore knowledge intelligently
+
+    ---
+
+    ## 🧠 Meet Cypheron
+    **Cypheron** is a conceptual AI-powered space assistant built using Scratch for simulations. It can assist in colonization, space rescue missions, AI combat, and real-time decision-making. It’s built to simulate how AI might behave in the harsh and unpredictable environments of deep space. More features will be ported into NovaNet’s web version soon!
+
+    ---
+
+    ## 🛸 Why Space?
+    Ever since I was young, space has fascinated me—its scale, beauty, and mystery. Black holes, time dilation, alien life, rockets—I wanted to know it all. NovaNet is how I turn that fascination into something real and educational for others to enjoy too.
+
+    ---
+
+    ## 🏅 Achievements
+    - 🧠 Developed NovaNet solo as a 13-year-old innovator
+    - ⚡ Built smart features like quizzes, AI chat, and theory sharing
+    - 🚀 Created **Cypheron**, an intelligent space assistant simulation
+
+    ---
+
+    ## 🧭 User Guide
+    - Use the top buttons to navigate the 12 different sections
+    - Try quizzes to test your understanding
+    - Read up on the latest space news
+    - Share your own theories or read what others believe
+    - Use the AI assistant for brainstorming or learning
+
+    ---
+
+    ## 🌍 Impact & Vision
+    NovaNet is designed to:
+    - 🌟 Inspire young students and future scientists
+    - 🛰️ Spread space awareness and education globally
+    - 🤖 Integrate AI to make learning more adaptive and futuristic
+
+    ---
+
+    ## 🧑‍🚀 Join the Crew (Coming Soon)
+    Soon you'll be able to create your own profile, bookmark content, and participate in community events. This feature will allow deeper interaction and sharing across NovaNet.
+
+    ---
+
+    ## 📚 Learning Paths (Coming Soon)
+    A personalized space curriculum powered by AI. NovaNet will analyze your interests and suggest topics, videos, and quizzes to help you grow in your journey through the cosmos.
+
+    ---
+
+    ## 🎥 Behind the Code (Coming Soon)
+    Planning a short documentary video about how NovaNet was built—from idea to launch. It will include behind-the-scenes coding, challenges, and design thinking.
+
+    ---
+
+    Thank you for exploring **NovaNet**! 🚀 Let curiosity guide your journey through the stars! 🌠
+    """)
 
 st.markdown('</div>', unsafe_allow_html=True)
 
