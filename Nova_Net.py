@@ -1441,19 +1441,39 @@ elif st.session_state.active_tab == "❓ Quizzes":
                 st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
             st.rerun()
 
-    # Start screen
     if not st.session_state.quiz_started:
-        col1, col2 = st.columns(2)
-        with col1:
-            category_map = {
-                "Science & Nature": 17,
-                "General Knowledge": 9,
-                "Computers": 18,
-                "Mathematics": 19
-            }
-            category_choice = st.selectbox("🧬 Category", list(category_map.keys()), key="cat")
-        with col2:
-            difficulty = st.selectbox("🎯 Difficulty", ["easy", "medium", "hard"], key="diff")
+        st.markdown("""
+        ### 📋 Instructions:
+        - You’ll get **5 random trivia questions**.
+        - Select the **correct option** and click **Submit**.
+        - Your final score will be shown at the end.
+        - Questions cover space, science, math, computers and more!
+        """)
+        if st.button("🚀 Start Quiz"):
+            st.session_state.quiz_started = True
+            st.rerun()
+
+    # Start screen
+    col1, col2, col3 = st.columns([3, 3, 1])
+
+    with col1:
+        category_map = {
+            "Science & Nature": 17,
+            "General Knowledge": 9,
+            "Computers": 18,
+            "Mathematics": 19
+        }
+        category_choice = st.selectbox("🧬 Category", list(category_map.keys()), key="cat")
+
+    with col2:
+        difficulty = st.selectbox("🎯 Difficulty", ["Easy", "Medium", "Hard"], key="diff")  # Capitalized
+
+    with col3:
+        st.markdown("###")
+        if st.button("🔄", help="Restart Quiz"):
+            for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
+                st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
+            st.rerun()
 
         if st.button("🚀 Start Quiz"):
             st.session_state.quiz_started = True
