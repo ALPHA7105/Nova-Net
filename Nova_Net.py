@@ -1433,28 +1433,30 @@ elif st.session_state.active_tab == "❓ Quizzes":
     st.markdown("## 🧠 Nova Quiz")
     st.markdown("Test your knowledge across space, science, tech, and more!")
 
-    # Category, Difficulty, and Restart in same row
-    col1, col2, col3 = st.columns([3, 3, 1])
-    with col1:
-        category_map = {
-            "Science & Nature": 17,
-            "General Knowledge": 9,
-            "Computers": 18,
-            "Mathematics": 19
-        }
-        category_choice = st.selectbox("🧬 Category", list(category_map.keys()), key="quiz_category")
-
-    with col2:
-        difficulty = st.selectbox("🎯 Difficulty", ["Easy", "Medium", "Hard"], key="quiz_difficulty")
-
-    with col3:
-        if st.button("🔄", help="Restart Quiz"):
-            for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
-                st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
-            st.rerun()
-
-    # Instructions
+    # Show options only before quiz starts
     if not st.session_state.quiz_started:
+        # Category, Difficulty, and Restart in same line
+        col1, col2, col3 = st.columns([3, 3, 1])
+        with col1:
+            category_map = {
+                "Science & Nature": 17,
+                "General Knowledge": 9,
+                "Computers": 18,
+                "Mathematics": 19
+            }
+            category_choice = st.selectbox("🧬 Category", list(category_map.keys()), key="quiz_category")
+
+        with col2:
+            difficulty = st.selectbox("🎯 Difficulty", ["Easy", "Medium", "Hard"], key="quiz_difficulty")
+
+        with col3:
+            st.markdown("**&nbsp;**")  # spacer for alignment
+            if st.button("🔄", help="Restart Quiz"):
+                for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
+                    st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
+                st.rerun()
+
+        # Instructions
         st.markdown("### 📋 Instructions")
         st.markdown("""
         - Select a category and difficulty level.
@@ -1523,7 +1525,7 @@ elif st.session_state.active_tab == "❓ Quizzes":
         st.markdown(f"**Your Final Score: {st.session_state.score} / 5**")
 
         if st.session_state.score == 5:
-            st.success("🚀 Stellar! You're a true space expert!")
+            st.success("🚀 Stellar! You're a true expert!")
         elif st.session_state.score >= 3:
             st.info("🌌 Great job! You know your science well.")
         else:
