@@ -1476,30 +1476,6 @@ elif st.session_state.active_tab == "❓ Quizzes":
                     return q, opts, correct
             return None, None, None
 
-        question_duration = 15
-        if st.session_state.start_time is None:
-            st.session_state.start_time = time.time()
-
-        time_remaining = question_duration - int(time.time() - st.session_state.start_time)
-        if time_remaining < 0:
-            time_remaining = 0
-
-        st.markdown(f"""
-            <script>
-                let countdown = {time_remaining};
-                const interval = setInterval(function() {{
-                    if (countdown > 0) {{
-                        countdown--;
-                        document.getElementById("timer").innerText = "⏳ Time Left: " + countdown + " seconds";
-                    }} else {{
-                        clearInterval(interval);
-                        document.getElementById("timer").innerText = "⏰ Time's up!";
-                    }}
-                }}, 1000);
-            </script>
-            <h4 id="timer">⏳ Time Left: {time_remaining} seconds</h4>
-        """, unsafe_allow_html=True)
-
         if st.session_state.current_q is None:
             q, opts, ans = fetch_question()
             if q:
@@ -1513,10 +1489,6 @@ elif st.session_state.active_tab == "❓ Quizzes":
         st.write(q)
 
         selected = st.radio("Choose your answer:", opts, index=None, key=f"q{st.session_state.question_num}")
-
-        if time_remaining <= 0 and not st.session_state.answered:
-            st.warning("⏰ Time's up! No answer submitted.")
-            st.session_state.answered = True
 
         if not st.session_state.answered and st.button("✅ Submit"):
             if selected == ans:
