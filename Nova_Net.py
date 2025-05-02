@@ -1425,73 +1425,59 @@ elif st.session_state.active_tab == "💬 Theories":
                         st.rerun()
 
 elif st.session_state.active_tab == "❓ Quizzes":
-    # Initialize session state variables
-    for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered', 'start_time']:
+    API_KEY = 'LhnphY42akQ+Pus7Uf99eg==1VlY6UDe3GH4VZAA'
+    API_URL = 'https://api.api-ninjas.com/v1/trivia'
+    HEADERS = {'X-Api-Key': LhnphY42akQ+Pus7Uf99eg==1VlY6UDe3GH4VZAA}
+
+    for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
         if key not in st.session_state:
             st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
 
-    st.title("Science & Space Quiz")
-    st.markdown("Test your knowledge of the cosmos, science, and space discoveries! 💫")
+    st.title("🧠 Nova Quiz")
+    st.markdown("Test your knowledge across science, space, and more!")
 
-    # Restart button
     if st.button("🔄 Restart Quiz"):
-        for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered', 'start_time']:
+        for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
             st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
         st.rerun()
 
-    # Start screen
     if not st.session_state.quiz_started:
         st.markdown("""
-            ### 📜 Instructions
-            - Choose your preferred **category** and **difficulty** below.
-            - Each quiz contains **5 multiple-choice questions**.
-            - Click **"Start Quiz"** to begin.
-            - After selecting an answer, submit it and move to the next question.
-            - Your final score will be shown at the end. Good luck! 🚀
+        ### 📋 Instructions:
+        - You’ll get **5 random trivia questions**.
+        - Select the **correct option** and click **Submit**.
+        - Your final score will be shown at the end.
+        - Questions cover space, science, math, computers and more!
         """)
-
-        col1, col2 = st.columns(2)
-        with col1:
-            category_map = {
-                "Science & Nature": 17,
-                "General Knowledge": 9,
-                "Computers": 18,
-                "Mathematics": 19
-            }
-            category_choice = st.selectbox("🧬 Category", list(category_map.keys()), key="cat")
-        with col2:
-            difficulty_options = ["Easy", "Medium", "Hard"]
-            difficulty = st.selectbox("🎯 Difficulty", difficulty_options, key="diff")
-
         if st.button("🚀 Start Quiz"):
             st.session_state.quiz_started = True
-            st.session_state.category_id = category_map[category_choice]
-            st.session_state.difficulty = difficulty.lower()  # Keep it lowercase for API use
-            st.session_state.start_time = time.time()
             st.rerun()
 
     elif not st.session_state.quiz_done:
-        def fetch_question():
-            url = f"https://opentdb.com/api.php?amount=1&category={st.session_state.category_id}&type=multiple&difficulty={st.session_state.difficulty}"
-            res = requests.get(url)
-            if res.status_code == 200:
-                data = res.json()
-                if data["results"]:
-                    qd = data["results"][0]
-                    q = html.unescape(qd["question"])
-                    correct = html.unescape(qd["correct_answer"])
-                    incorrect = [html.unescape(i) for i in qd["incorrect_answers"]]
-                    opts = incorrect + [correct]
-                    random.shuffle(opts)
-                    return q, opts, correct
-            return None, None, None
+        def fetch_trivia_question():
+            response = requests.get(API_URL, headers=HEADERS)
+            if response.status_code == 200:
+                data = response.json()[0]
+                question = data["question"]
+                answer = data["answer"]
+
+                fake_options = [
+                    "Mercury", "Einstein", "Oxygen", "42", "Zero", "Neutron", "Carbon", "Venus", "Neptune", "Hydrogen"
+                ]
+                fake_answers = random.sample([opt for opt in fake_options if opt != answer], 3)
+                options = fake_answers + [answer]
+                random.shuffle(options)
+
+                return question, options, answer
+            else:
+                st.error("Failed to load question. Check your API key or connection.")
+                return None, None, None
 
         if st.session_state.current_q is None:
-            q, opts, ans = fetch_question()
+            q, opts, ans = fetch_trivia_question()
             if q:
                 st.session_state.current_q = (q, opts, ans)
             else:
-                st.warning("Could not load a question. Try again.")
                 st.stop()
 
         q, opts, ans = st.session_state.current_q
@@ -1513,7 +1499,6 @@ elif st.session_state.active_tab == "❓ Quizzes":
                 st.session_state.question_num += 1
                 st.session_state.current_q = None
                 st.session_state.answered = False
-                st.session_state.start_time = time.time()
 
                 if st.session_state.question_num >= 5:
                     st.session_state.quiz_done = True
@@ -1525,11 +1510,11 @@ elif st.session_state.active_tab == "❓ Quizzes":
         st.markdown(f"**Your Final Score: {st.session_state.score} / 5**")
 
         if st.session_state.score == 5:
-            st.success("🚀 Stellar! You're a true space expert!")
+            st.success("🚀 Stellar! You're a trivia genius!")
         elif st.session_state.score >= 3:
-            st.info("🌌 Great job! You know your science well.")
+            st.info("🌌 Great job! You're smart and curious!")
         else:
-            st.warning("🛰️ Keep exploring. The universe has much to teach!")
+            st.warning("🛰️ Keep exploring. There's always more to learn!")
             
 elif st.session_state.active_tab == "🤖 AI Conversations":
     st.title("🤖 AI Conversations")
