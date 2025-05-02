@@ -1671,7 +1671,7 @@ elif st.session_state.active_tab == "📖 About":
 
     - Begin integrating AI-driven tools for personalized content recommendations
 
-    - Long-Term Goals (Beyond 2025)
+    Long-Term Goals (Beyond 2025)
 
     - Develop Nova AI, a powerful self-learning assistant that guides users through space topics
 
@@ -1689,16 +1689,13 @@ elif st.session_state.active_tab == "📖 About":
     **Nova AI** is the futuristic brain of NovaNet—an intelligent assistant built to explore space knowledge with you. While still in development, Nova AI aims to become an interactive, adaptive, and insightful learning companion. It’s designed to:
 
     - 💬 Answer questions about space science, missions, technology, and astrobiology
-
     - 🧭 Guide users through complex topics using simplified explanations and visual suggestions
-
     - 🧠 Learn from user interactions to provide smarter, more personalized answers over time
-
     - 🧪 Generate quizzes, theories, and even missions using AI to keep learning fresh and fun
-
     - 🔭 Simulate futuristic space scenarios, helping users think like astronauts, engineers, and scientists
 
     In the future, Nova AI will evolve to become more autonomous—offering personalized learning paths, collaborative discussions, and real-time knowledge updates based on global space data. It’s your co-pilot for the cosmos!
+
     ---
 
     ## 🛸 Why Space?
