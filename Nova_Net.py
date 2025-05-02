@@ -1425,7 +1425,6 @@ elif st.session_state.active_tab == "💬 Theories":
                         st.rerun()
 
 elif st.session_state.active_tab == "❓ Quizzes":
-    # Initialize session state
     for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
         if key not in st.session_state:
             st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
@@ -1433,9 +1432,13 @@ elif st.session_state.active_tab == "❓ Quizzes":
     st.markdown("## 🧠 Nova Quiz")
     st.markdown("Test your knowledge across space, science, tech, and more!")
 
-    # Show options only before quiz starts
+    def restart_quiz():
+        for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
+            st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
+        st.rerun()
+
     if not st.session_state.quiz_started:
-        # Category, Difficulty, and Restart in same line
+        # Category, Difficulty, Restart in same row
         col1, col2, col3 = st.columns([3, 3, 1])
         with col1:
             category_map = {
@@ -1450,11 +1453,9 @@ elif st.session_state.active_tab == "❓ Quizzes":
             difficulty = st.selectbox("🎯 Difficulty", ["Easy", "Medium", "Hard"], key="quiz_difficulty")
 
         with col3:
-            st.markdown("**&nbsp;**")  # spacer for alignment
+            st.markdown("**&nbsp;**")
             if st.button("🔄", help="Restart Quiz"):
-                for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
-                    st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
-                st.rerun()
+                restart_quiz()
 
         # Instructions
         st.markdown("### 📋 Instructions")
@@ -1464,72 +1465,83 @@ elif st.session_state.active_tab == "❓ Quizzes":
         - Click **Submit** to check your answer, then **Next**.
         - Your score will be shown at the end!
         """)
+
         if st.button("🚀 Start Quiz"):
             st.session_state.quiz_started = True
             st.session_state.category_id = category_map[category_choice]
             st.session_state.difficulty = difficulty.lower()
             st.rerun()
 
-    elif not st.session_state.quiz_done:
-        def fetch_question():
-            url = f"https://opentdb.com/api.php?amount=1&category={st.session_state.category_id}&type=multiple&difficulty={st.session_state.difficulty}"
-            res = requests.get(url)
-            if res.status_code == 200:
-                data = res.json()
-                if data["results"]:
-                    qd = data["results"][0]
-                    q = html.unescape(qd["question"])
-                    correct = html.unescape(qd["correct_answer"])
-                    incorrect = [html.unescape(i) for i in qd["incorrect_answers"]]
-                    opts = incorrect + [correct]
-                    random.shuffle(opts)
-                    return q, opts, correct
-            return None, None, None
-
-        if st.session_state.current_q is None:
-            q, opts, ans = fetch_question()
-            if q:
-                st.session_state.current_q = (q, opts, ans)
-            else:
-                st.warning("Could not load a question. Try again.")
-                st.stop()
-
-        q, opts, ans = st.session_state.current_q
-
-        st.markdown(f"### Question {st.session_state.question_num + 1}")
-        st.write(q)
-
-        selected = st.radio("Choose your answer:", opts, index=None, key=f"quiz_q{st.session_state.question_num}")
-
-        if not st.session_state.answered and st.button("✅ Submit"):
-            if selected == ans:
-                st.success("✅ Correct!")
-                st.session_state.score += 1
-            else:
-                st.error(f"❌ Incorrect! The correct answer was: **{ans}**")
-            st.session_state.answered = True
-
-        if st.session_state.answered:
-            if st.button("➡️ Next"):
-                st.session_state.question_num += 1
-                st.session_state.current_q = None
-                st.session_state.answered = False
-
-                if st.session_state.question_num >= 5:
-                    st.session_state.quiz_done = True
-                st.rerun()
-
     else:
-        st.balloons()
-        st.markdown("## 🎉 Quiz Completed!")
-        st.markdown(f"**Your Final Score: {st.session_state.score} / 5**")
+        # Show restart top-right corner
+        st.markdown("""
+        <div style='text-align: right; margin-top: -30px;'>
+            <form action="#" method="post">
+                <button style='padding:4px 10px; font-size:13px;' onclick='window.location.reload();'>🔄 Restart</button>
+            </form>
+        </div>
+        """, unsafe_allow_html=True)
 
-        if st.session_state.score == 5:
-            st.success("🚀 Stellar! You're a true expert!")
-        elif st.session_state.score >= 3:
-            st.info("🌌 Great job! You know your science well.")
+        if not st.session_state.quiz_done:
+            def fetch_question():
+                url = f"https://opentdb.com/api.php?amount=1&category={st.session_state.category_id}&type=multiple&difficulty={st.session_state.difficulty}"
+                res = requests.get(url)
+                if res.status_code == 200:
+                    data = res.json()
+                    if data["results"]:
+                        qd = data["results"][0]
+                        q = html.unescape(qd["question"])
+                        correct = html.unescape(qd["correct_answer"])
+                        incorrect = [html.unescape(i) for i in qd["incorrect_answers"]]
+                        opts = incorrect + [correct]
+                        random.shuffle(opts)
+                        return q, opts, correct
+                return None, None, None
+
+            if st.session_state.current_q is None:
+                q, opts, ans = fetch_question()
+                if q:
+                    st.session_state.current_q = (q, opts, ans)
+                else:
+                    st.warning("Could not load a question. Try again.")
+                    st.stop()
+
+            q, opts, ans = st.session_state.current_q
+
+            st.markdown(f"### Question {st.session_state.question_num + 1}")
+            st.write(q)
+
+            selected = st.radio("Choose your answer:", opts, index=None, key=f"quiz_q{st.session_state.question_num}")
+
+            if not st.session_state.answered and st.button("✅ Submit"):
+                if selected == ans:
+                    st.success("✅ Correct!")
+                    st.session_state.score += 1
+                else:
+                    st.error(f"❌ Incorrect! The correct answer was: **{ans}**")
+                st.session_state.answered = True
+
+            if st.session_state.answered:
+                if st.button("➡️ Next"):
+                    st.session_state.question_num += 1
+                    st.session_state.current_q = None
+                    st.session_state.answered = False
+
+                    if st.session_state.question_num >= 5:
+                        st.session_state.quiz_done = True
+                    st.rerun()
+
         else:
-            st.warning("🛰️ Keep exploring. The universe has much to teach!")
+            st.balloons()
+            st.markdown("## 🎉 Quiz Completed!")
+            st.markdown(f"**Your Final Score: {st.session_state.score} / 5**")
+
+            if st.session_state.score == 5:
+                st.success("🚀 Stellar! You're a true space expert!")
+            elif st.session_state.score >= 3:
+                st.info("🌌 Great job! You know your science well.")
+            else:
+                st.warning("🛰️ Keep exploring. The universe has much to teach!")
             
 elif st.session_state.active_tab == "🤖 AI Conversations":
     st.title("🤖 AI Conversations")
