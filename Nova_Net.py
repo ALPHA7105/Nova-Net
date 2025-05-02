@@ -1434,9 +1434,23 @@ elif st.session_state.active_tab == "❓ Quizzes":
     st.markdown("Challenge your brain with questions from science, space, computers, mathematics, and more! 🚀")
 
     # Restart button
-    col_restart, _ = st.columns([1, 9])
-    with col_restart:
-        if st.button("🔄 Restart Quiz", use_container_width=True):
+    col1, col2, col3 = st.columns([3, 3, 1])
+
+    with col1:
+        category_map = {
+            "Science & Nature": 17,
+            "General Knowledge": 9,
+            "Computers": 18,
+            "Mathematics": 19
+        }
+        category_choice = st.selectbox("🧬 Category", list(category_map.keys()), key="cat")
+
+    with col2:
+        difficulty = st.selectbox("🎯 Difficulty", ["Easy", "Medium", "Hard"], key="diff")  # Capitalized
+
+    with col3:
+        st.markdown("###")
+        if st.button("🔄", help="Restart Quiz"):
             for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
                 st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
             st.rerun()
@@ -1466,7 +1480,7 @@ elif st.session_state.active_tab == "❓ Quizzes":
         category_choice = st.selectbox("🧬 Category", list(category_map.keys()), key="cat")
 
     with col2:
-        difficulty = st.selectbox("🎯 Difficulty", ["Easy", "Medium", "Hard"], key="diff")  # Capitalized
+        difficulty = st.selectbox("🎯 Difficulty", ["Easy", "Medium", "Hard"], key="diff")
 
     with col3:
         st.markdown("###")
