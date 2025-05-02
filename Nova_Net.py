@@ -1425,18 +1425,21 @@ elif st.session_state.active_tab == "💬 Theories":
                         st.rerun()
 
 elif st.session_state.active_tab == "❓ Quizzes":
-    for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
+    # Initialize session state variables
+    for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered', 'start_time']:
         if key not in st.session_state:
             st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
 
     st.title("Science & Space Quiz")
     st.markdown("Test your knowledge of the cosmos, science, and space discoveries! 💫")
 
+    # Restart button
     if st.button("🔄 Restart Quiz"):
-        for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered']:
+        for key in ['quiz_started', 'score', 'question_num', 'quiz_done', 'current_q', 'answered', 'start_time']:
             st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
         st.rerun()
 
+    # Start screen
     if not st.session_state.quiz_started:
         col1, col2 = st.columns(2)
         with col1:
@@ -1454,6 +1457,7 @@ elif st.session_state.active_tab == "❓ Quizzes":
             st.session_state.quiz_started = True
             st.session_state.category_id = category_map[category_choice]
             st.session_state.difficulty = difficulty.lower()
+            st.session_state.start_time = time.time()
             st.rerun()
 
     elif not st.session_state.quiz_done:
@@ -1472,31 +1476,29 @@ elif st.session_state.active_tab == "❓ Quizzes":
                     return q, opts, correct
             return None, None, None
 
-    if 'start_time' not in st.session_state or st.session_state.start_time is None:
-        st.session_state.start_time = time.time()
+        question_duration = 15
+        if st.session_state.start_time is None:
+            st.session_state.start_time = time.time()
 
-    question_duration = 15
-    time_remaining = question_duration - int(time.time() - st.session_state.start_time)
-    if time_remaining < 0:
-        time_remaining = 0
+        time_remaining = question_duration - int(time.time() - st.session_state.start_time)
+        if time_remaining < 0:
+            time_remaining = 0
 
-
-    st.markdown(f"""
-        <script>
-            let countdown = {time_remaining};
-            const el = document.getElementById("timer");
-            const interval = setInterval(function() {{
-                if (countdown > 0) {{
-                    countdown--;
-                    document.getElementById("timer").innerText = "⏳ Time Left: " + countdown + " seconds";
-                }} else {{
-                    clearInterval(interval);
-                    document.getElementById("timer").innerText = "⏰ Time's up!";
-                }}
-            }}, 1000);
-        </script>
-        <h4 id="timer">⏳ Time Left: {time_remaining} seconds</h4>
-    """, unsafe_allow_html=True)
+        st.markdown(f"""
+            <script>
+                let countdown = {time_remaining};
+                const interval = setInterval(function() {{
+                    if (countdown > 0) {{
+                        countdown--;
+                        document.getElementById("timer").innerText = "⏳ Time Left: " + countdown + " seconds";
+                    }} else {{
+                        clearInterval(interval);
+                        document.getElementById("timer").innerText = "⏰ Time's up!";
+                    }}
+                }}, 1000);
+            </script>
+            <h4 id="timer">⏳ Time Left: {time_remaining} seconds</h4>
+        """, unsafe_allow_html=True)
 
         if st.session_state.current_q is None:
             q, opts, ans = fetch_question()
@@ -1507,13 +1509,12 @@ elif st.session_state.active_tab == "❓ Quizzes":
                 st.stop()
 
         q, opts, ans = st.session_state.current_q
-
         st.markdown(f"### Question {st.session_state.question_num + 1}")
         st.write(q)
 
         selected = st.radio("Choose your answer:", opts, index=None, key=f"q{st.session_state.question_num}")
 
-        if remaining <= 0 and not st.session_state.answered:
+        if time_remaining <= 0 and not st.session_state.answered:
             st.warning("⏰ Time's up! No answer submitted.")
             st.session_state.answered = True
 
@@ -1547,7 +1548,7 @@ elif st.session_state.active_tab == "❓ Quizzes":
             st.info("🌌 Great job! You know your science well.")
         else:
             st.warning("🛰️ Keep exploring. The universe has much to teach!")
-
+            
 elif st.session_state.active_tab == "🤖 AI Conversations":
     st.title("🤖 AI Conversations")
     st.markdown("Talk to Gemini AI about space, science, or anything cosmic!")
