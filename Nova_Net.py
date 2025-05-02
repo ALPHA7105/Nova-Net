@@ -7,7 +7,7 @@ import time
 import html
 import csv
 import os
-
+ 
 st.set_page_config(page_title="Nova Net", layout="wide", page_icon="💫")
 
 # NASA API key
