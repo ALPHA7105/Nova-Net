@@ -1456,8 +1456,13 @@ elif st.session_state.active_tab == "❓ Quizzes":
     with col3:
         start_clicked = st.button("🚀 Start Quiz")
 
-    if start_clicked:
+    if start_clicked and not st.session_state.quiz_started:
         st.session_state.quiz_started = True
+        st.session_state.quiz_done = False
+        st.session_state.score = 0
+        st.session_state.question_num = 0
+        st.session_state.current_q = None
+        st.session_state.answered = False
         st.session_state.category_id = category_map[category_choice]
         st.session_state.difficulty = difficulty.lower()
         st.rerun()
