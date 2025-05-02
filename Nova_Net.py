@@ -1441,6 +1441,15 @@ elif st.session_state.active_tab == "❓ Quizzes":
 
     # Start screen
     if not st.session_state.quiz_started:
+        st.markdown("""
+            ### 📜 Instructions
+            - Choose your preferred **category** and **difficulty** below.
+            - Each quiz contains **5 multiple-choice questions**.
+            - Click **"Start Quiz"** to begin.
+            - After selecting an answer, submit it and move to the next question.
+            - Your final score will be shown at the end. Good luck! 🚀
+        """)
+
         col1, col2 = st.columns(2)
         with col1:
             category_map = {
@@ -1451,12 +1460,13 @@ elif st.session_state.active_tab == "❓ Quizzes":
             }
             category_choice = st.selectbox("🧬 Category", list(category_map.keys()), key="cat")
         with col2:
-            difficulty = st.selectbox("🎯 Difficulty", ["easy", "medium", "hard"], key="diff")
+            difficulty_options = ["Easy", "Medium", "Hard"]
+            difficulty = st.selectbox("🎯 Difficulty", difficulty_options, key="diff")
 
         if st.button("🚀 Start Quiz"):
             st.session_state.quiz_started = True
             st.session_state.category_id = category_map[category_choice]
-            st.session_state.difficulty = difficulty.lower()
+            st.session_state.difficulty = difficulty.lower()  # Keep it lowercase for API use
             st.session_state.start_time = time.time()
             st.rerun()
 
