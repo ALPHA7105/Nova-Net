@@ -8,7 +8,7 @@ import html
 import csv
 import os
  
-st.set_page_config(page_title="Nova Net", layout="wide", page_icon="💫")
+st.set_page_config(page_title="NovaNet", layout="wide", page_icon="💫")
 
 # NASA API key
 API_KEY = "ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"  # Replace with your own key if needed
@@ -120,8 +120,66 @@ with col12:
 # Content display per tab
 st.markdown('<div class="main-content">', unsafe_allow_html=True)
 
-# Content for each tab
+
 if st.session_state.active_tab == "🏠 Home":
+    st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
+                    <h1>🌌 Welcome to NovaNet</h1>
+                    <p style='font-size:18px;'>Explore the universe from your screen – facts, missions, mysteries, and more, all powered by AI.</p>
+                  </div>""", unsafe_allow_html=True)
+
+    st.markdown("---")
+    st.markdown("""<div style='text-align: center; margin-top: 3rem;'>
+                <h1>📸 NASA's Astronomy Picture of the Day</h1>
+              </div>""", unsafe_allow_html=True)
+
+    apod = get_apod()
+    if apod:
+        st.markdown(f"""
+        <div style='text-align: center;'>
+            <img src="{apod["url"]}" alt="{apod["title"]}" style="max-width: 90%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+            <p style='margin-top: 1rem; font-weight: bold;'>{apod["title"]}</p>
+        </div>
+        """, unsafe_allow_html=True)
+    st.markdown(f"<p style='text-align: justify; margin-top: 1rem;'>{apod['explanation']}</p>", unsafe_allow_html=True)
+
+    st.markdown("---")
+
+    st.markdown("""<div style='text-align: center; margin-top: 3rem;'>
+                    <h2>🧭 Explore NovaNet Sections</h2>
+                  </div>""", unsafe_allow_html=True)
+
+    sections = [
+        ("🔍 Mysteries", "Uncover black holes, dark matter, time travel, and the biggest questions of the universe."),
+        ("🪐 Exoplanets", "Learn about new worlds beyond our solar system, how they're found, and if they could host life."),
+        ("🚀 Missions", "Dive into space missions from NASA, ISRO, and others — past, current, and future."),
+        ("⚙️ Tech", "Explore spacecraft, AI systems, suits, rovers, and futuristic technologies used in space."),
+        ("📰 News", "Stay up-to-date with launches, discoveries, and global space updates from around the world."),
+        ("💬 Theories", "Read and share public theories and ideas about space mysteries, aliens, and more."),
+        ("🧬 Astrobiology", "Explore how life might exist in space, what scientists look for, and where it could be found."),
+        ("⌛ Black Holes", "Dive deep into space-time, gravity, and how black holes bend the universe."),
+        ("❓ Quizzes", "Test your space knowledge with custom quizzes on science, missions, and more."),
+        ("🤖 AI Conversations", "Chat with Nova AI to ask space questions and get intelligent answers."),
+        ("📖 About", "Learn more about NovaNet, its features, and the team behind this AI-powered platform.")
+    ]
+
+    for title, desc in sections:
+        col1, col2 = st.columns([4, 1])
+        with col1:
+            st.markdown(f"### {title}")
+            st.markdown(f"<p style='color:#cccccc;'>{desc}</p>", unsafe_allow_html=True)
+        with col2:
+            if st.button(f"Go to {title}"):
+                st.session_state.active_tab = title
+
+    st.markdown("""
+    <br><br>
+    <div style='text-align: right; font-size:18px; margin-right: 30px;'>
+        <b>Start with: 🔍 Mysteries ➡️</b>
+    </div>
+    """, unsafe_allow_html=True)
+    
+# Content for each tab
+#if st.session_state.active_tab == "🏠 Home":
     st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
                     <h1>🌎 Home</h1>
                     <p style='text-align: center;'>Explore the universe from your screen – facts, features, and the wonders of space, all in one place.</p>
