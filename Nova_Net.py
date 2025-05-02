@@ -1489,12 +1489,12 @@ elif st.session_state.active_tab == "❓ Quizzes":
                 st.session_state[key] = False if key == 'quiz_started' else 0 if key in ['score', 'question_num'] else None
             st.rerun()
 
-        if st.button("🚀 Start Quiz"):
-            st.session_state.quiz_started = True
-            st.session_state.category_id = category_map[category_choice]
-            st.session_state.difficulty = difficulty.lower()
-            st.session_state.start_time = time.time()
-            st.rerun()
+    if st.button("🚀 Start Quiz"):
+        st.session_state.quiz_started = True
+        st.session_state.category_id = category_map[category_choice]
+        st.session_state.difficulty = difficulty.lower()
+        st.session_state.start_time = time.time()
+        st.rerun()
 
     elif not st.session_state.quiz_done:
         def fetch_question():
