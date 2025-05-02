@@ -112,7 +112,7 @@ with col10:
         st.session_state.active_tab = "❓ Quizzes"
 with col11:
     if st.button('🤖 AI Conversations'):
-        st.session_state.active_tab = "🤖 AI Conversations"
+        st.session_state.active_tab = "🤖 Nova AI"
 with col12:
     if st.button('📖 About'):
         st.session_state.active_tab = "📖 About"
@@ -1529,7 +1529,7 @@ elif st.session_state.active_tab == "❓ Quizzes":
         st.session_state.answered = False
             
 elif st.session_state.active_tab == "🤖 AI Conversations":
-    st.title("🤖 AI Conversations")
+    st.title("🤖 Nova AI")
     st.markdown("Talk to Gemini AI about space, science, or anything cosmic!")
 
 elif st.session_state.active_tab == "📖 About":
