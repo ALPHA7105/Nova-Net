@@ -1536,6 +1536,9 @@ elif st.session_state.active_tab == "📖 About":
     st.markdown("<h1 style='text-align: center;'>📖 About NovaNet</h1>", unsafe_allow_html=True)
 
     st.markdown("""
+
+    ---
+    
     ## 💫 Welcome to NovaNet
     Welcome to NovaNet, your ultimate portal into the universe. This isn't just a website—it's a living, breathing hub of discovery, built to spark curiosity and unlock the mysteries of space, science, and AI. Whether you're a student, a space enthusiast, or an aspiring scientist, NovaNet is designed to guide you through the wonders of the cosmos in an interactive and engaging way.
 
@@ -1754,7 +1757,7 @@ elif st.session_state.active_tab == "📖 About":
     ---
 
     ## 📞 Contact Us
-    We would love to hear from you! Whether you have a question about NovaNet, want to collaborate, or just want to share your thoughts about space, feel free to reach out.
+    I would love to hear from you! Whether you have a question about NovaNet, want to collaborate, or just want to share your thoughts about space, feel free to reach out.
 
     ### 📧 Email:
     You can email at: ssworld7105@gmail.com.
@@ -1765,7 +1768,7 @@ elif st.session_state.active_tab == "📖 About":
 
     st.markdown("""
     <div style='text-align: center;'>
-        <h3>🪐 Where Will You Go Next?</h3>
+        <h2>🪐 Where Will You Go Next?</h2>
         <p>The universe is vast, and your journey has only just begun. As you explore NovaNet, remember that every click, every discovery, and every theory you encounter is just another step in your adventure through the cosmos. The stars, the mysteries, and the wonders of space await you. Keep pushing your curiosity further, and who knows where your knowledge will take you next?</p>
         <p>Whether you're here to dive into black holes, chat with Nova AI, or share your own theories, remember:</p>
         <p><em>every great discovery starts with a question.</em></p>
