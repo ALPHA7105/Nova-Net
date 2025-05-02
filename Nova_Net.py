@@ -62,8 +62,8 @@ st.markdown("""
 
 
 st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
-            <h1 style='font-size: 60px;'>Welcome to NovaNet! 💫</h1>
-            <h3>Explore the wonders of the universe...</h3>
+            <h1 style='font-size: 60px;'>💫 NovaNet</h1>
+            <h3>Where curiosity meets the cosmos...</h3>
             <h2> </h2>
             </div>""", unsafe_allow_html=True)
 
@@ -71,7 +71,7 @@ st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
 tabs = [
     "🏠 Home", "🔍 Mysteries", "🪐 Exoplanets", "🚀 Missions",
     "⚙️ Tech", "📰 News", "💬 Theories", "🧬 Astrobiology",
-    "⌛ Black Holes", "❓ Quizzes", "🤖 AI Conversations", "📖 About"
+    "⌛ Black Holes", "❓ Quizzes", "🤖 Nova AI", "📖 About"
 ]
 
 # Create buttons to switch tabs
@@ -111,7 +111,7 @@ with col10:
     if st.button('❓ Quizzes'):
         st.session_state.active_tab = "❓ Quizzes"
 with col11:
-    if st.button('🤖 AI Conversations'):
+    if st.button('🤖 Nova AI'):
         st.session_state.active_tab = "🤖 Nova AI"
 with col12:
     if st.button('📖 About'):
@@ -123,10 +123,114 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 
 if st.session_state.active_tab == "🏠 Home":
     st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
-                    <h1>🌌 Welcome to NovaNet</h1>
-                    <p style='font-size:18px;'>Explore the universe from your screen – facts, missions, mysteries, and more, all powered by AI.</p>
+                    <h1>🌎 Home</h1>
+                    <p style='text-align: center;'>Explore the wonders of the universe, all in one place.</p>
                   </div>""", unsafe_allow_html=True)
 
+    # Add a cool background for the "Home" section, including an image for impact
+    st.markdown("""
+        <style>
+            .home-section {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #000000;
+                padding: 50px 5%;
+                color: white;
+            }
+            .home-text {
+                flex: 1;
+                padding-right: 50px;
+                text-align: left;
+            }
+            .home-image {
+                flex: 1;
+             max-width: 50%;
+             border-radius: 12px;
+             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            }
+            .home-section h1 {
+                font-size: 3rem;
+                font-weight: 700;
+            }
+            .home-section p {
+                font-size: 1.2rem;
+                margin-top: 1rem;
+            }
+        </style>
+        <div class="home-section">
+            <div class="home-text">
+                <h1>Welcome to NovaNet</h1>
+                <p>Explore the universe through breathtaking visuals, dive deep into the mysteries of space, and discover the latest space technologies and theories.</p>
+            </div>
+            <div class="home-image">
+                <img src="https://api.nasa.gov/planetary/apod?api_key=ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto" alt="Astronomy Picture of the Day" style="width: 100%; height: auto;">
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
+
+
+    st.markdown("---")
+
+    st.markdown("""<div style='text-align: center; margin-top: 3rem;'>
+                    <h2>🧭 Explore NovaNet Sections</h2>
+                  </div>""", unsafe_allow_html=True)
+    sections = [
+        ("🔍 Mysteries", """
+        The universe is full of mysteries that challenge our understanding of physics and reality. In this section, you’ll uncover the most intriguing phenomena like black holes, dark matter, and the possibility of time travel. Learn how these concepts have revolutionized our view of the cosmos and why they remain some of the most perplexing questions in science today.
+        Explore the latest theories and ideas, and venture into the unknown, where answers may be waiting in the depths of space.
+        """),
+        ("🪐 Exoplanets", """
+        Exoplanets are planets that orbit stars outside our solar system, and they come in a wide variety of forms, from rocky worlds to gas giants. In this section, we delve into the discovery of exoplanets, how scientists detect them, and what makes them so fascinating. You’ll also learn about the ongoing search for planets that might harbor life, and the methods astronomers use to study these distant worlds.
+        Could one of these exoplanets be Earth’s twin? Find out in this comprehensive guide to new worlds beyond our solar system.
+        """),
+        ("🚀 Missions", """
+        Space missions have brought humanity to the Moon, Mars, and beyond. From the historic Apollo landings to the cutting-edge Perseverance Rover on Mars, this section provides a deep dive into the missions that have shaped space exploration. Learn about past missions, current endeavors, and what the future holds for space exploration. We also highlight the achievements of space agencies like NASA, ISRO, and private companies.
+        Follow the journey of humanity’s attempts to explore and understand the cosmos.
+        """),
+        ("⚙️ Tech", """
+        Space exploration relies on the most advanced technologies humanity has ever created. In this section, we explore the tools and innovations that make space missions possible: spacecraft, space suits, artificial intelligence systems, and even futuristic propulsion technologies. Discover how engineers and scientists are constantly pushing the boundaries of what’s possible, from building habitats for future space colonies to creating robots that can explore alien worlds.
+        Dive into the technologies that are enabling humanity’s quest to explore the final frontier.
+        """),
+        ("🧬 Astrobiology", """
+        Astrobiology is the study of life in the universe, including the search for extraterrestrial life. This section explores the science behind the search for life beyond Earth, what conditions are necessary for life to exist, and how scientists are searching for biosignatures in space. Whether it’s investigating the icy moons of Jupiter or the dusty surface of Mars, astrobiologists are on the front lines of one of humanity’s most exciting quests.
+        Learn how researchers are working to answer the profound question: Are we alone in the universe?
+        """),
+        ("⌛ Black Holes", """
+        Black holes are among the most fascinating and enigmatic objects in the universe. In this section, we explore how black holes form, their impact on time and space, and the mysteries of their event horizons. Learn about the cutting-edge research and observations that help scientists understand these extreme environments, and what we might discover in the future about the nature of black holes and their role in the cosmos.
+        Explore the intersection of gravity, space-time, and the unknown within the universe's darkest regions.
+        """),
+        ("📰 News", """
+        Stay up-to-date with the latest in the world of space exploration, from rocket launches to groundbreaking discoveries. This section is dedicated to delivering the most recent space news and events from around the globe, with updates from NASA, private space companies, and international space agencies. Whether it’s the launch of a new satellite or the discovery of a new exoplanet, you’ll always be in the loop with the freshest space news.
+        Keep yourself informed and stay ahead with the latest developments in space science and technology.
+        """),
+        ("💬 Theories", """
+        Space is a realm full of speculation and ideas that have yet to be proven. In this section, you’ll find space theories from both experts and enthusiasts, ranging from speculative concepts about alien civilizations to more grounded theories about the nature of black holes. Theories can spark discussions, challenge established ideas, and even inspire new lines of scientific investigation.
+        Engage with a community of thinkers and contribute your own ideas to the ever-expanding conversation about the universe.
+        """),
+        ("❓ Quizzes", """
+        How much do you really know about space? Test your knowledge with fun and challenging quizzes on topics ranging from space missions to black holes and beyond. Whether you’re a beginner or a space expert, these quizzes are designed to challenge your understanding of the universe while offering an engaging way to learn.
+        Sharpen your space knowledge and challenge your friends while discovering new facts about the cosmos.
+        """),
+        ("🤖 AI Conversations", """
+        Curious about space but have questions? Chat with Nova AI, your friendly space assistant, to get intelligent answers to your cosmic queries. Nova AI is designed to help you navigate the vastness of space knowledge and provide answers about everything from star systems to the potential for life beyond Earth.
+        Engage in interactive conversations and dive into space topics in a way that’s both educational and entertaining.
+        """),
+        ("📖 About", """
+        NovaNet is a platform built to make space knowledge accessible to everyone. Whether you’re an aspiring scientist, an enthusiast, or just curious about the cosmos, NovaNet offers a comprehensive suite of resources and tools to satisfy your curiosity. Learn about the history of space exploration, the technologies behind space missions, and much more. With interactive features, live news, and AI-driven conversations, NovaNet is your one-stop hub for space learning.
+        Discover more about the team and the mission behind this space knowledge platform.
+        """)
+    ]
+
+    for title, desc in sections:
+        col1, col2 = st.columns([4, 1])
+        with col1:
+            st.markdown(f"### {title}")
+            st.markdown(f"<p style='color:#cccccc;'>{desc}</p>", unsafe_allow_html=True)
+        with col2:
+            if st.button(f"Go to {title}"):
+                st.session_state.active_tab = title
     st.markdown("---")
     st.markdown("""<div style='text-align: center; margin-top: 3rem;'>
                 <h1>📸 NASA's Astronomy Picture of the Day</h1>
@@ -141,35 +245,6 @@ if st.session_state.active_tab == "🏠 Home":
         </div>
         """, unsafe_allow_html=True)
     st.markdown(f"<p style='text-align: justify; margin-top: 1rem;'>{apod['explanation']}</p>", unsafe_allow_html=True)
-
-    st.markdown("---")
-
-    st.markdown("""<div style='text-align: center; margin-top: 3rem;'>
-                    <h2>🧭 Explore NovaNet Sections</h2>
-                  </div>""", unsafe_allow_html=True)
-
-    sections = [
-        ("🔍 Mysteries", "Uncover black holes, dark matter, time travel, and the biggest questions of the universe."),
-        ("🪐 Exoplanets", "Learn about new worlds beyond our solar system, how they're found, and if they could host life."),
-        ("🚀 Missions", "Dive into space missions from NASA, ISRO, and others — past, current, and future."),
-        ("⚙️ Tech", "Explore spacecraft, AI systems, suits, rovers, and futuristic technologies used in space."),
-        ("📰 News", "Stay up-to-date with launches, discoveries, and global space updates from around the world."),
-        ("💬 Theories", "Read and share public theories and ideas about space mysteries, aliens, and more."),
-        ("🧬 Astrobiology", "Explore how life might exist in space, what scientists look for, and where it could be found."),
-        ("⌛ Black Holes", "Dive deep into space-time, gravity, and how black holes bend the universe."),
-        ("❓ Quizzes", "Test your space knowledge with custom quizzes on science, missions, and more."),
-        ("🤖 AI Conversations", "Chat with Nova AI to ask space questions and get intelligent answers."),
-        ("📖 About", "Learn more about NovaNet, its features, and the team behind this AI-powered platform.")
-    ]
-
-    for title, desc in sections:
-        col1, col2 = st.columns([4, 1])
-        with col1:
-            st.markdown(f"### {title}")
-            st.markdown(f"<p style='color:#cccccc;'>{desc}</p>", unsafe_allow_html=True)
-        with col2:
-            if st.button(f"Go to {title}"):
-                st.session_state.active_tab = title
 
     st.markdown("""
     <br><br>
