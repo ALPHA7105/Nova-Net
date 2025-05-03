@@ -60,27 +60,24 @@ tabs = [
 ]
 
 # Create buttons to switch tabs
-tab_container = st.columns([1, 1, 1, 1, 1, 1, 1])
+col1, col2, col3, col4, col5, col6 = st.columns(6)
 
-with tab_container[0]:
-    st.markdown("<h4 style='margin: 0; padding-top: 0.3rem;'>🌌 <b>NovaNet</b></h4>", unsafe_allow_html=True)
-
-with tab_container[1]:
+with col1:
     if st.button("🏠 Home"):
         st.session_state.active_tab = "🏠 Home"
-with tab_container[2]:
+with col2:
     if st.button("🔍 Mysteries"):
         st.session_state.active_tab = "🔍 Mysteries"
-with tab_container[3]:
+with col3:
     if st.button("🪐 Exoplanets"):
         st.session_state.active_tab = "🪐 Exoplanets"
-with tab_container[4]:
+with col4:
     if st.button("🚀 Missions"):
         st.session_state.active_tab = "🚀 Missions"
-with tab_container[5]:
+with col5:
     if st.button("⚙️ Tech"):
         st.session_state.active_tab = "⚙️ Tech"
-with tab_container[6]:
+with col6:
     if st.button("🧬 Astrobiology"):
         st.session_state.active_tab = "🧬 Astrobiology"
 
