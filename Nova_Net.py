@@ -23,42 +23,42 @@ if "active_tab" not in st.session_state:
     st.session_state.active_tab = "🏠 Home"
 
 st.markdown("""
-<style>
-/* Black background with starry dots */
-body {
-    background-color: black;
-    color: white;
-}
+    <style>
+    .stButton > button {
+        background-color: black !important;
+        color: white !important;
+        padding: 1rem 2rem;
+        font-size: 18px;
+        font-weight: 600;
+        border: 2px solid #444 !important;  /* Dark gray border */
+        border-radius: 12px;
+        cursor: pointer;
+        transition: color 0.3s ease, border-color 0.3s ease;
+        width: 100%;
+    }
 
-/* Twinkling star layer */
-.starry-bg::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: radial-gradient(white 1px, transparent 1px);
-    background-size: 4px 4px;
-    opacity: 0.15;
-    z-index: -1;
-    animation: twinkle 4s infinite;
-}
+    .stButton > button:hover {
+        color: #1a73e8 !important;  /* Blue text on hover */
+        border-color: #1a73e8 !important;  /* Optional: Blue border on hover */
+    }
 
-@keyframes twinkle {
-    0%, 100% { opacity: 0.15; }
-    50% { opacity: 0.25; }
-}
-
-/* Apply background only to main content */
-main.stApp {
-    background-color: black !important;
-    position: relative;
-}
-
-</style>
-<div class='starry-bg'></div>
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 2rem;
+    }
+    .center-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 2rem;
+    }
+    </style>
 """, unsafe_allow_html=True)
 
-# Add the CSS for styling
 
 
 
@@ -127,72 +127,93 @@ if st.session_state.active_tab == "🏠 Home":
 
     st.markdown("""
     <style>
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+    /* Apply starry background only to this div */
+    .starry-container {
+        background-color: black;
+        background-image: 
+            radial-gradient(white 1px, transparent 1px),
+            radial-gradient(white 1px, transparent 1px);
+        background-size: 4px 4px, 6px 6px;
+        background-position: 0 0, 3px 3px;
+        animation: twinkle 6s ease-in-out infinite;
+        padding: 3rem 1rem;
+        border-radius: 12px;
+        position: relative;
+        overflow: hidden;
     }
 
-    .starry-section {
-        background-image: url("https://t4.ftcdn.net/jpg/09/13/31/61/360_F_913316191_mVCQ7W1Q8DTNRRlrzrq7gBZVBTkHZVUx.jpg");
-        background-size: cover;
-        background-position: center;
-        padding: 4rem 2rem;
-        border-radius: 15px;
-        box-shadow: 0 4px 30px rgba(0,0,0,0.7);
+    @keyframes twinkle {
+        0%, 100% {
+            opacity: 0.15;
+        }
+        50% {
+            opacity: 0.25;
+        }
+    }
+
+    .starry-title {
+        text-align: left;
+        padding: 2rem;
         color: white;
-        margin-bottom: 3rem;
     }
 
-    .content-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        animation: fadeIn 1.5s ease-out;
+    .starry-title h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
     }
 
-    .left-side {
-        flex: 1;
-        min-width: 260px;
-        padding-right: 2rem;
-        animation: fadeIn 2s ease-out;
-    }
-
-    .left-side h1 {
-        font-size: 2.8rem;
-        margin-bottom: 1rem;
-    }
-
-    .left-side p {
-        font-size: 1.1rem;
+    .starry-title p {
+        font-size: 1.2rem;
         line-height: 1.6;
+        color: #cccccc;
     }
 
-    .right-side {
-        flex: 1;
+    .starry-image {
         text-align: center;
-        min-width: 260px;
-        animation: fadeIn 2s ease-out;
+        padding: 2rem;
     }
 
-    .right-side img {
-        max-width: 80%;
-        border-radius: 10px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+    .starry-image img {
+        border-radius: 16px;
+        max-width: 100%;
+        height: auto;
+        box-shadow: 0 4px 16px rgba(255,255,255,0.2);
     }
 
-    @media (max-width: 768px) {
-        .content-wrapper {
-            flex-direction: column;
+    @media (min-width: 768px) {
+        .starry-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .left-side, .right-side {
-            padding: 1rem 0;
+        .starry-title, .starry-image {
+            flex: 1;
+        }
+
+        .starry-title {
+            padding-right: 2rem;
+        }
+
+        .starry-image {
+            padding-left: 2rem;
         }
     }
     </style>
-    """, unsafe_allow_html=True)
 
+    <div class="starry-container">
+        <div class="starry-flex">
+            <div class="starry-title">
+                <h1>🚀 Welcome to NovaNet</h1>
+                <p>Explore the wonders of space — from black holes and exoplanets to missions, mysteries, and the future of interstellar discovery. NovaNet is your all-in-one hub to learn, discover, and experience the universe.</p>
+            </div>
+            <div class="starry-image">
+                <img src="https://t4.ftcdn.net/jpg/09/13/31/61/360_F_913316191_mVCQ7W1Q8DTNRRlrzrq7gBZVBTkHZVUx.jpg" alt="Starry Background">
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
     # Home Intro + APOD
     st.markdown(f"""
     <div class='starry-section'>
