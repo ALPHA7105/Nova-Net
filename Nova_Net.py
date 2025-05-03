@@ -136,7 +136,7 @@ if st.session_state.active_tab == "🏠 Home":
     if apod:
         st.markdown(f"""
         <div style='text-align: center;'>
-            <img src="{apod["url"]}" alt="{apod["title"]}" style="max-width: 60%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+            <img src="{apod["url"]}" alt="{apod["title"]}" style="max-width: 40%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
             <p style='margin-top: 1rem; font-weight: bold; font-size: 1.2rem;'>{apod["title"]}</p>
         </div>
         """, unsafe_allow_html=True)
