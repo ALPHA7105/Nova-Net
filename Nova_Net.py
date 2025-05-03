@@ -124,51 +124,68 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 if st.session_state.active_tab == "🏠 Home":
     apod = get_apod()
 
-    # Starry background and intro section CSS
+    # CSS for starry background and layout
     st.markdown("""
     <style>
     .starry-section {
-        background: url('https://images.unsplash.com/photo-1604242692760-3e545f61568e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center;
+        background-image: url("https://images.unsplash.com/photo-1476610182048-b716b8518aae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80");
         background-size: cover;
+        background-position: center;
         padding: 4rem 2rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        border-radius: 15px;
+        box-shadow: 0 4px 30px rgba(0,0,0,0.7);
         color: white;
         margin-bottom: 3rem;
     }
+
     .content-wrapper {
         display: flex;
         flex-wrap: wrap;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
     }
+
     .left-side {
         flex: 1;
-        min-width: 280px;
+        min-width: 260px;
         padding-right: 2rem;
     }
+
     .left-side h1 {
-        font-size: 3rem;
+        font-size: 2.8rem;
         margin-bottom: 1rem;
     }
+
     .left-side p {
-        font-size: 1.2rem;
-        line-height: 1.6;
+        font-size: 1.1rem;
+        line-height: 1.5;
     }
+
     .right-side {
         flex: 1;
         text-align: center;
-        min-width: 280px;
+        min-width: 260px;
     }
+
     .right-side img {
-        max-width: 100%;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+        max-width: 90%;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 768px) {
+        .content-wrapper {
+            flex-direction: column;
+        }
+
+        .left-side, .right-side {
+            padding: 1rem 0;
+        }
     }
     </style>
     """, unsafe_allow_html=True)
 
-    # Hero Section: NovaNet Intro + APOD
+    # Intro + APOD
     st.markdown(f"""
     <div class='starry-section'>
         <div class='content-wrapper'>
@@ -184,8 +201,9 @@ if st.session_state.active_tab == "🏠 Home":
     </div>
     """, unsafe_allow_html=True)
 
-    # Section: APOD Explanation
-    st.markdown(f"<p style='text-align: justify; margin-top: -2rem;'>{apod['explanation']}</p>", unsafe_allow_html=True)
+    # APOD Explanation
+    st.markdown(f"<p style='text-align: justify;'>{apod['explanation']}</p>", unsafe_allow_html=True)
+
 
     
 # Content for each tab
