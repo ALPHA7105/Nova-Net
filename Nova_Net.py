@@ -130,11 +130,10 @@ if st.session_state.active_tab == "🏠 Home":
     /* Apply starry background only to this div */
     .starry-container {
         background-color: black;
-        background-image: 
-            radial-gradient(#ffffff 1.2px, transparent 1.2px),
-            radial-gradient(#ffffff 1.2px, transparent 1.2px);
-        background-size: 5px 5px, 8px 8px;
-        background-position: 0 0, 3px 3px;
+        background-image: url('https://cdn.wallpapersafari.com/14/35/NMGjSr.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         animation: twinkle 6s ease-in-out infinite;
         padding: 3rem 1rem;
         border-radius: 12px;
