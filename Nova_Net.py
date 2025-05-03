@@ -1489,7 +1489,7 @@ elif st.session_state.active_tab == "❓ Quizzes":
 elif st.session_state.active_tab == "🤖 Nova AI":
     st.title("🤖 Nova AI")
     st.markdown("Talk to Nova AI about space, science, or anything cosmic!")
-    st.markdown("🚧 <strong>This section is under development, please come back later</strong> 🛠️")
+    st.markdown("🚧 *This section is under development, please come back later* 🛠️")
 
 elif st.session_state.active_tab == "📖 About":
     st.markdown("<h1 style='text-align: center;'>📖 About NovaNet</h1>", unsafe_allow_html=True)
