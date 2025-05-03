@@ -60,25 +60,28 @@ tabs = [
 ]
 
 # Create buttons to switch tabs
-col1, col2, col3, col4, col5, col6 = st.columns(6)
+tab_container = st.columns([1, 1, 1, 1, 1, 1, 1])
 
-with col1:
-    if st.button('🏠 Home'):
+with tab_container[0]:
+    st.markdown("<h4 style='margin: 0; padding-top: 0.3rem;'>🌌 <b>NovaNet</b></h4>", unsafe_allow_html=True)
+
+with tab_container[1]:
+    if st.button("🏠 Home"):
         st.session_state.active_tab = "🏠 Home"
-with col2:
-    if st.button('🔍 Mysteries'):
+with tab_container[2]:
+    if st.button("🔍 Mysteries"):
         st.session_state.active_tab = "🔍 Mysteries"
-with col3:
-    if st.button('🪐 Exoplanets'):
+with tab_container[3]:
+    if st.button("🪐 Exoplanets"):
         st.session_state.active_tab = "🪐 Exoplanets"
-with col4:
-    if st.button('🚀 Missions'):
+with tab_container[4]:
+    if st.button("🚀 Missions"):
         st.session_state.active_tab = "🚀 Missions"
-with col5:
-    if st.button('⚙️ Tech'):
+with tab_container[5]:
+    if st.button("⚙️ Tech"):
         st.session_state.active_tab = "⚙️ Tech"
-with col6:
-    if st.button('🧬 Astrobiology'):
+with tab_container[6]:
+    if st.button("🧬 Astrobiology"):
         st.session_state.active_tab = "🧬 Astrobiology"
 
 col7, col8, col9, col10, col11, col12 = st.columns(6)
@@ -109,11 +112,14 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 
 if st.session_state.active_tab == "🏠 Home":
 
-    st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
-            <h1 style='font-size: 60px;'>💫 NovaNet</h1>
-            <h3>Where curiosity meets the cosmos...</h3>
-            <h2> </h2>
-            </div>""", unsafe_allow_html=True)
+    st.markdown("""
+        <div style='text-align: center; margin-top: 1rem;'>
+            <h1 style='font-size: 60px; margin-bottom: 0;'>💫 NovaNet</h1>
+            <h3 style='margin-top: 0;'>Where curiosity meets the cosmos...</h3>
+        </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("---")
     
     API_KEY = "ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
 
