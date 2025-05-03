@@ -153,7 +153,7 @@ if st.session_state.active_tab == "🏠 Home":
     if apods:
         apod = apods[current]
         st.markdown(f"<h2 style='text-align:center;'>{apod['title']}</h2>", unsafe_allow_html=True)
-        st.image(apod['url'], use_column_width=True, caption=apod.get("date", ""))
+        st.image(apod['url'], use_container_width=True, caption=apod.get("date", ""))
         st.markdown(f"<p style='text-align:justify; color:#cccccc;'>{apod['explanation']}</p>", unsafe_allow_html=True)
 
         # Carousel controls
