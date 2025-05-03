@@ -1716,7 +1716,7 @@ elif st.session_state.active_tab == "📖 About":
 
     ### 📧 Email:
     You can email at: ssworld7105@gmail.com.
-    ### Phone:
+    ### 📱 Phone:
     Or you can call or whatsapp at: +971563711020
 
     ---
