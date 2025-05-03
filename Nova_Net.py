@@ -135,93 +135,35 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 
 if st.session_state.active_tab == "🏠 Home":
     st.markdown("""
-    <style>
-    body {
-        background-color: black;
-    }
-    .star-bg {
-        position: relative;
-        background: black;
-        overflow: hidden;
-        padding: 5rem 2rem 2rem 2rem;
-    }
-    .star-bg::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background-image: radial-gradient(white 1px, transparent 1px);
-        background-size: 3px 3px;
-        opacity: 0.3;
-        animation: moveStars 60s linear infinite;
-        z-index: 0;
-    }
-    @keyframes moveStars {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-100%); }
-    }
-    .welcome-content {
-        z-index: 1;
-        position: relative;
-        text-align: center;
-        color: white;
-        margin-bottom: 3rem;
-    }
-    .apod-carousel {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-    }
-    .apod-card {
-        max-width: 300px;
-        text-align: center;
-        color: #ddd;
-        border-radius: 12px;
-        padding: 1rem;
-        background-color: #111;
-        box-shadow: 0 4px 12px rgba(255,255,255,0.1);
-    }
-    .apod-card img {
-        max-width: 100%;
-        border-radius: 12px;
-        margin-bottom: 0.5rem;
-    }
-    .frozen-time {
-        margin-top: 4rem;
-        color: white;
-        text-align: center;
-        padding: 2rem;
-        background: rgba(255,255,255,0.05);
-        border-radius: 16px;
-    }
-    </style>
+      <div class="welcome-content">
+          <h1>🌌 Welcome to NovaNet</h1>
+          <p>Discover the secrets of the cosmos — mysteries, missions, exoplanets, and beyond. NovaNet brings the universe to your fingertips.</p>
+      </div>
     """, unsafe_allow_html=True)
 
-    # Welcome Section with Starry Background
-    st.markdown("""
-    <div class="star-bg">
-        <div class="welcome-content">
-            <h1>🌌 Welcome to NovaNet</h1>
-            <p>Discover the secrets of the cosmos — mysteries, missions, exoplanets, and beyond. NovaNet brings the universe to your fingertips.</p>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+    # Load the APODs
+    apods = get_last_apods(3)
 
-    # Astronomy Picture Carousel
-    st.markdown("<h2 style='text-align: center; color: white;'>📸 Latest NASA APODs</h2>", unsafe_allow_html=True)
-    apods = get_last_apods()
+    # Initialize carousel index
+    if "carousel_index" not in st.session_state:
+        st.session_state.carousel_index = 0
 
+    # Show current APOD
+    current = st.session_state.carousel_index
     if apods:
-        st.markdown("<div class='apod-carousel'>", unsafe_allow_html=True)
-        for apod in apods:
-            st.markdown(f"""
-            <div class='apod-card'>
-                <img src="{apod['url']}" alt="{apod['title']}">
-                <h4>{apod['title']}</h4>
-            </div>
-            """, unsafe_allow_html=True)
-        st.markdown("</div>", unsafe_allow_html=True)
+        apod = apods[current]
+        st.markdown(f"<h2 style='text-align:center;'>{apod['title']}</h2>", unsafe_allow_html=True)
+        st.image(apod['url'], use_column_width=True, caption=apod.get("date", ""))
+        st.markdown(f"<p style='text-align:justify; color:#cccccc;'>{apod['explanation']}</p>", unsafe_allow_html=True)
+
+        # Carousel controls
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("⬅️ Previous"):
+                st.session_state.carousel_index = (current - 1) % len(apods)
+        with col2:
+            if st.button("Next ➡️"):
+                st.session_state.carousel_index = (current + 1) % len(apods)
 
     # Frozen Time Feature
     st.markdown("""
