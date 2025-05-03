@@ -51,6 +51,15 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+    <div style='text-align: center; margin-top: 1rem;'>
+        <h1 style='font-size: 60px; margin-bottom: 0;'>💫 NovaNet</h1>
+        <h3 style='margin-top: 0;'>Where curiosity meets the cosmos...</h3>
+    </div>
+""", unsafe_allow_html=True)
+
+    st.markdown("---")
+
 
 # Tab names
 tabs = [
@@ -108,15 +117,6 @@ st.markdown("---")
 st.markdown('<div class="main-content">', unsafe_allow_html=True)
 
 if st.session_state.active_tab == "🏠 Home":
-
-    st.markdown("""
-        <div style='text-align: center; margin-top: 1rem;'>
-            <h1 style='font-size: 60px; margin-bottom: 0;'>💫 NovaNet</h1>
-            <h3 style='margin-top: 0;'>Where curiosity meets the cosmos...</h3>
-        </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("---")
     
     API_KEY = "ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
 
