@@ -128,7 +128,7 @@ if st.session_state.active_tab == "🏠 Home":
     st.markdown("""
     <style>
     .starry-section {
-        background-image: url("https://images.unsplash.com/photo-1476610182048-b716b8518aae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80");
+        background-image: url("https://www.google.com/imgres?q=starry%20bg%20img&imgurl=https%3A%2F%2Ft4.ftcdn.net%2Fjpg%2F09%2F13%2F31%2F61%2F360_F_913316191_mVCQ7W1Q8DTNRRlrzrq7gBZVBTkHZVUx.jpg&imgrefurl=https%3A%2F%2Fstock.adobe.com%2Fsearch%3Fk%3Dstarry%2Bbackground&docid=JDaC0yt30o5eHM&tbnid=cHMiEU3go-W9ZM&vet=12ahUKEwipz_D1zYaNAxW3_7sIHUmIG0UQM3oFCIABEAA..i&w=541&h=360&hcb=2&ved=2ahUKEwipz_D1zYaNAxW3_7sIHUmIG0UQM3oFCIABEAA");
         background-size: cover;
         background-position: center;
         padding: 4rem 2rem;
