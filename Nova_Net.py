@@ -1497,8 +1497,8 @@ elif st.session_state.active_tab == "📖 About":
 
     ---
     
-    ## 💫 Welcome to NovaNet
-    Welcome to NovaNet, your ultimate portal into the universe. This isn't just a website—it's a living, breathing hub of discovery, built to spark curiosity and unlock the mysteries of space, science, and AI. Whether you're a student, a space enthusiast, or an aspiring scientist, NovaNet is designed to guide you through the wonders of the cosmos in an interactive and engaging way.
+    ## 💫 What is NovaNet?
+    NovaNet is your ultimate portal into the universe. This isn't just a website—it's a living, breathing hub of discovery, built to spark curiosity and unlock the mysteries of space, science, and AI. Whether you're a student, a space enthusiast, or an aspiring scientist, NovaNet is designed to guide you through the wonders of the cosmos in an interactive and engaging way.
 
     With beautifully organized sections covering everything from black holes to alien life, real-world missions to futuristic tech, NovaNet connects the dots between imagination and knowledge. You can dive into the unknown, test your theories, learn through smart quizzes, and even chat with Nova AI, your intelligent guide through this cosmic journey.
 
@@ -1506,7 +1506,7 @@ elif st.session_state.active_tab == "📖 About":
 
     ---
 
-    ## 👦 The Story
+    ## 👦 The Story Behind It
     Hi, I’m Sarvesh Kore, a 13-year-old explorer of science, technology, and the stars. Ever since I was little, I’ve been fascinated by the mysteries of space—how black holes warp time, what lies beyond our galaxy, and whether we’re truly alone in the universe. These questions didn’t just stay in my head—they became a mission.
 
     I created NovaNet as part of the ADNOC ENERGYai Challenge, but it’s more than just a competition entry. It’s a reflection of my passion for learning and my dream of building tools that could help others fall in love with science too. I started with simple ideas and turned them into code, using tools like Python, Scratch, and APIs to bring NovaNet to life.
@@ -1716,6 +1716,8 @@ elif st.session_state.active_tab == "📖 About":
 
     ### 📧 Email:
     You can email at: ssworld7105@gmail.com.
+    ### Phone:
+    Or you can call or whatsapp at: +971563711020
 
     ---
     
