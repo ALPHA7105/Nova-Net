@@ -11,14 +11,6 @@ import os
 
 st.set_page_config(page_title="NovaNet", layout="wide", page_icon="💫")
 
-# NASA API key
-API_KEY = "ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
-
-def get_apod():
-    url = f"https://api.nasa.gov/planetary/apod?api_key=ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
-    response = requests.get(url)
-    return response.json()
-
 if "active_tab" not in st.session_state:
     st.session_state.active_tab = "🏠 Home"
 
@@ -59,14 +51,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-
-
-
-st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
-            <h1 style='font-size: 60px;'>💫 NovaNet</h1>
-            <h3>Where curiosity meets the cosmos...</h3>
-            <h2> </h2>
-            </div>""", unsafe_allow_html=True)
 
 # Tab names
 tabs = [
@@ -118,10 +102,26 @@ with col12:
     if st.button('📖 About'):
         st.session_state.active_tab = "📖 About"
 
+st.markdown("---")
+
 # Content display per tab
 st.markdown('<div class="main-content">', unsafe_allow_html=True)
 
 if st.session_state.active_tab == "🏠 Home":
+
+    st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
+            <h1 style='font-size: 60px;'>💫 NovaNet</h1>
+            <h3>Where curiosity meets the cosmos...</h3>
+            <h2> </h2>
+            </div>""", unsafe_allow_html=True)
+    
+    API_KEY = "ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
+
+    def get_apod():
+        url = f"https://api.nasa.gov/planetary/apod?api_key=ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
+        response = requests.get(url)
+        return response.json()
+        
     st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
                     <h1>🌎 Home</h1>
                     <p style='text-align: center;'>Explore the universe from your screen – facts, features, and the wonders of space, all in one place.</p>
