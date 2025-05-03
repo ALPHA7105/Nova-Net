@@ -22,9 +22,45 @@ def get_apod():
 if "active_tab" not in st.session_state:
     st.session_state.active_tab = "🏠 Home"
 
-# Add the CSS for styling
 st.markdown("""
-    <style>
+<style>
+/* Black background with starry dots */
+body {
+    background-color: black;
+    color: white;
+}
+
+/* Twinkling star layer */
+.starry-bg::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(white 1px, transparent 1px);
+    background-size: 4px 4px;
+    opacity: 0.15;
+    z-index: -1;
+    animation: twinkle 4s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.25; }
+}
+
+/* Apply background only to main content */
+main.stApp {
+    background-color: black !important;
+    position: relative;
+}
+
+</style>
+<div class='starry-bg'></div>
+""", unsafe_allow_html=True)
+
+# Add the CSS for styling
+#st.markdown("""
+   # <style>
     .stButton > button {
         background-color: black !important;
         color: white !important;
