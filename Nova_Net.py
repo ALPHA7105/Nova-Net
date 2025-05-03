@@ -123,101 +123,106 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 
 
 if st.session_state.active_tab == "🏠 Home":
-    apod = get_apod()
-
     st.markdown("""
-    <style>
-    /* Apply starry background only to this div */
-    .starry-container {
-        background-color: black;
-        background-image: url('https://cdn.wallpapersafari.com/14/35/NMGjSr.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        animation: twinkle 6s ease-in-out infinite;
-        padding: 3rem 1rem;
-        border-radius: 12px;
-        position: relative;
-        overflow: hidden;
-    }
+        <style>
+            body {
+                background-color: #000000;
+                color: #ffffff;
+            }
+            .home-section {
+                text-align: center;
+                padding: 2rem 1rem;
+            }
+            .home-section h1, .home-section h2, .home-section h3, .home-section h4 {
+                color: #ffffff;
+                text-shadow: 2px 2px 5px #222;
+            }
+            .home-section p {
+                font-size: 1.1rem;
+                color: #dddddd;
+                max-width: 700px;
+                margin: 0 auto 1rem auto;
+            }
+            .apod-img {
+                max-width: 90%;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+                margin-top: 1rem;
+            }
+        </style>
+    """, unsafe_allow_html=True)
 
-    @keyframes twinkle {
-        0%, 100% {
-            opacity: 0.1;
-        }
-        50% {
-            opacity: 0.4;
-        }
-    }
-
-    .starry-title p {
-        font-size: 1.2rem;
-        line-height: 1.6;
-        color: #dddddd;
-    }
-
-    .starry-title h1 {
-        font-size: 3rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .starry-title p {
-        font-size: 1.2rem;
-        line-height: 1.6;
-        color: #cccccc;
-    }
-
-    .starry-image {
-        text-align: center;
-        padding: 2rem;
-    }
-
-    .starry-image img {
-        border-radius: 16px;
-        max-width: 100%;
-        height: auto;
-        box-shadow: 0 4px 16px rgba(255,255,255,0.2);
-    }
-
-    @media (min-width: 768px) {
-        .starry-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .starry-title, .starry-image {
-            flex: 1;
-        }
-
-        .starry-title {
-            padding-right: 2rem;
-        }
-
-        .starry-image {
-            padding-left: 2rem;
-        }
-    }
-    </style>
-
-    <div class="starry-container">
-        <div class="starry-flex">
-            <div class="starry-title">
-                <h1>🚀 Welcome to NovaNet</h1>
-                <p>Explore the wonders of space — from black holes and exoplanets to missions, mysteries, and the future of interstellar discovery. NovaNet is your all-in-one hub to learn, discover, and experience the universe.</p>
-            </div>
-            <div class="starry-image">
-                <img src="https://t4.ftcdn.net/jpg/09/13/31/61/360_F_913316191_mVCQ7W1Q8DTNRRlrzrq7gBZVBTkHZVUx.jpg" alt="Starry Background">
-            </div>
+    # Welcome
+    st.markdown("""
+        <div class='home-section'>
+            <h1>🚀 Welcome to NovaNet</h1>
+            <p>Explore the universe from your screen – facts, features, and the wonders of space, all in one place.</p>
         </div>
-    </div>
+        <hr>
+    """, unsafe_allow_html=True)
+
+    # Space Fact
+    space_facts = [
+        "A day on Venus is longer than a year.",
+        "Neutron stars can spin 600 times per second.",
+        "There’s a planet made of diamonds – 55 Cancri e.",
+        "The largest volcano in the solar system is on Mars – Olympus Mons.",
+        "The Moon is slowly drifting away from Earth (about 3.8 cm per year)."
+    ]
+    fact = random.choice(space_facts)
+
+    st.markdown(f"""
+        <div class='home-section'>
+            <h2>🌌 Space Fact of the Day</h2>
+            <h3>{fact}</h3>
+        </div>
+        <hr>
+    """, unsafe_allow_html=True)
+
+    # NASA APOD
+    apod = get_apod()
+    if apod:
+        st.markdown(f"""
+            <div class='home-section'>
+                <h2>📸 NASA's Astronomy Picture of the Day</h2>
+                <img class='apod-img' src="{apod["url"]}" alt="{apod["title"]}">
+                <p><strong>{apod["title"]}</strong></p>
+                <p style='text-align: justify;'>{apod["explanation"]}</p>
+            </div>
+            <hr>
+        """, unsafe_allow_html=True)
+
+    # Poll
+    options = [
+        "🚀 Space Missions",
+        "🕳️ Black Holes & Time Travel",
+        "🛸 Aliens & Civilizations",
+        "🪐 Exoplanets & New Worlds",
+        "🧠 AI in Space"
+    ]
+    st.markdown("""
+        <div class='home-section'>
+            <h2>📊 Quick Poll</h2>
+            <h4>Which space topic excites you the most?</h4>
+        </div>
+    """, unsafe_allow_html=True)
+    selected_option = st.radio("", options, index=0, key="space_poll")
+
+    if selected_option:
+        st.markdown(f"<div class='home-section'><h4>You chose: <strong>{selected_option}</strong></h4></div>", unsafe_allow_html=True)
+
+    # Footer Navigation
+    st.markdown("""
+        <div style='text-align: right; font-size:18px; margin-right: 30px; margin-top: 2rem;'>
+            <b>Next: 🔍 Mysteries ➡️</b>
+        </div>
     """, unsafe_allow_html=True)
 
 
 
     
 # Content for each tab
-# if st.session_state.active_tab == "🏠 Home":
+#if st.session_state.active_tab == "🏠 Home":
     st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
                     <h1>🌎 Home</h1>
                     <p style='text-align: center;'>Explore the universe from your screen – facts, features, and the wonders of space, all in one place.</p>
