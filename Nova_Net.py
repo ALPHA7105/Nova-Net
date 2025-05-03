@@ -124,11 +124,15 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 if st.session_state.active_tab == "🏠 Home":
     apod = get_apod()
 
-    # CSS for starry background and layout
     st.markdown("""
     <style>
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
     .starry-section {
-        background-image: url("https://www.google.com/imgres?q=starry%20bg%20img&imgurl=https%3A%2F%2Ft4.ftcdn.net%2Fjpg%2F09%2F13%2F31%2F61%2F360_F_913316191_mVCQ7W1Q8DTNRRlrzrq7gBZVBTkHZVUx.jpg&imgrefurl=https%3A%2F%2Fstock.adobe.com%2Fsearch%3Fk%3Dstarry%2Bbackground&docid=JDaC0yt30o5eHM&tbnid=cHMiEU3go-W9ZM&vet=12ahUKEwipz_D1zYaNAxW3_7sIHUmIG0UQM3oFCIABEAA..i&w=541&h=360&hcb=2&ved=2ahUKEwipz_D1zYaNAxW3_7sIHUmIG0UQM3oFCIABEAA");
+        background-image: url("https://t4.ftcdn.net/jpg/09/13/31/61/360_F_913316191_mVCQ7W1Q8DTNRRlrzrq7gBZVBTkHZVUx.jpg");
         background-size: cover;
         background-position: center;
         padding: 4rem 2rem;
@@ -143,12 +147,14 @@ if st.session_state.active_tab == "🏠 Home":
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
+        animation: fadeIn 1.5s ease-out;
     }
 
     .left-side {
         flex: 1;
         min-width: 260px;
         padding-right: 2rem;
+        animation: fadeIn 2s ease-out;
     }
 
     .left-side h1 {
@@ -158,17 +164,18 @@ if st.session_state.active_tab == "🏠 Home":
 
     .left-side p {
         font-size: 1.1rem;
-        line-height: 1.5;
+        line-height: 1.6;
     }
 
     .right-side {
         flex: 1;
         text-align: center;
         min-width: 260px;
+        animation: fadeIn 2s ease-out;
     }
 
     .right-side img {
-        max-width: 90%;
+        max-width: 80%;
         border-radius: 10px;
         box-shadow: 0 3px 10px rgba(0,0,0,0.5);
     }
@@ -185,7 +192,7 @@ if st.session_state.active_tab == "🏠 Home":
     </style>
     """, unsafe_allow_html=True)
 
-    # Intro + APOD
+    # Home Intro + APOD
     st.markdown(f"""
     <div class='starry-section'>
         <div class='content-wrapper'>
@@ -201,8 +208,9 @@ if st.session_state.active_tab == "🏠 Home":
     </div>
     """, unsafe_allow_html=True)
 
-    # APOD Explanation
+    # Optional APOD explanation below (not inside the section)
     st.markdown(f"<p style='text-align: justify;'>{apod['explanation']}</p>", unsafe_allow_html=True)
+
 
 
     
