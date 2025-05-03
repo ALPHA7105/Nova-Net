@@ -12,23 +12,12 @@ import os
 st.set_page_config(page_title="NovaNet", layout="wide", page_icon="💫")
 
 # NASA API key
-API_KEY = "ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"  # Replace with your own key if needed
+API_KEY = "ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
 
-# Function to get Astronomy Picture of the Day
-#def get_apod():
-  #  url = f"https://api.nasa.gov/planetary/apod?api_key=ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
- #   response = requests.get(url)
-#    return response.json()
-
-def get_last_apods(n=3):
-    apods = []
-    for i in range(n):
-        date = (datetime.now() - timedelta(days=i)).strftime('%Y-%m-%d')
-        url = f'https://api.nasa.gov/planetary/apod?api_key=ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto&date={date}'
-        res = requests.get(url).json()
-        if 'url' in res:
-            apods.append(res)
-    return apods
+def get_apod():
+    url = f"https://api.nasa.gov/planetary/apod?api_key=ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
+    response = requests.get(url)
+    return response.json()
 
 if "active_tab" not in st.session_state:
     st.session_state.active_tab = "🏠 Home"
@@ -132,74 +121,11 @@ with col12:
 # Content display per tab
 st.markdown('<div class="main-content">', unsafe_allow_html=True)
 
-
 if st.session_state.active_tab == "🏠 Home":
-    st.markdown("""
-      <div class="welcome-content">
-          <h1>🌌 Welcome to NovaNet</h1>
-          <p>Discover the secrets of the cosmos — mysteries, missions, exoplanets, and beyond. NovaNet brings the universe to your fingertips.</p>
-      </div>
-    """, unsafe_allow_html=True)
-
-    # Load the APODs
-    apods = get_last_apods(3)
-
-    # Initialize carousel index
-    if "carousel_index" not in st.session_state:
-        st.session_state.carousel_index = 0
-
-    # Show current APOD
-    current = st.session_state.carousel_index
-    if apods:
-        apod = apods[current]
-        st.markdown(f"<h2 style='text-align:center;'>{apod['title']}</h2>", unsafe_allow_html=True)
-        st.image(apod['url'], use_container_width=True, caption=apod.get("date", ""))
-        st.markdown(f"<p style='text-align:justify; color:#cccccc;'>{apod['explanation']}</p>", unsafe_allow_html=True)
-
-        # Carousel controls
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("⬅️ Previous"):
-                st.session_state.carousel_index = (current - 1) % len(apods)
-        with col2:
-            if st.button("Next ➡️"):
-                st.session_state.carousel_index = (current + 1) % len(apods)
-
-    # Frozen Time Feature
-    st.markdown("""
-    <div class="frozen-time">
-        <h2>🕰️ Frozen Time: Looking Back 13.8 Billion Years</h2>
-        <p>When we observe the Cosmic Microwave Background, we're seeing the universe as it was just 380,000 years after the Big Bang — over 13.8 billion years ago. It's like looking through a time machine into the baby universe.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-
-    
-# Content for each tab
-#if st.session_state.active_tab == "🏠 Home":
     st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
                     <h1>🌎 Home</h1>
                     <p style='text-align: center;'>Explore the universe from your screen – facts, features, and the wonders of space, all in one place.</p>
                     </div>""", unsafe_allow_html=True)
-    
-    st.markdown("---")
-    st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
-                    <h1>🌌 Space Fact of the Day</h1>
-                  </div>""", unsafe_allow_html=True)
-
-    space_facts = [
-        "A day on Venus is longer than a year.",
-        "Neutron stars can spin 600 times per second.",
-        "There’s a planet made of diamonds – 55 Cancri e.",
-        "The largest volcano in the solar system is on Mars – Olympus Mons.",
-        "The Moon is slowly drifting away from Earth (about 3.8 cm per year)."
-    ]
-
-    fact = random.choice(space_facts)
-
-    st.markdown(f"""<div style='text-align: center; margin-top: 2rem;'>
-                    <h3>{fact}</h3>
-                  </div>""", unsafe_allow_html=True)
     
     st.markdown("---")
     st.markdown("""<div style='text-align: center; margin-top: 3rem;'>
@@ -210,38 +136,12 @@ if st.session_state.active_tab == "🏠 Home":
     if apod:
         st.markdown(f"""
         <div style='text-align: center;'>
-            <img src="{apod["url"]}" alt="{apod["title"]}" style="max-width: 90%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
-            <p style='margin-top: 1rem; font-weight: bold;'>{apod["title"]}</p>
+            <img src="{apod["url"]}" alt="{apod["title"]}" style="max-width: 60%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+            <p style='margin-top: 1rem; font-weight: bold; font-size: 1.2rem;'>{apod["title"]}</p>
         </div>
         """, unsafe_allow_html=True)
-    st.markdown(f"<p style='text-align: justify; margin-top: 1rem;'>{apod['explanation']}</p>", unsafe_allow_html=True)
-
-    st.markdown("---")
-    st.markdown("""<div style='text-align: center; margin-top: 3rem;'>
-                <h2>📊 Quick Poll</h2>
-                <h4>Which space topic excites you the most?</h4>
-                </div>""", unsafe_allow_html=True)
-
-    options = [
-        "🚀 Space Missions",
-        "🕳️ Black Holes & Time Travel",
-        "🛸 Aliens & Civilizations",
-        "🪐 Exoplanets & New Worlds",
-        "🧠 AI in Space"
-        ]
-
-    selected_option = st.radio("", options, index=0, key="space_poll")
-
-    st.markdown("""
-    <style>
-        .stRadio label {
-            font-size: 50px !important;
-        }
-    </style>
-    """, unsafe_allow_html=True)
     
-    if selected_option:
-        st.markdown(f"<div style='text-align: center;'><h4>You chose: <strong>{selected_option}</strong></h4></div>", unsafe_allow_html=True)
+    st.markdown(f"<p style='text-align: justify; margin-top: 1rem; font-size: 1rem;'>{apod['explanation']}</p>", unsafe_allow_html=True)
 
     st.markdown("""
     <br><br>
