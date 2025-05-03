@@ -126,9 +126,11 @@ if st.session_state.active_tab == "🏠 Home":
         return response.json()
         
     st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
-                    <h1>🌎 Home</h1>
-                    <i>Welcome to <strong>NovaNet</strong> — your gateway to the universe. From mind-bending space mysteries and NASA missions to exoplanets, black holes, astrobiology, and the latest tech, NovaNet brings the cosmos to your screen in a way that's interactive, intelligent, and inspiring. With real-time data, AI conversations, community theories, and much more, NovaNet isn't just a space platform — it's your personal mission control for exploring the stars.</i>
-                    </div>""", unsafe_allow_html=True)
+                   <h1>🌎 Home</h1>
+                   </div>""", unsafe_allow_html=True)
+    st.markdown("""<div style='text-align: center; margin-top: 2rem; font-size: 18px; line-height: 1.6;'>
+                   <i>Welcome to <strong>NovaNet</strong> — your gateway to the universe. From mind-bending space mysteries and NASA missions to exoplanets, black holes, astrobiology, and the latest tech, NovaNet brings the cosmos to your screen in a way that's interactive, intelligent, and inspiring. With real-time data, AI conversations, community theories, and much more, NovaNet isn't just a space platform — it's your personal mission control for exploring the stars.</i>
+                   </div>""", unsafe_allow_html=True)
     
     st.markdown("---")
     st.markdown("""<div style='text-align: center; margin-top: 3rem;'>
