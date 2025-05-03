@@ -131,9 +131,9 @@ if st.session_state.active_tab == "🏠 Home":
     .starry-container {
         background-color: black;
         background-image: 
-            radial-gradient(white 1px, transparent 1px),
-            radial-gradient(white 1px, transparent 1px);
-        background-size: 4px 4px, 6px 6px;
+            radial-gradient(#ffffff 1.2px, transparent 1.2px),
+            radial-gradient(#ffffff 1.2px, transparent 1.2px);
+        background-size: 5px 5px, 8px 8px;
         background-position: 0 0, 3px 3px;
         animation: twinkle 6s ease-in-out infinite;
         padding: 3rem 1rem;
@@ -144,17 +144,17 @@ if st.session_state.active_tab == "🏠 Home":
 
     @keyframes twinkle {
         0%, 100% {
-            opacity: 0.15;
+            opacity: 0.1;
         }
         50% {
-            opacity: 0.25;
+            opacity: 0.4;
         }
     }
 
-    .starry-title {
-        text-align: left;
-        padding: 2rem;
-        color: white;
+    .starry-title p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: #dddddd;
     }
 
     .starry-title h1 {
@@ -213,31 +213,12 @@ if st.session_state.active_tab == "🏠 Home":
         </div>
     </div>
     """, unsafe_allow_html=True)
-    
-    # Home Intro + APOD
-    st.markdown(f"""
-    <div class='starry-section'>
-        <div class='content-wrapper'>
-            <div class='left-side'>
-                <h1>🌌 NovaNet</h1>
-                <p>Welcome to NovaNet — your gateway to the universe. Dive into cosmic mysteries, explore the latest missions, and discover the wonders of space through real-time data and community knowledge. Everything about the universe, all in one place.</p>
-            </div>
-            <div class='right-side'>
-                <img src="{apod['url']}" alt="{apod['title']}">
-                <p style='margin-top: 1rem; font-weight: bold;'>{apod['title']}</p>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # Optional APOD explanation below (not inside the section)
-    st.markdown(f"<p style='text-align: justify;'>{apod['explanation']}</p>", unsafe_allow_html=True)
 
 
 
     
 # Content for each tab
-#if st.session_state.active_tab == "🏠 Home":
+# if st.session_state.active_tab == "🏠 Home":
     st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
                     <h1>🌎 Home</h1>
                     <p style='text-align: center;'>Explore the universe from your screen – facts, features, and the wonders of space, all in one place.</p>
