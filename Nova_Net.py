@@ -59,42 +59,7 @@ main.stApp {
 """, unsafe_allow_html=True)
 
 # Add the CSS for styling
-#st.markdown("""
-   # <style>
-    .stButton > button {
-        background-color: black !important;
-        color: white !important;
-        padding: 1rem 2rem;
-        font-size: 18px;
-        font-weight: 600;
-        border: 2px solid #444 !important;  /* Dark gray border */
-        border-radius: 12px;
-        cursor: pointer;
-        transition: color 0.3s ease, border-color 0.3s ease;
-        width: 100%;
-    }
 
-    .stButton > button:hover {
-        color: #1a73e8 !important;  /* Blue text on hover */
-        border-color: #1a73e8 !important;  /* Optional: Blue border on hover */
-    }
-
-    .main-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        margin-top: 2rem;
-    }
-    .center-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        margin-top: 2rem;
-    }
-    </style>
-""", unsafe_allow_html=True)
 
 
 st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
