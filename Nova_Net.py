@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 import streamlit as st
 import pandas as pd
 import requests
@@ -14,10 +15,20 @@ st.set_page_config(page_title="NovaNet", layout="wide", page_icon="💫")
 API_KEY = "ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"  # Replace with your own key if needed
 
 # Function to get Astronomy Picture of the Day
-def get_apod():
-    url = f"https://api.nasa.gov/planetary/apod?api_key=ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
-    response = requests.get(url)
-    return response.json()
+#def get_apod():
+  #  url = f"https://api.nasa.gov/planetary/apod?api_key=ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
+ #   response = requests.get(url)
+#    return response.json()
+
+def get_last_apods(n=3):
+    apods = []
+    for i in range(n):
+        date = (datetime.now() - timedelta(days=i)).strftime('%Y-%m-%d')
+        url = f'https://api.nasa.gov/planetary/apod?api_key=ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto&date={date}'
+        res = requests.get(url).json()
+        if 'url' in res:
+            apods.append(res)
+    return apods
 
 if "active_tab" not in st.session_state:
     st.session_state.active_tab = "🏠 Home"
@@ -124,100 +135,101 @@ st.markdown('<div class="main-content">', unsafe_allow_html=True)
 
 if st.session_state.active_tab == "🏠 Home":
     st.markdown("""
-        <style>
-            body {
-                background-color: #000000;
-                color: #ffffff;
-            }
-            .home-section {
-                text-align: center;
-                padding: 2rem 1rem;
-            }
-            .home-section h1, .home-section h2, .home-section h3, .home-section h4 {
-                color: #ffffff;
-                text-shadow: 2px 2px 5px #222;
-            }
-            .home-section p {
-                font-size: 1.1rem;
-                color: #dddddd;
-                max-width: 700px;
-                margin: 0 auto 1rem auto;
-            }
-            .apod-img {
-                max-width: 90%;
-                border-radius: 12px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-                margin-top: 1rem;
-            }
-        </style>
+    <style>
+    body {
+        background-color: black;
+    }
+    .star-bg {
+        position: relative;
+        background: black;
+        overflow: hidden;
+        padding: 5rem 2rem 2rem 2rem;
+    }
+    .star-bg::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-image: radial-gradient(white 1px, transparent 1px);
+        background-size: 3px 3px;
+        opacity: 0.3;
+        animation: moveStars 60s linear infinite;
+        z-index: 0;
+    }
+    @keyframes moveStars {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-100%); }
+    }
+    .welcome-content {
+        z-index: 1;
+        position: relative;
+        text-align: center;
+        color: white;
+        margin-bottom: 3rem;
+    }
+    .apod-carousel {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+    .apod-card {
+        max-width: 300px;
+        text-align: center;
+        color: #ddd;
+        border-radius: 12px;
+        padding: 1rem;
+        background-color: #111;
+        box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+    }
+    .apod-card img {
+        max-width: 100%;
+        border-radius: 12px;
+        margin-bottom: 0.5rem;
+    }
+    .frozen-time {
+        margin-top: 4rem;
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        background: rgba(255,255,255,0.05);
+        border-radius: 16px;
+    }
+    </style>
     """, unsafe_allow_html=True)
 
-    # Welcome
+    # Welcome Section with Starry Background
     st.markdown("""
-        <div class='home-section'>
-            <h1>🚀 Welcome to NovaNet</h1>
-            <p>Explore the universe from your screen – facts, features, and the wonders of space, all in one place.</p>
+    <div class="star-bg">
+        <div class="welcome-content">
+            <h1>🌌 Welcome to NovaNet</h1>
+            <p>Discover the secrets of the cosmos — mysteries, missions, exoplanets, and beyond. NovaNet brings the universe to your fingertips.</p>
         </div>
-        <hr>
+    </div>
     """, unsafe_allow_html=True)
 
-    # Space Fact
-    space_facts = [
-        "A day on Venus is longer than a year.",
-        "Neutron stars can spin 600 times per second.",
-        "There’s a planet made of diamonds – 55 Cancri e.",
-        "The largest volcano in the solar system is on Mars – Olympus Mons.",
-        "The Moon is slowly drifting away from Earth (about 3.8 cm per year)."
-    ]
-    fact = random.choice(space_facts)
+    # Astronomy Picture Carousel
+    st.markdown("<h2 style='text-align: center; color: white;'>📸 Latest NASA APODs</h2>", unsafe_allow_html=True)
+    apods = get_last_apods()
 
-    st.markdown(f"""
-        <div class='home-section'>
-            <h2>🌌 Space Fact of the Day</h2>
-            <h3>{fact}</h3>
-        </div>
-        <hr>
-    """, unsafe_allow_html=True)
-
-    # NASA APOD
-    apod = get_apod()
-    if apod:
-        st.markdown(f"""
-            <div class='home-section'>
-                <h2>📸 NASA's Astronomy Picture of the Day</h2>
-                <img class='apod-img' src="{apod["url"]}" alt="{apod["title"]}">
-                <p><strong>{apod["title"]}</strong></p>
-                <p style='text-align: justify;'>{apod["explanation"]}</p>
+    if apods:
+        st.markdown("<div class='apod-carousel'>", unsafe_allow_html=True)
+        for apod in apods:
+            st.markdown(f"""
+            <div class='apod-card'>
+                <img src="{apod['url']}" alt="{apod['title']}">
+                <h4>{apod['title']}</h4>
             </div>
-            <hr>
-        """, unsafe_allow_html=True)
+            """, unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
 
-    # Poll
-    options = [
-        "🚀 Space Missions",
-        "🕳️ Black Holes & Time Travel",
-        "🛸 Aliens & Civilizations",
-        "🪐 Exoplanets & New Worlds",
-        "🧠 AI in Space"
-    ]
+    # Frozen Time Feature
     st.markdown("""
-        <div class='home-section'>
-            <h2>📊 Quick Poll</h2>
-            <h4>Which space topic excites you the most?</h4>
-        </div>
+    <div class="frozen-time">
+        <h2>🕰️ Frozen Time: Looking Back 13.8 Billion Years</h2>
+        <p>When we observe the Cosmic Microwave Background, we're seeing the universe as it was just 380,000 years after the Big Bang — over 13.8 billion years ago. It's like looking through a time machine into the baby universe.</p>
+    </div>
     """, unsafe_allow_html=True)
-    selected_option = st.radio("", options, index=0, key="space_poll")
-
-    if selected_option:
-        st.markdown(f"<div class='home-section'><h4>You chose: <strong>{selected_option}</strong></h4></div>", unsafe_allow_html=True)
-
-    # Footer Navigation
-    st.markdown("""
-        <div style='text-align: right; font-size:18px; margin-right: 30px; margin-top: 2rem;'>
-            <b>Next: 🔍 Mysteries ➡️</b>
-        </div>
-    """, unsafe_allow_html=True)
-
 
 
     
