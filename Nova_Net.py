@@ -375,8 +375,8 @@ elif st.session_state.active_tab == "🔍 Mysteries":
       <source src='https://www.youtube.com/watch?app=desktop&v=aseyBWZa3pY&t=0s' type='video/webm'>
       Your browser does not support the video tag.
     </video>
-    <p><i>“Wow!” – the signal that still puzzles scientists.</i></p>
-    *This video might not work, as video options are still under development.*
+    <p>“Wow!” – the signal that still puzzles scientists.</p>
+    <p><i>🚧 This video might not work, as video options are still under development. 🛠️</i><p>
     </div>
     """, unsafe_allow_html=True)
 
