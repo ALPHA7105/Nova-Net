@@ -123,8 +123,13 @@ if st.session_state.active_tab == "🏠 Home":
 
     def get_apod():
         url = f"https://api.nasa.gov/planetary/apod?api_key=ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
-        response = requests.get(url)
-        return response.json()
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            st.error(f"Error fetching APOD: {e}")
+            return None
         
     st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
                    <h1>🌎 Home</h1>
@@ -146,8 +151,9 @@ if st.session_state.active_tab == "🏠 Home":
             <p style='margin-top: 1rem; font-weight: bold; font-size: 1.2rem;'>{apod["title"]}</p>
         </div>
         """, unsafe_allow_html=True)
-    
-    st.markdown(f"<p style='text-align: justify; margin-top: 1rem; font-size: 1rem;'>{apod['explanation']}</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='text-align: justify; margin-top: 1rem; font-size: 1rem;'>{apod['explanation']}</p>", unsafe_allow_html=True)
+    st.divider()
+
     space_history = {
         "01-01": "2004: Stardust spacecraft flew by comet Wild 2.",
         "01-28": "1986: Space Shuttle Challenger disaster occurred.",
@@ -185,9 +191,7 @@ if st.session_state.active_tab == "🏠 Home":
         {"term": "Roche Limit", "definition": "The distance within which a celestial body, due to tidal forces, will disintegrate due to a planet’s gravity."},
         {"term": "Kuiper Belt", "definition": "A region beyond Neptune filled with icy bodies and dwarf planets like Pluto."},
     ]
-    today_str = datetime.datetime.now().strftime("%Y-%m-%d")
-    index = int(hashlib.md5(today_str.encode()).hexdigest(), 16) % len(space_concepts)
-    concept = space_concepts[index]
+    concept = random.choice(space_concepts)
     st.markdown(f"### 🌌 Featured Space Concept: **{concept['term']}**\n{concept['definition']}")
     st.divider()
 
@@ -222,7 +226,6 @@ if st.session_state.active_tab == "🏠 Home":
     st.markdown(f"### 👩‍🚀 Astronaut Spotlight: **{highlight['name']}**\n{highlight['bio']}")
     st.divider()
         
-    
     try:
         response = requests.get("http://api.open-notify.org/iss-now.json")
         if response.status_code == 200:
