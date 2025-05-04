@@ -213,11 +213,15 @@ if st.session_state.active_tab == "🏠 Home":
     **James Webb Space Telescope (JWST)**: Launched in 2021, JWST is the most powerful space telescope ever built. It is designed to study the infrared universe, including the formation of stars, galaxies, and planetary systems. The JWST promises to answer some of the most profound questions about the universe's origin and structure.
     """)
 
+    st.markdown("""---""")
     st.markdown("""
-    <div style="margin-top: 3rem; font-size: 16px; line-height: 1.6;">
-        🌌 At <b>NovaNet</b>, we believe the universe is more than just stars and space—it's a canvas of mysteries waiting to be explored.<br><br>
-        🧠 Whether you're a curious student, an aspiring scientist, or just a lover of the cosmos, NovaNet is your launchpad into the unknown.<br><br>
-        🚀 Dive in, stay curious, and let your journey through the stars begin!
+    <div style='text-align: center;'>
+        <h2>🔭 Beyond the Horizon of Knowledge</h2>
+        <p style='font-size:18px;'>
+            From the tiniest particles to the farthest galaxies, every discovery brings us closer to understanding the universe. 🌌✨<br><br>
+            Keep exploring, keep questioning, and never stop wondering. The universe is vast — and this is just the beginning. 🚀🧠<br><br>
+            Dive deeper, dream bigger, and let curiosity guide your journey through the stars. 🌠🪐
+        </p>
     </div>
     """, unsafe_allow_html=True)
 
