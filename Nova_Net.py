@@ -1829,7 +1829,7 @@ st.markdown("""
         Explore the mysteries of the universe with us.
     </div>
     <div style="flex: 1; text-align: center;">
-        <b style="color: #00bfff;">💫 NovaNet</b><br>
+        <b style="color: #ffffff;">💫 NovaNet</b><br>
         Your gateway to space knowledge
     </div>
     <div style="flex: 1; text-align: right;">
