@@ -1811,25 +1811,22 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown("""
 <hr style="margin-top: 3rem; border-top: 1px solid #444;">
-<div style='display: flex; justify-content: space-between; padding: 20px; font-size: 15px; color: gray;'>
-
+<div style='display: flex; justify-content: space-between; padding: 20px; color: gray; font-size: 14px;'>
     <div style="flex: 1; text-align: left;">
         <b>🚀 Where curiosity meets the cosmos...</b><br>
         Explore the mysteries of the universe with us.
     </div>
-
     <div style="flex: 1; text-align: center;">
         <b style="color: #00bfff;">💫 NovaNet</b><br>
         Your gateway to space knowledge
     </div>
-
     <div style="flex: 1; text-align: right;">
         <b>📬 Contact Us</b><br>
         ssworld7105@gmail.com<br>+971 563711020
     </div>
-
 </div>
 """, unsafe_allow_html=True)
+
 st.markdown("""
     <hr style="margin-top: 3rem; border-top: 1px solid #444;">
     <div style='display: flex; justify-content: space-between; padding: 20px; color: gray; font-size: 14px;'>
