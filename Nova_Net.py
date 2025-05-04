@@ -253,8 +253,8 @@ if st.session_state.active_tab == "🏠 Home":
 
 elif st.session_state.active_tab == "🔍 Mysteries":
     st.markdown("""
-    <h1 style='text-align: center;'>🕵️‍♂️ Unsolved Mysteries of the Universe 🌌</h1>
-     <p style='text-align: center;'>Here are some of the most intriguing space mysteries that remain unsolved:</p>
+        <h1 style='text-align: center;'>🕵️‍♂️ Unsolved Mysteries of the Universe 🌌</h1>
+        <p style='text-align: center;'>Here are some of the most intriguing space mysteries that remain unsolved:</p>
     """, unsafe_allow_html=True)
     st.markdown("---")
     
