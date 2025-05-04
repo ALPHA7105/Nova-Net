@@ -191,7 +191,6 @@ if st.session_state.active_tab == "🏠 Home":
     Each month, NovaNet will spotlight one of the incredible astronauts who have made monumental contributions to space exploration. This month, we're honoring **Sally Ride**, the first American woman in space.
     Sally Ride made history when she flew aboard the Space Shuttle Challenger on June 18, 1983, becoming the first American woman in space. Her legacy continues to inspire future generations of space explorers.
     """)
-    st.image("https://upload.wikimedia.org/wikipedia/commons/e/e3/Sally_Ride.jpg", width=400)
     st.divider()
 
     # Space Concept of the Month
@@ -199,7 +198,6 @@ if st.session_state.active_tab == "🏠 Home":
     st.markdown("""
     **Gravitational Waves**: Gravitational waves are ripples in spacetime caused by some of the most violent and energetic processes in the universe, like colliding black holes. These waves were first directly detected in 2015 by LIGO, opening a whole new way to observe the universe.
     """)
-    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Gravitational_waves.jpg/500px-Gravitational_waves.jpg", width=400)
     st.divider()
 
     # Space Quote of the Month
@@ -214,7 +212,6 @@ if st.session_state.active_tab == "🏠 Home":
     st.markdown("""
     **James Webb Space Telescope (JWST)**: Launched in 2021, JWST is the most powerful space telescope ever built. It is designed to study the infrared universe, including the formation of stars, galaxies, and planetary systems. The JWST promises to answer some of the most profound questions about the universe's origin and structure.
     """)
-    st.image("https://upload.wikimedia.org/wikipedia/commons/2/23/James_Webb_Space_Telescope_-_01.jpg", width=400)
     st.divider()
 
     st.markdown("""
