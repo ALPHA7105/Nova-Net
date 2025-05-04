@@ -1665,6 +1665,14 @@ elif st.session_state.active_tab == "📖 About":
     
     ---
 
+    ### 🛠️ Built with GitHub
+
+    NovaNet was proudly developed and maintained using GitHub, enabling smooth collaboration, version control, and deployment. This platform is constantly evolving, and the source code is open for anyone curious or interested in contributing.
+
+    🔗 [View the NovaNet GitHub Repository](https://github.com/ALPHA7105/Nova-Net)
+
+    ---
+
     ## 🧪 Tech Stack
     NovaNet is built using a combination of cutting-edge tools that make the platform fast, interactive, and scalable:
 
@@ -1672,7 +1680,7 @@ elif st.session_state.active_tab == "📖 About":
 
     - 🌐 Streamlit – Powers the web interface, enabling rapid development of dynamic, app-like features.
 
-    - 🤖 LLaMA 4 API – Fuels the AI Conversations section, allowing users to chat about space with smart responses.
+    - 🤖 LLaMA 4 API (Coming Soon) – Fuels the AI Conversations section, allowing users to chat about space with smart responses.
 
     - 📄 Google Sheets (Coming Soon) – Will be used to store community-submitted theories and quiz data.
 
@@ -1814,7 +1822,7 @@ elif st.session_state.active_tab == "📖 About":
         <h2>🪐 Where Will You Go Next?</h2>
         <p>The universe is vast, and your journey has only just begun. As you explore NovaNet, remember that every click, every discovery, and every theory you encounter is just another step in your adventure through the cosmos. The stars, the mysteries, and the wonders of space await you. Keep pushing your curiosity further, and who knows where your knowledge will take you next?</p>
         <p>Whether you're here to dive into black holes, chat with Nova AI, or share your own theories, remember:</p>
-        <p><em>every great discovery starts with a question.</em></p>
+        <p><em>Every great discovery starts with a question.</em></p>
         <p>Let's explore the universe together, one idea at a time. 🚀💫</p>
     </div>
 """, unsafe_allow_html=True)
