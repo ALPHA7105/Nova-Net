@@ -235,21 +235,26 @@ elif st.session_state.active_tab == "🔍 Mysteries":
         {"title": "Dark Matter & Dark Energy 💫", 
          "description": "What are they, and why do they make up most of the universe's mass-energy content? "
                         "<a href='https://en.wikipedia.org/wiki/Dark_matter' target='_blank'>Learn more</a>."},
+                        
         {"title": "The Fermi Paradox 👽", 
          "description": "Why have we not yet encountered any extraterrestrial civilizations? "
                         "<a href='https://en.wikipedia.org/wiki/Fermi_paradox' target='_blank'>Learn more</a>."},
+                        
         {"title": "The Wow! Signal 📡", 
          "description": "A mysterious radio signal from space that has never been explained. "
                         "<a href='https://en.wikipedia.org/wiki/Wow!_signal' target='_blank'>Learn more</a>."},
+                        
         {"title": "The Nature of Black Holes ⚫", 
          "description": "Understanding the true nature of singularities and the event horizon. "
                         "<a href='https://en.wikipedia.org/wiki/Black_hole' target='_blank'>Learn more</a>."},
+                        
         {"title": "Quantum Gravity ⚛️", 
          "description": "How to reconcile general relativity and quantum mechanics. "
-                        "<a href='https://en.wikipedia.org/wiki/Quantum_gravity' target='_blank'>Learn more</a>."},
+                        "<a href='https://en.wikipedia.org/wiki/Quantum_gravity' target='_blank'>Learn more</a>."},      
         {"title": "The Multiverse Theory 🌐", 
          "description": "Is there more than one universe? Exploring the idea of parallel universes. "
                         "<a href='https://en.wikipedia.org/wiki/Multiverse' target='_blank'>Learn more</a>."},
+                        
         {"title": "The Search for Alien Life 👽", 
          "description": "How can we detect signs of extraterrestrial life, and why haven't we found any proof yet? "
                         "<a href='https://en.wikipedia.org/wiki/Search_for_extraterrestrial_intelligence' target='_blank'>Learn more</a>."},
@@ -288,18 +293,23 @@ elif st.session_state.active_tab == "🔍 Mysteries":
         {"title": "The Great Attractor 🌀", 
          "description": "A mysterious gravitational anomaly pulling galaxies towards it. Scientists are still unsure of its nature. "
                         "<a href='https://en.wikipedia.org/wiki/Great_Attractor' target='_blank'>Learn more</a>."},
+                        
         {"title": "Fast Radio Bursts (FRBs) ⚡", 
          "description": "Intense bursts of radio waves from deep space that last only milliseconds, with unknown origins. "
                         "<a href='https://en.wikipedia.org/wiki/Fast_radio_burst' target='_blank'>Learn more</a>."},
+                        
         {"title": "The Black Knight Satellite 🛰️", 
          "description": "A purported alien satellite in Earth’s orbit that has intrigued conspiracy theorists for decades. "
                         "<a href='https://en.wikipedia.org/wiki/Black_Knight_satellite' target='_blank'>Learn more</a>."},
+                        
         {"title": "Tabby's Star 🌟", 
          "description": "A star that dims and brightens in ways that cannot be easily explained. Could it be a sign of alien megastructures? "
                         "<a href='https://en.wikipedia.org/wiki/KIC_8462852' target='_blank'>Learn more</a>."},
+                        
         {"title": "Hawking Radiation 🔥", 
          "description": "Theoretical radiation emitted by black holes, proposed by Stephen Hawking. Still unproven but could unlock a new understanding of black holes. "
                         "<a href='https://en.wikipedia.org/wiki/Hawking_radiation' target='_blank'>Learn more</a>."},
+                        
         {"title": "Oumuamua 🛸", 
          "description": "A mysterious interstellar object that passed through our solar system in 2017, sparking debates about its origins. "
                         "<a href='https://en.wikipedia.org/wiki/1I/2017_U1' target='_blank'>Learn more</a>."}
