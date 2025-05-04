@@ -148,7 +148,6 @@ if st.session_state.active_tab == "🏠 Home":
         """, unsafe_allow_html=True)
     
     st.markdown(f"<p style='text-align: justify; margin-top: 1rem; font-size: 1rem;'>{apod['explanation']}</p>", unsafe_allow_html=True)
-
     space_history = {
         "01-01": "2004: Stardust spacecraft flew by comet Wild 2.",
         "01-28": "1986: Space Shuttle Challenger disaster occurred.",
@@ -169,31 +168,12 @@ if st.session_state.active_tab == "🏠 Home":
         "12-14": "1972: Apollo 17's last moonwalk marked the final crewed Moon landing.",
         "12-25": "2003: Mars Express began orbiting Mars.",
     }
+    today = datetime.datetime.now().strftime("%m-%d")
+    event = space_history.get(today, "No significant event found for today.")
+    st.markdown(f"### 🚀 Today in Space History\n**{event}**")
+    st.divider()
 
-    def space_history_today():
-        today = datetime.datetime.now().strftime("%m-%d")
-        event = space_history.get(today, "No significant event found for today.")
-        st.markdown(f"### 🚀 Today in Space History\n**{event}**")
-
-    # 3. Featured Space Concept
-    def featured_concept():
-        space_concepts = [
-            {"title": "Wormholes", "description": "Hypothetical tunnels through space-time."},
-            {"title": "Dyson Spheres", "description": "A megastructure to capture a star’s energy output."},
-        ]
-        concept = random.choice(space_concepts)
-        st.markdown(f"### 🌌 Featured Space Concept: {concept['title']}\n{concept['description']}")
-
-
-    space_quotes = [
-        {"content": "That's one small step for a man, one giant leap for mankind.", "author": "Neil Armstrong"},
-        {"content": "To confine our attention to terrestrial matters would be to limit the human spirit.", "author": "Stephen Hawking"},
-        {"content": "The Earth is the cradle of humanity, but one cannot live in the cradle forever.", "author": "Konstantin Tsiolkovsky"},
-        {"content": "Across the sea of space, the stars are other suns.", "author": "Carl Sagan"},
-        # Add more as needed
-    ]
-
-    space_terms = [
+    space_concepts = [
         {"term": "Event Horizon", "definition": "The boundary beyond which nothing can escape a black hole."},
         {"term": "Dark Matter", "definition": "A form of matter that doesn’t emit light or energy, but makes up most of the universe’s mass."},
         {"term": "Redshift", "definition": "A shift in the light from distant galaxies, indicating that they are moving away from us."},
@@ -204,16 +184,27 @@ if st.session_state.active_tab == "🏠 Home":
         {"term": "Cosmic Microwave Background", "definition": "The leftover radiation from the Big Bang, filling the universe as a faint glow."},
         {"term": "Roche Limit", "definition": "The distance within which a celestial body, due to tidal forces, will disintegrate due to a planet’s gravity."},
         {"term": "Kuiper Belt", "definition": "A region beyond Neptune filled with icy bodies and dwarf planets like Pluto."},
-        # Add more as needed
     ]
+    today_str = datetime.datetime.now().strftime("%Y-%m-%d")
+    index = int(hashlib.md5(today_str.encode()).hexdigest(), 16) % len(space_concepts)
+    concept = space_concepts[index]
+    st.markdown(f"### 🌌 Featured Space Concept: **{concept['term']}**\n{concept['definition']}")
+    st.divider()
 
-    # Pick a term based on the day, so it's consistent for all users
-    def space_term_of_the_day():
-        today = datetime.datetime.now().strftime("%Y-%m-%d")
-        index = int(hashlib.md5(today.encode()).hexdigest(), 16) % len(space_terms)
-        term = space_terms[index]
-
-        st.markdown(f"### 🧠 Space Term of the Day: **{term['term']}**\n{term['definition']}")
+    try:
+        response = requests.get("https://api.quotable.io/quotes?query=space")
+        if response.status_code == 200:
+            quotes = response.json().get("results", [])
+            if quotes:
+                quote = random.choice(quotes)
+                st.markdown(f"### 💬 Quote from the Cosmos\n> *{quote['content']}* — {quote['author']}")
+            else:
+                st.warning("No space-related quotes found.")
+        else:
+            st.error("Could not fetch quotes from the API.")
+    except Exception as e:
+        st.error(f"Error fetching quote: {e}")
+    st.divider()
 
     astronauts = [
         {"name": "Neil Armstrong", "bio": "First human to walk on the Moon during NASA's Apollo 11 mission in 1969."},
@@ -226,45 +217,23 @@ if st.session_state.active_tab == "🏠 Home":
         {"name": "Sally Ride", "bio": "First American woman in space aboard the Challenger in 1983."},
         {"name": "Peggy Whitson", "bio": "Holds the record for most cumulative time spent in space by a U.S. astronaut."},
         {"name": "Rakesh Sharma", "bio": "First Indian citizen to travel to space aboard Soyuz T-11 in 1984."},
-        # Add more astronauts as desired
     ]
-
-    def astronaut_spotlight():
-        today = datetime.datetime.now().strftime("%Y-%m-%d")
-        index = int(hashlib.md5(today.encode()).hexdigest(), 16) % len(astronauts)
-        astro = astronauts[index]
-
-        st.markdown(f"### 👩‍🚀 Astronaut Spotlight: **{astro['name']}**\n{astro['bio']}")
+    highlight = astronauts[datetime.datetime.now().day % len(astronauts)]
+    st.markdown(f"### 👩‍🚀 Astronaut Spotlight: **{highlight['name']}**\n{highlight['bio']}")
+    st.divider()
         
     
-    def iss_tracker():
+    try:
         response = requests.get("http://api.open-notify.org/iss-now.json")
-
         if response.status_code == 200:
             data = response.json()
-            position = data["iss_position"]
-            latitude = float(position["latitude"])
-            longitude = float(position["longitude"])
-
+            pos = data["iss_position"]
             st.markdown("### 🛰 Current ISS Location")
-            st.map([{"lat": latitude, "lon": longitude}])
-            st.write(f"**Latitude:** {latitude}  \n**Longitude:** {longitude}")
+            st.map([{"lat": float(pos["latitude"]), "lon": float(pos["longitude"])}])
         else:
-            st.error("Could not fetch ISS location at this time.")
-
-    # ✅ Render Homepage
-    st.divider()
-    space_history_today()
-    st.divider()
-    featured_concept()
-    st.divider()
-    quote_from_cosmos()
-    st.divider()
-    space_term()
-    st.divider()
-    astronaut_spotlight()
-    st.divider()
-    iss_tracker()
+            st.error("Could not fetch ISS location.")
+    except Exception as e:
+        st.error(f"Error fetching ISS location: {e}")
 
 
     st.markdown("""
