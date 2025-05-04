@@ -1810,10 +1810,22 @@ elif st.session_state.active_tab == "📖 About":
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown("""
-    <hr style="margin-top: 3rem; border-top: 1px solid #444;">
-    <div style='display: flex; justify-content: space-between; padding: 20px; color: gray; font-size: 14px;'>
-        <div style="flex: 1; text-align: left;">Where curiosity meets the cosmos...</div>
-        <div style="flex: 1; text-align: center;">💫 NovaNet</div>
-        <div style="flex: 1; text-align: right;">Contact: ssworld7105@gmail.com | +971 563711020</div>
+    <hr style="margin-top: 4rem; border-top: 1px solid #555;">
+    <div style='display: flex; justify-content: space-between; padding: 30px 20px; color: #ccc; font-size: 16px; font-family: "Segoe UI", sans-serif;'>
+        
+        <div style="flex: 1; text-align: left;">
+            <div style="font-size: 18px; font-weight: bold;">🚀 Where curiosity meets the cosmos...</div>
+            <div style="margin-top: 5px;">Explore the mysteries of the universe with us.</div>
+        </div>
+        
+        <div style="flex: 1; text-align: center;">
+            <div style="font-size: 22px; font-weight: bold; color: #00bfff;">💫 NovaNet</div>
+            <div style="margin-top: 5px;">Your gateway to space knowledge</div>
+        </div>
+        
+        <div style="flex: 1; text-align: right;">
+            <div style="font-size: 18px; font-weight: bold;">📬 Contact Us</div>
+            <div style="margin-top: 5px;">ssworld7105@gmail.com<br>+971 563711020</div>
+        </div>
     </div>
 """, unsafe_allow_html=True)
