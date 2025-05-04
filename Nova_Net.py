@@ -376,6 +376,7 @@ elif st.session_state.active_tab == "🔍 Mysteries":
       Your browser does not support the video tag.
     </video>
     <p><i>“Wow!” – the signal that still puzzles scientists.</i></p>
+    *This video might not work, as video options are still under development.*
     </div>
     """, unsafe_allow_html=True)
 
@@ -388,7 +389,6 @@ elif st.session_state.active_tab == "🔍 Mysteries":
         <div style='text-align: center;'>
         <h4>🎬 Dark Universe Explained</h4>
         <a href='https://www.youtube.com/watch?v=QAa2O_8wBUQ' target='_blank'>▶️ Watch on YouTube</a>
-        *This video might not work, as video options are still under development.
         </div>
         """, unsafe_allow_html=True)
 
