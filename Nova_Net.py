@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 import streamlit as st
 import pandas as pd
 import requests
+import hashlib
 import random
 import json
 import time
@@ -147,6 +148,126 @@ if st.session_state.active_tab == "🏠 Home":
         """, unsafe_allow_html=True)
     
     st.markdown(f"<p style='text-align: justify; margin-top: 1rem; font-size: 1rem;'>{apod['explanation']}</p>", unsafe_allow_html=True)
+
+    space_history = {
+        "01-01": "2004: Stardust spacecraft flew by comet Wild 2.",
+        "01-28": "1986: Space Shuttle Challenger disaster occurred.",
+        "02-20": "1962: John Glenn became the first American to orbit Earth.",
+        "03-01": "2002: Space Shuttle Columbia launched on STS-109.",
+        "04-12": "1961: Yuri Gagarin became the first human in space.",
+        "04-24": "1990: Hubble Space Telescope launched aboard Discovery.",
+        "05-03": "1976: NASA launched the LAGEOS satellite.",
+        "05-04": "1961: Alan Shepard became the first American in space.",
+        "05-05": "2011: Space Shuttle Endeavour launched for its final mission.",
+        "06-20": "1944: First man-made object in space (V-2 rocket test).",
+        "07-16": "1969: Apollo 11 launched toward the Moon.",
+        "07-20": "1969: Neil Armstrong became the first human to walk on the Moon.",
+        "08-06": "2012: NASA's Curiosity rover landed on Mars.",
+        "09-05": "1977: Voyager 1 launched on a journey to interstellar space.",
+        "10-04": "1957: Sputnik 1 became the first artificial satellite in orbit.",
+        "11-26": "2011: NASA launched Curiosity rover aboard Atlas V.",
+        "12-14": "1972: Apollo 17's last moonwalk marked the final crewed Moon landing.",
+        "12-25": "2003: Mars Express began orbiting Mars.",
+    }
+
+    def space_history_today():
+        today = datetime.datetime.now().strftime("%m-%d")
+        event = space_history.get(today, "No significant event found for today.")
+        st.markdown(f"### 🚀 Today in Space History\n**{event}**")
+
+    # 3. Featured Space Concept
+    def featured_concept():
+        space_concepts = [
+            {"title": "Wormholes", "description": "Hypothetical tunnels through space-time."},
+            {"title": "Dyson Spheres", "description": "A megastructure to capture a star’s energy output."},
+        ]
+        concept = random.choice(space_concepts)
+        st.markdown(f"### 🌌 Featured Space Concept: {concept['title']}\n{concept['description']}")
+
+
+    space_quotes = [
+        {"content": "That's one small step for a man, one giant leap for mankind.", "author": "Neil Armstrong"},
+        {"content": "To confine our attention to terrestrial matters would be to limit the human spirit.", "author": "Stephen Hawking"},
+        {"content": "The Earth is the cradle of humanity, but one cannot live in the cradle forever.", "author": "Konstantin Tsiolkovsky"},
+        {"content": "Across the sea of space, the stars are other suns.", "author": "Carl Sagan"},
+        # Add more as needed
+    ]
+
+    space_terms = [
+        {"term": "Event Horizon", "definition": "The boundary beyond which nothing can escape a black hole."},
+        {"term": "Dark Matter", "definition": "A form of matter that doesn’t emit light or energy, but makes up most of the universe’s mass."},
+        {"term": "Redshift", "definition": "A shift in the light from distant galaxies, indicating that they are moving away from us."},
+        {"term": "Singularity", "definition": "A point in space-time where gravity is infinitely intense, like at the center of a black hole."},
+        {"term": "Solar Flare", "definition": "A sudden burst of radiation from the Sun’s surface caused by magnetic energy release."},
+        {"term": "Neutron Star", "definition": "An extremely dense remnant of a supernova, made almost entirely of neutrons."},
+        {"term": "Astrobiology", "definition": "The study of life in the universe, including the possibility of life on other planets."},
+        {"term": "Cosmic Microwave Background", "definition": "The leftover radiation from the Big Bang, filling the universe as a faint glow."},
+        {"term": "Roche Limit", "definition": "The distance within which a celestial body, due to tidal forces, will disintegrate due to a planet’s gravity."},
+        {"term": "Kuiper Belt", "definition": "A region beyond Neptune filled with icy bodies and dwarf planets like Pluto."},
+        # Add more as needed
+    ]
+
+    # Pick a term based on the day, so it's consistent for all users
+    def space_term_of_the_day():
+        today = datetime.datetime.now().strftime("%Y-%m-%d")
+        index = int(hashlib.md5(today.encode()).hexdigest(), 16) % len(space_terms)
+        term = space_terms[index]
+
+        st.markdown(f"### 🧠 Space Term of the Day: **{term['term']}**\n{term['definition']}")
+
+    astronauts = [
+        {"name": "Neil Armstrong", "bio": "First human to walk on the Moon during NASA's Apollo 11 mission in 1969."},
+        {"name": "Valentina Tereshkova", "bio": "First woman to fly in space aboard Vostok 6 in 1963."},
+        {"name": "Yuri Gagarin", "bio": "First human to journey into space on April 12, 1961 aboard Vostok 1."},
+        {"name": "Chris Hadfield", "bio": "Canadian astronaut known for his musical performance on the ISS and space outreach."},
+        {"name": "Mae Jemison", "bio": "First African-American woman in space aboard Space Shuttle Endeavour in 1992."},
+        {"name": "Kalpana Chawla", "bio": "First Indian-born woman in space, who tragically died during the Columbia disaster."},
+        {"name": "Buzz Aldrin", "bio": "Second human to walk on the Moon as part of Apollo 11."},
+        {"name": "Sally Ride", "bio": "First American woman in space aboard the Challenger in 1983."},
+        {"name": "Peggy Whitson", "bio": "Holds the record for most cumulative time spent in space by a U.S. astronaut."},
+        {"name": "Rakesh Sharma", "bio": "First Indian citizen to travel to space aboard Soyuz T-11 in 1984."},
+        # Add more astronauts as desired
+    ]
+
+    def astronaut_spotlight():
+        today = datetime.datetime.now().strftime("%Y-%m-%d")
+        index = int(hashlib.md5(today.encode()).hexdigest(), 16) % len(astronauts)
+        astro = astronauts[index]
+
+        st.markdown(f"### 👩‍🚀 Astronaut Spotlight: **{astro['name']}**\n{astro['bio']}")
+        
+    
+    def iss_tracker():
+        response = requests.get("http://api.open-notify.org/iss-now.json")
+
+        if response.status_code == 200:
+            data = response.json()
+            position = data["iss_position"]
+            latitude = float(position["latitude"])
+            longitude = float(position["longitude"])
+
+            st.markdown("### 🛰 Current ISS Location")
+            st.map([{"lat": latitude, "lon": longitude}])
+            st.write(f"**Latitude:** {latitude}  \n**Longitude:** {longitude}")
+        else:
+            st.error("Could not fetch ISS location at this time.")
+
+    # ✅ Render Homepage
+    st.title("🌌 Welcome to NovaNet!")
+    show_apod()
+    st.divider()
+    space_history_today()
+    st.divider()
+    featured_concept()
+    st.divider()
+    quote_from_cosmos()
+    st.divider()
+    space_term()
+    st.divider()
+    astronaut_spotlight()
+    st.divider()
+    iss_tracker()
+
 
     st.markdown("""
     <br><br>
