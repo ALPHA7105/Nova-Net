@@ -122,7 +122,7 @@ if st.session_state.active_tab == "🏠 Home":
     API_KEY = "ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
 
     def get_apod():
-        url = f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}"
+        url = f"https://api.nasa.gov/planetary/apod?api_key=ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
         try:
             response = requests.get(url)
             response.raise_for_status()
