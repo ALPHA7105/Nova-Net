@@ -214,6 +214,14 @@ if st.session_state.active_tab == "🏠 Home":
     """)
 
     st.markdown("""
+    <div style="margin-top: 3rem; font-size: 16px; line-height: 1.6;">
+        🌌 At <b>NovaNet</b>, we believe the universe is more than just stars and space—it's a canvas of mysteries waiting to be explored.<br><br>
+        🧠 Whether you're a curious student, an aspiring scientist, or just a lover of the cosmos, NovaNet is your launchpad into the unknown.<br><br>
+        🚀 Dive in, stay curious, and let your journey through the stars begin!
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
     <br><br>
     <div style='text-align: right; font-size:18px; margin-right: 30px;'>
         <b>Next: 🔍 Mysteries ➡️</b>
@@ -1822,16 +1830,7 @@ st.markdown("""
     </div>
     <div style="flex: 1; text-align: right;">
         <b>📬 Contact Us</b><br>
-        ssworld7105@gmail.com<br>+971 563711020
+        📧 ssworld7105@gmail.com<br>📞 +971 563711020
     </div>
 </div>
-""", unsafe_allow_html=True)
-
-st.markdown("""
-    <hr style="margin-top: 3rem; border-top: 1px solid #444;">
-    <div style='display: flex; justify-content: space-between; padding: 20px; color: gray; font-size: 14px;'>
-        <div style="flex: 1; text-align: left;">🚀 Where curiosity meets the cosmos...</div>
-        <div style="flex: 1; text-align: center;">💫 NovaNet</div>
-        <div style="flex: 1; text-align: right;">📬Contact <br> 📧 ssworld7105@gmail.com <br> 📞 +971 563711020</div>
-    </div>
 """, unsafe_allow_html=True)
