@@ -1830,3 +1830,11 @@ st.markdown("""
 
 </div>
 """, unsafe_allow_html=True)
+st.markdown("""
+    <hr style="margin-top: 3rem; border-top: 1px solid #444;">
+    <div style='display: flex; justify-content: space-between; padding: 20px; color: gray; font-size: 14px;'>
+        <div style="flex: 1; text-align: left;">🚀 Where curiosity meets the cosmos...</div>
+        <div style="flex: 1; text-align: center;">💫 NovaNet</div>
+        <div style="flex: 1; text-align: right;">📬Contact <br> 📧 ssworld7105@gmail.com <br> 📞 +971 563711020</div>
+    </div>
+""", unsafe_allow_html=True)
