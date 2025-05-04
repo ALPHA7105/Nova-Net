@@ -117,23 +117,26 @@ st.markdown("---")
 # Content display per tab
 st.markdown('<div class="main-content">', unsafe_allow_html=True)
 
+API_KEY = "ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
+
+# Function to fetch APOD
+def get_apod():
+    url = f"https://api.nasa.gov/planetary/apod?api_key=ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error fetching APOD: {e}")
+        return None
+
+# Displaying content on the homepage
 if st.session_state.active_tab == "🏠 Home":
     
-    API_KEY = "ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
-
-    def get_apod():
-        url = f"https://api.nasa.gov/planetary/apod?api_key=ZUyBjPsg0MqHf8kPZVgoZEPJlwaGuH7Fgswc7Bto"
-        try:
-            response = requests.get(url)
-            response.raise_for_status()
-            return response.json()
-        except requests.exceptions.RequestException as e:
-            st.error(f"Error fetching APOD: {e}")
-            return None
-        
     st.markdown("""<div style='text-align: center; margin-top: 2rem;'>
                    <h1>🌎 Home</h1>
                    </div>""", unsafe_allow_html=True)
+    
     st.markdown("""<div style='text-align: center; margin-top: 2rem; font-size: 18px; line-height: 1.6;'>
                    Welcome to <strong>NovaNet</strong> — your gateway to the universe. From mind-bending space mysteries and NASA missions to exoplanets, black holes, astrobiology, and the latest tech, NovaNet brings the cosmos to your screen in a way that's interactive, intelligent, and inspiring. With real-time data, AI conversations, community theories, and much more, NovaNet isn't just a space platform — it's your personal mission control for exploring the stars.
                    </div>""", unsafe_allow_html=True)
@@ -143,17 +146,19 @@ if st.session_state.active_tab == "🏠 Home":
                 <h1>📸 NASA's Astronomy Picture of the Day</h1>
               </div>""", unsafe_allow_html=True)
 
+    # Fetch APOD (Astronomy Picture of the Day)
     apod = get_apod()
     if apod:
         st.markdown(f"""
         <div style='text-align: center;'>
-            <img src="{apod["url"]}" alt="{apod["title"]}" style="max-width: 40%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+            <img src="{apod["url"]}" alt="{apod["title"]}" style="max-width: 60%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
             <p style='margin-top: 1rem; font-weight: bold; font-size: 1.2rem;'>{apod["title"]}</p>
         </div>
         """, unsafe_allow_html=True)
         st.markdown(f"<p style='text-align: justify; margin-top: 1rem; font-size: 1rem;'>{apod['explanation']}</p>", unsafe_allow_html=True)
-    st.divider()
 
+    st.divider()
+    
     space_history = {
         "01-01": "2004: Stardust spacecraft flew by comet Wild 2.",
         "01-28": "1986: Space Shuttle Challenger disaster occurred.",
