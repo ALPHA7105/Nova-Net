@@ -9,7 +9,7 @@ import time
 import html
 import csv
 import os
- 
+
 st.set_page_config(page_title="NovaNet", layout="wide", page_icon="💫")
 
 if "active_tab" not in st.session_state:
