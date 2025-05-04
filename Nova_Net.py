@@ -230,10 +230,10 @@ elif st.session_state.active_tab == "🔍 Mysteries":
     mysteries = [
         {"title": "Dark Matter & Dark Energy 💫", 
          "description": "What are they, and why do they make up most of the universe's mass-energy content? "
-                        "Learn more [here](https://en.wikipedia.org/wiki/Dark_matter)."},
+                        "<a href='https://en.wikipedia.org/wiki/Dark_matter' target='_blank'>Learn more</a>",
         {"title": "The Fermi Paradox 👽", 
          "description": "Why have we not yet encountered any extraterrestrial civilizations? "
-                        "Learn more [here](https://en.wikipedia.org/wiki/Fermi_paradox)."},
+                        "[Learn more](https://en.wikipedia.org/wiki/Fermi_paradox)."},
         {"title": "The Wow! Signal 📡", 
          "description": "A mysterious radio signal from space that has never been explained. "
                         "Learn more [here](https://en.wikipedia.org/wiki/Wow!_signal)."},
