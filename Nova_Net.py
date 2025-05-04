@@ -212,7 +212,6 @@ if st.session_state.active_tab == "🏠 Home":
     st.markdown("""
     **James Webb Space Telescope (JWST)**: Launched in 2021, JWST is the most powerful space telescope ever built. It is designed to study the infrared universe, including the formation of stars, galaxies, and planetary systems. The JWST promises to answer some of the most profound questions about the universe's origin and structure.
     """)
-    st.divider()
 
     st.markdown("""
     <br><br>
@@ -389,6 +388,7 @@ elif st.session_state.active_tab == "🔍 Mysteries":
         <div style='text-align: center;'>
         <h4>🎬 Dark Universe Explained</h4>
         <a href='https://www.youtube.com/watch?v=QAa2O_8wBUQ' target='_blank'>▶️ Watch on YouTube</a>
+        *This video might not work, as video options are still under development.
         </div>
         """, unsafe_allow_html=True)
 
