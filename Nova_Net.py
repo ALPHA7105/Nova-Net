@@ -1827,5 +1827,6 @@ st.markdown("""
             <div style="font-size: 18px; font-weight: bold;">📬 Contact Us</div>
             <div style="margin-top: 5px;">ssworld7105@gmail.com<br>+971 563711020</div>
         </div>
+        
     </div>
 """, unsafe_allow_html=True)
