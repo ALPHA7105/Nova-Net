@@ -230,30 +230,29 @@ elif st.session_state.active_tab == "🔍 Mysteries":
     mysteries = [
         {"title": "Dark Matter & Dark Energy 💫", 
          "description": "What are they, and why do they make up most of the universe's mass-energy content? "
-                        "<a href='https://en.wikipedia.org/wiki/Dark_matter' target='_blank'>Learn more</a>",
+                        "<a href='https://en.wikipedia.org/wiki/Dark_matter' target='_blank'>Learn more</a>"},
         {"title": "The Fermi Paradox 👽", 
          "description": "Why have we not yet encountered any extraterrestrial civilizations? "
-                        "<a href='https://en.wikipedia.org/wiki/Fermi_paradox' target='_blank'>Learn more</a>",
+                        "<a href='https://en.wikipedia.org/wiki/Fermi_paradox' target='_blank'>Learn more</a>"},
         {"title": "The Wow! Signal 📡", 
          "description": "A mysterious radio signal from space that has never been explained. "
-                        "<a href='https://en.wikipedia.org/wiki/Wow!_signal' target='_blank'>Learn more</a>",
+                        "<a href='https://en.wikipedia.org/wiki/Wow!_signal' target='_blank'>Learn more</a>"},
         {"title": "The Nature of Black Holes ⚫", 
          "description": "Understanding the true nature of singularities and the event horizon. "
-                        "<a href='https://en.wikipedia.org/wiki/Black_hole' target='_blank'>Learn more</a>",
+                        "<a href='https://en.wikipedia.org/wiki/Black_hole' target='_blank'>Learn more</a>"},
         {"title": "Quantum Gravity ⚛️", 
          "description": "How to reconcile general relativity and quantum mechanics. "
-                        "<a href='https://en.wikipedia.org/wiki/Quantum_gravity' target='_blank'>Learn more</a>",
+                        "<a href='https://en.wikipedia.org/wiki/Quantum_gravity' target='_blank'>Learn more</a>"},
         {"title": "The Multiverse Theory 🌐", 
          "description": "Is there more than one universe? Exploring the idea of parallel universes. "
-                        "Learn more [here](https://en.wikipedia.org/wiki/Multiverse)."},
-                        "<a href='https://en.wikipedia.org/wiki/Multiverse' target='_blank'>Learn more</a>",
+                        "<a href='https://en.wikipedia.org/wiki/Multiverse' target='_blank'>Learn more</a>"},
         {"title": "The Search for Alien Life 👽", 
          "description": "How can we detect signs of extraterrestrial life, and why haven't we found any proof yet? "
-                        "<a href='https://en.wikipedia.org/wiki/Search_for_extraterrestrial_intelligencee' target='_blank'>Learn more</a>",
+                        "<a href='https://en.wikipedia.org/wiki/Search_for_extraterrestrial_intelligencee' target='_blank'>Learn more</a>"},
         {"title": "The Origin of Cosmic Rays ⚡", 
          "description": "What causes the high-energy cosmic rays that bombard Earth, and where do they come from? "
-                        "<a href='https://en.wikipedia.org/wiki/Cosmic_ray' target='_blank'>Learn more</a>"
-    ]
+                        "<a href='https://en.wikipedia.org/wiki/Cosmic_ray' target='_blank'>Learn more</a>"}
+        ]
 
     col1, col2 = st.columns(2)
     
