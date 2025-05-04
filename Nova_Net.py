@@ -253,8 +253,6 @@ if st.session_state.active_tab == "🏠 Home":
             st.error("Could not fetch ISS location at this time.")
 
     # ✅ Render Homepage
-    st.title("🌌 Welcome to NovaNet!")
-    show_apod()
     st.divider()
     space_history_today()
     st.divider()
